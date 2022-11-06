@@ -1,0 +1,65 @@
+.hotel-post {
+  width: 60%;
+  max-width: 9600px;
+  height: 300px;
+  margin: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
+}
+.hotel-post div {
+  height: 90%;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-between;
+}
+.hotel-post div img {
+  width: 100%;
+  border-radius: 10px;
+}
+.hotel-post div div {
+  height: 35%;
+  width: 80%;
+  margin: auto;
+}
+.hotel-post div div button {
+  background-color: rgb(77, 124, 115);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  height: 50%;
+  font-size: 17px;
+  transition: all 0.25s;
+  border: 1px solid rgb(77, 124, 115);
+  cursor: pointer;
+}
+.hotel-post div div button:hover {
+  background-color: rgb(229, 231, 230);
+  color: rgb(77, 124, 115);
+}
+.hotel-post .middle {
+  color: rgb(147, 151, 154);
+  border-left: 1px solid rgb(230, 230, 230);
+  border-right: 1px solid rgb(230, 230, 230);
+  width: 50%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.hotel-post .middle .price {
+  font-weight: bold;
+  font-size: 40px;
+}
+.hotel-post .middle .location {
+  font-weight: bolder;
+  font-size: 25px;
+}/*# sourceMappingURL=booking.css.map */

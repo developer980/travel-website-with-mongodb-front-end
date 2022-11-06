@@ -13,7 +13,7 @@ export default function Home() {
           </div>
           <div className = "links-section">
             <Link to = "/form">Post a new destination</Link>
-            <Link>Book a place</Link>
+            <Link to = "/booking_page">Book a place</Link>
           </div>
         </section>
         <div>
