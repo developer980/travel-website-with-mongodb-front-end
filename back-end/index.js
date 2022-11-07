@@ -51,7 +51,7 @@ app.get("/get_posts", (req, res) => {
     axios.get("https://sp.booking.com/searchresults.en-gb.html?aid=318615&label=Catch_All-EN-131006968001-bPiN0WYm7x7ddzlXSroMLwS548793046706%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atidsa-1642216383571%3Alp1011837%3Ali%3Adec%3Adm&sid=8e1d1ad3cd8d7f925a3288aef1318628&city=-1251042;from_idr=1&ilp=1&d_dcp=1")
     .then((data) => {
         const $ = cheerio.load(data.data)
-        $('.ef8295f3e6').each(function(i, elem){
+        !elements.length && $('.ef8295f3e6').each(function(i, elem){
             console.log("text " + $(this).text())
             const url_text = $(this).children("div").children(".dd023375f5").children("h3").children("a").children(".fcab3ed991").text();
             const url_href = $(this).children("div").children(".dd023375f5").children("h3").children("a").attr("href")
@@ -63,32 +63,12 @@ app.get("/get_posts", (req, res) => {
                 description: description
             })
         })
-        //console.log("elements: " + elements)
-        //res.json(elements)
         res.send(elements)
-        //const link = html(".a4225678b2").children("a").text();
-        // console.log("- url: " + link)
-        // console.log("- description: " + pretty(description))
-        // elements.push({
-        //     link,
-        //     description
-        // })
-        // html('span span').each((idx, el) => {
-        //    // const text =html(el).text()
-        //    const href = html(el).attr('href')
-        //    const text = html(el).text()
-        //     // console.log(html(el).children(".flex").children(".px-2").children("section").children('h2').children("button").children("span").children())
-        //     elements.push({
-        //         url:text
-        //     })
-        // })
     }).catch(err => console.log("error: " + err))
     // db.collection("posts").find().toArray(function(err, result){
     //         res.send(result)
     // })
 })
-
-
 
 app.listen(3001, () => {
     console.log("Server started :)")
