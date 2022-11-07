@@ -32,6 +32,7 @@ main section .links-section a {
   width: 40%;
   text-align: center;
   background-color: rgb(77, 124, 115);
+  border: 1px solid rgb(77, 124, 115);
   border-radius: 50px;
   padding: 10px;
   text-decoration: none;
@@ -42,6 +43,5 @@ main section .links-section a {
 }
 main section .links-section a:hover {
   background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(77, 124, 115);
   color: rgb(77, 124, 115);
 }/*# sourceMappingURL=home.css.map */

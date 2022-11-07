@@ -32,6 +32,7 @@ main{
                 width: 40%;
                 text-align: center;
                 background-color: $color;
+                border: 1px solid $color;
                 border-radius: 50px;
                 padding: 10px;
                 text-decoration: none;
@@ -41,7 +42,6 @@ main{
                 max-width: 200px;
                 &:hover{
                     background-color: rgb(255, 255, 255);
-                    border: 1px solid $color;
                     color:$color
                 }
             }
