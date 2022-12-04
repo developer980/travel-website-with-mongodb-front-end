@@ -1,0 +1,64 @@
+.chalendar{
+    background-color: white;
+    /* width:50%; */
+    position: absolute;
+    left:20%;
+    right: 20%;
+    height:500px;
+    border-radius: 20px;
+    border:1px solid rgb(219, 219, 219);
+    box-shadow: 3px 3px 10px -1px rgb(153, 153, 153);
+    overflow: hidden;
+}
+
+.chalendar-header, .chalendar-bar{
+    /* background-color: rgb(206, 206, 206); */
+    border-bottom:1px solid rgb(184, 184, 184);    
+    /* height:15%; */
+}
+
+.chalendar-header{
+    height:15%;
+    background-color: rgb(77, 124, 115);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+    color:white;
+}
+
+.chalendar-bar{
+    height:10%;
+}
+
+.chalendar-bar, .chalendar-content {   
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.chalendar-content{
+    height:70%;
+    width:100%;
+}
+
+.chalendar-bar > div, .chalendar-content > div{
+    width:14.285%;
+    color:rgb(129, 129, 129);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+.chalendar-content > div {
+    transition: all 0.25s;
+    cursor: pointer;
+    /* border:1px solid */
+}
+
+.chalendar-content > div:hover{
+    background-color: rgb(212, 212, 212);
+    border-radius: 10px;
+}
