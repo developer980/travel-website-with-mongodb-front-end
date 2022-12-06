@@ -22,7 +22,7 @@
     background-color: rgb(77, 124, 115);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     font-size: 25px;
     font-weight: bold;
     color:white;
@@ -30,6 +30,7 @@
 
 .chalendar-bar{
     height:10%;
+    align-items: center;
 }
 
 .chalendar-bar, .chalendar-content {   
@@ -43,8 +44,9 @@
     width:100%;
 }
 
-.chalendar-bar > div, .chalendar-content > div{
+.chalendar-bar > div, .chalendar-content__day{
     width:14.285%;
+    height:16%;
     color:rgb(129, 129, 129);
     font-size: 20px;
     display: flex;
@@ -52,13 +54,20 @@
     justify-content: center;
 } 
 
-.chalendar-content > div {
+.chalendar-content__day {
     transition: all 0.25s;
-    cursor: pointer;
     /* border:1px solid */
 }
 
-.chalendar-content > div:hover{
+.chalendar-content__day--faded{
+    color:rgb(201, 201, 201)
+}
+
+.chalendar-content__day--clear{
+    cursor: pointer;
+}
+
+.chalendar-content__day--clear:hover{
     background-color: rgb(212, 212, 212);
     border-radius: 10px;
 }
