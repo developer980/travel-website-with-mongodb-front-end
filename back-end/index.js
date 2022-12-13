@@ -14,6 +14,7 @@ const connectionURl = 'mongodb://127.0.0.1:27017';
 const database = "myMDB"
 let db; 
 let elements = []
+let elements1 = []
 
 mongoClient.connect(
     connectionURl,
@@ -58,18 +59,45 @@ app.post("/post_destination", (req, res) => {
 // https://www.booking.com/searchresults.ro.html?aid=318615&label=New_Romanian_RO_RO_27026375305-LNg_O2KjtrOYqfazt2IDdgS217247418951%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi10681170931%3Atidsa-301303784602%3Alp1011843%3Ali%3Adec%3Adm&sid=8e1d1ad3cd8d7f925a3288aef1318628&checkin_monthday=04&checkin_year_month=2022-12&checkout_monthday=05&checkout_year_month=2022-12&dest_id=-1153951&dest_type=city&from_history=1&group_adults=2&group_children=0&no_rooms=1&si=ad&si=ai&si=ci&si=co&si=di&si=la&si=re&&sh_position=1
 
 // for filters: https://www.booking.com/searchresults.ro.html?ss=Tulcea&checkin=2022-12-09&checkout=2022-12-20&group_adults=1&no_rooms=1&group_children=2
+       
+//https://www.booking.com/searchresults.ro.html?ss=Bucuresti&checkIn=2022-11-20&checkOut=2022-11-23
 
 // 2nd link: https://www.trip.com/hotels/list?city=0&cityName=Tokyo
 
+// 2nd link: https://www.expedia.com/Hotel-Search?adults=2&destination=Tulcea
+
+
 app.post("/get_posts", (req, res) => {
     let keyWord = req.body.keyWord
+    const checkIn = "&checkIn=" + req.body.parameters.checkIn
+    const checkOut = "&checkOut=" + req.body.parameters.checkOut
+    console.log("checkIn: " + checkIn)
+    console.log("checkOut: " + checkOut)
     let endpoint = `https://www.booking.com/searchresults.ro.html?ss=${keyWord}`
-    console.log(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}`)
+    //console.log(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}`)
 
     elements = []
+    elements1 = []
 
-    axios.get(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}`)
-    .then((data) => {
+    axios.get(`https://www.expedia.com/Hotel-Search?adults=2&destination=${keyWord}`).then((data) => {
+        const $ = cheerio.load(data.data)
+        $('.uitk-card').each(function () {
+            const name = $(this).find(".uitk-layout-flex").find("h2")
+            const price = $(this).find(".uitk-layout-flex").find(".uitk-layout-flex").find(".uitk-lockup-price")
+            if (price.text()) {
+                console.log("Hotel: " + name.text() + " Price: " + price.text())
+                elements1.push({
+                    name: name,
+                    price:price
+                })
+            }
+            else return
+        })
+    })
+
+    axios.get(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}${checkIn}${checkOut}`)
+        .then((data) => {
+        //console.log(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}${checkIn}${checkOut}`)
         const $ = cheerio.load(data.data)
         !elements.length && $('.ef8295f3e6').each(function (i, elem) {
             let rating_stars = 0
@@ -87,7 +115,7 @@ app.post("/get_posts", (req, res) => {
             $(this).find(".fbb11b26f5").children("span").each(function (item) {
                 rating_stars++
             })
-           console.log(rating_stars)
+           //onsole.log(rating_stars)
             if(url_text)
                 description.length ? 
                     elements.push({
@@ -107,7 +135,7 @@ app.post("/get_posts", (req, res) => {
                         })
                 
         })
-        console.log(elements)
+        //console.log(elements)
         res.send(elements)
     }).catch(err => console.log("error: " + err))
     
