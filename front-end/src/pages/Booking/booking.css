@@ -1,5 +1,24 @@
+.layout-grid {
+  width: 70%;
+  margin: auto;
+  display: grid;
+  grid-template-areas: "nav nav nav nav" "sidebar content content content";
+  gap: 30px;
+}
+
 .inputs {
-  text-align: center;
+  width: 100%;
+  position: relative;
+  margin: auto;
+  grid-area: nav;
+  flex-wrap: wrap;
+}
+.inputs input, .inputs button {
+  width: 17%;
+}
+
+.posts {
+  grid-area: content;
 }
 
 .inputs-left {
@@ -60,11 +79,10 @@
 }
 
 .hotel-post {
-  width: 50%;
+  width: 90%;
   max-width: 9600px;
   height: 300px;
-  margin: auto;
-  margin-top: 50px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -1,17 +1,28 @@
 import React from 'react'
 import "./chalendar.css"
 import { useState } from 'react'
+import { connect } from 'react-redux'
+// import setCheckIn from '../../redux/action/date_in'
+// import setCheckOut from '../../redux/action/date_out'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCheckIn, setCheckOut } from '../../redux/reducer/date'
 
-export default function Chalendar() {
+export default function Chalendar(props) {
 
+  const dispatch = useDispatch();
+
+  const { mode } = props
+  console.log("mode " + mode)
   const months = ["January","February","March","April","May","June","July",
   "August", "September", "October", "November", "December"]
   
-  const [index, setMonth] = useState(0)
+  const [amount, setMonth] = useState(0)
   const [year_index, setYear] = useState(0)
 
-  const [checkIn, setDateIn] = useState("")
-  const [checkOut, setDateOut] = useState("")
+  const [checkIn, setDateIn] = useState(0)
+  const [checkOut, setDateOut] = useState(0)
+
+  //const [color, setColor] = useState("green")
   
   console.log("Date in " + checkIn)
   
@@ -24,10 +35,10 @@ export default function Chalendar() {
   const date = new Date();
   //console.log(new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate())
   
-  let month_days = new Date(date.getFullYear(), date.getMonth() + index + 1, 0).getDate()
-  const last_month_days = new Date(date.getFullYear() + year_index, date.getMonth() + index, 0).getDate()
-  const first_month_day = new Date(date.getFullYear() + year_index, date.getMonth() + index, 0).getDay()
-  const last_month_day = new Date(date.getFullYear() + year_index, date.getMonth() + index + 1, 0).getDay()
+  let month_days = new Date(date.getFullYear(), date.getMonth() + amount + 1, 0).getDate()
+  const last_month_days = new Date(date.getFullYear() + year_index, date.getMonth() + amount, 0).getDate()
+  const first_month_day = new Date(date.getFullYear() + year_index, date.getMonth() + amount, 0).getDay()
+  const last_month_day = new Date(date.getFullYear() + year_index, date.getMonth() + amount + 1, 0).getDay()
   const current_year = new Date().getFullYear() + year_index;
 
   let day_index = first_month_day
@@ -35,27 +46,26 @@ export default function Chalendar() {
   let total_days  = 1
   const month_index = new Date(date.getFullYear() + year_index, date.getMonth()).getMonth()
 
-  const month = month_index + index
   //console.log("month " + month)
 
   return (
-    <div id = "cld" className = "chalendar" style = {{display:"none"}}>
+    <div id = "chalendar" className = "chalendar" style = {{display:"none"}}>
       <div className="chalendar-header">
 
         <button onClick={() => {
-          if (month_index + index > 0)
-            setMonth(index - 1)
+          if (month_index + amount > 0)
+            setMonth(amount - 1)
           else {
             setMonth(months.length - month_index - 1)
             setYear(year_index - 1)
           }
         }}>Left</button>
 
-        {months[month_index + index]}
+        {months[month_index + amount]}
 
         <button onClick={() => {
-          if (month_index + index < months.length - 1)
-            setMonth(index + 1)
+          if (month_index + amount < months.length - 1)
+            setMonth(amount + 1)
           else {
             setMonth(-month_index)
             setYear(year_index + 1)
@@ -74,7 +84,7 @@ export default function Chalendar() {
         {
           Array.from(Array(first_month_day)).map((item, index) => {
             day_index -= 1
-            //day++
+            
             total_days++
               return <div className='chalendar-content__day chalendar-content__day--faded'>{last_month_days - day_index}</div> 
           })
@@ -84,20 +94,42 @@ export default function Chalendar() {
             //day++
             total_days++
             //console.log(day);
-            return <div onClick={() => {
-              if(!checkIn)    
-                setDateIn(index + 1 + "-" + month_index + "-" + current_year)
-              
-              else {
-                const selected_date = index + 1 + "-" + month_index + "-" + current_year
-                if(selected_date > checkIn)
-                  setDateOut(index + 1 + "-" + month_index + "-" + current_year)
-                
-                else
-                  setDateIn(index + 1 + "-" + month_index + "-" + current_year)
+            const item_date = index + 1
+            
+            const month = month_index + amount + 1
+
+            return <div id={index} onClick={() => {
+              if (!checkIn) {
+                setDateIn(current_year + "-" + month + "-" + item_date)
+                dispatch(setCheckIn(current_year + "-" + month + "-" + item_date))
               }
               
-                }} className='chalendar-content__day chalendar-content__day--clear'>{index + 1}</div> 
+              else {
+                const selected_date = current_year + "-" + month + "-" + item_date
+                if (mode == "in") {
+                  setDateIn(current_year + "-" + month + "-" + item_date)
+                  dispatch(setCheckIn(current_year + "-" + month + "-" + item_date))
+                }
+                  
+                else {
+                  setDateOut(current_year + "-" + month + "-" + item_date)
+                  dispatch(setCheckOut(current_year + "-" + month + "-" + item_date))
+                  if (new Date(selected_date) < new Date(checkIn)) {
+                    const new_date = item_date - 1;
+                    setDateOut(current_year + "-" + month + "-" + item_date)
+                    setDateIn(current_year + "-" + month + "-" + new_date)
+                    dispatch(setCheckOut(current_year + "-" + month + "-" + item_date))
+                    dispatch(setCheckIn(current_year + "-" + month + "-" + new_date))
+                  }
+                }
+              }
+              
+            }} className={`chalendar-content__day chalendar-content__day--clear ${new Date(current_year + "-" + month + "-" + item_date) > new Date(checkIn) && new Date(current_year + "-" + month + "-" + item_date) < new Date(checkOut) ?
+                "chalendar-content__day--green"
+                :
+                "chalendar-content__day--none"}`}>{index + 1}</div> 
+          
+
             })
         }
         {
@@ -108,4 +140,11 @@ export default function Chalendar() {
       </div>
     </div>
   )
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setCheckIn: (payload) => setCheckIn(payload),
+    setCheckOut: (payload) => setCheckOut(payload)
+  }
 }

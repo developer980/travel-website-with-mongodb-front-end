@@ -63,6 +63,14 @@
     color:rgb(201, 201, 201)
 }
 
+.chalendar-content__day--green{
+    background-color: rgb(230, 230, 230);
+}
+
+.chalendar-content__day--none{
+    background: none;
+}
+
 .chalendar-content__day--clear{
     cursor: pointer;
 }

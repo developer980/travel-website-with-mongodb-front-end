@@ -2,6 +2,18 @@ $color:rgb(77, 124, 115);
 $color1: rgb(230, 230, 230);
 
 
+.layout-grid{
+    width: 70%;
+    margin: auto;
+    //border:2px solid;
+    display: grid;
+    grid-template-areas: 
+    'nav nav nav nav'
+    'sidebar content content content';
+    gap:30px;
+    //padding:10px
+}
+
 @mixin display($direction, $align, $justify){
     display:flex;
     flex-direction: $direction;
@@ -34,7 +46,27 @@ $color1: rgb(230, 230, 230);
 }
 
 .inputs{
-    text-align: center
+    // background-color: #2196F3;
+    // text-align: center;
+    width: 100%;
+    position:relative;
+    margin:auto;
+    grid-area: nav;
+    flex-wrap: wrap;
+    //border:2px solid;
+    // width: 100%;
+    input, button{
+        width: 17%;
+    }
+}
+
+.posts{
+    //background-color: #2196F3;
+    grid-area: content
+}
+
+.side-section{
+
 }
 
 .inputs-left{
@@ -53,11 +85,11 @@ $color1: rgb(230, 230, 230);
 }
 
 .hotel-post{
-    width:50%;
+    width:90%;
     max-width:9600px;
     height:300px;
-    margin: auto;
-    margin-top:50px;
+    // margin: auto;
+    margin-bottom:50px;
     @include display(row, center, space-around);
     background-color: white;
     border-radius: 20px;

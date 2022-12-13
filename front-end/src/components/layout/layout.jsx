@@ -5,7 +5,7 @@ export default function Layout(props) {
   return (
     <div style = {{height:"100%"}}>
         <Header/>
-        <div style = {{marginTop:"100px"}}>
+        <div style = {{marginTop:"0px"}}>
           {props.children}
         </div>
     </div>

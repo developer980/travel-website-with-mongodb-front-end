@@ -1,0 +1,42 @@
+@mixin flex($direction, $align, $justify){
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+.sidebar{
+    width: 300px;
+    height:700px;
+    padding:30px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
+}
+
+.sidebar-flex{
+    @include flex(column, left, unset);
+}
+
+
+.item-flex{
+    @include flex(row, left, unset);
+}
+
+.criteria-name{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.criteria{
+    margin-left: 30px;
+    font-size: 20px;
+    
+    div{
+        border:1px solid;
+        border-radius:5px;
+        margin:10px;
+        width: 50px;
+        text-align: center;
+    }
+}
