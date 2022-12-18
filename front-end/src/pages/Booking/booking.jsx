@@ -73,7 +73,7 @@ export default function Booking() {
         
         <div className = "posts">
           {
-            hotelArray.map(hotel => {
+            hotelArray.length>1 && hotelArray.map(hotel => {
               return(
                 <div className = "hotel-post">
                   <div>

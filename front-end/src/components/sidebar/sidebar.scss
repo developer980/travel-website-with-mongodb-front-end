@@ -1,13 +1,14 @@
-@mixin flex($direction, $align, $justify){
+@mixin flex($direction, $align, $justify, $gap){
     display: flex;
     flex-direction: $direction;
     align-items: $align;
     justify-content: $justify;
+    gap:$gap;
 }
 
 .sidebar{
     width: 300px;
-    height:700px;
+    height:300px;
     padding:30px;
     background-color: white;
     border-radius: 20px;
@@ -15,12 +16,12 @@
 }
 
 .sidebar-flex{
-    @include flex(column, left, unset);
+    @include flex(column, left, unset, 30px);
 }
 
 
 .item-flex{
-    @include flex(row, left, unset);
+    @include flex(row, left, unset, 5px);
 }
 
 .criteria-name{
@@ -35,7 +36,7 @@
     div{
         border:1px solid;
         border-radius:5px;
-        margin:10px;
+        margin-top:10px;
         width: 50px;
         text-align: center;
     }

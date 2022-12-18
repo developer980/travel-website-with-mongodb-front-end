@@ -8,7 +8,10 @@ export default function Sidebar() {
         <div className="sidebar-flex">
             <div className='sidebar-flex-item'>
                 <div className = "criteria-name">Price</div>
-                <div className = "criteria">100$ - 300$</div>  
+                  <div className="criteria">100$
+                      <input type="range" onChange = {(e) => {
+                          console.log(parseInt(e.target.value) * 3)
+                  }} /> 300$</div>  
             </div>
             <div className='sidebar-flex-item'>
                 <div className="criteria-name">Star rating</div>
