@@ -8,6 +8,7 @@ const cheerio  = require("cheerio");
 const pretty = require("pretty");
 const e = require("express");
 const src = require("./function1");
+const { resolve } = require("path");
 
 app.use(cors())
 const connectionURl = 'mongodb://127.0.0.1:27017';
@@ -69,79 +70,147 @@ app.post("/post_destination", (req, res) => {
 
 app.post("/get_posts", (req, res) => {
     let keyWord = req.body.keyWord
-    const checkIn = "&checkIn=" + req.body.parameters.checkIn
-    const checkOut = "&checkOut=" + req.body.parameters.checkOut
-    console.log("checkIn: " + checkIn)
-    console.log("checkOut: " + checkOut)
+    const checkIn = "&checkin=" + req.body.parameters.checkIn
+    const checkOut = "&checkout=" + req.body.parameters.checkOut
+   // console.log("checkIn: " + checkIn)
+   // console.log("checkOut: " + checkOut)
     let endpoint = `https://www.booking.com/searchresults.ro.html?ss=${keyWord}`
     //console.log(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}`)
 
     elements = []
     elements1 = []
 
-    axios.get(`https://www.expedia.com/Hotel-Search?adults=2&destination=${keyWord}`).then((data) => {
-        const $ = cheerio.load(data.data)
-        $('.uitk-card').each(function () {
-            const name = $(this).find(".uitk-layout-flex").find("h2")
-            const price = $(this).find(".uitk-layout-flex").find(".uitk-layout-flex").find(".uitk-lockup-price")
-            if (price.text()) {
-                console.log("Hotel: " + name.text() + " Price: " + price.text())
-                elements1.push({
-                    name: name,
-                    price:price
-                })
-            }
-            else return
+    let array_of_arrays = []
+
+    //console.log(`https://www.expedia.com/Hotel-Search?destination=${keyWord}&startDate=${req.body.parameters.checkIn}${"&endDate=" + req.body.parameters.checkOut}`)
+    const promise = new Promise((resolve) => {
+        axios.get(`https://www.expedia.com/Hotel-Search?destination=${keyWord}&startDate=${req.body.parameters.checkIn}${"&endDate=" + req.body.parameters.checkOut}`).then((data) => {
+            const $ = cheerio.load(data.data)
+            $('.uitk-card').each(function () {
+                const name = $(this).find(".uitk-layout-flex").find("h2")
+                const price = $(this).find(".uitk-layout-flex").find(".uitk-layout-flex").find(".uitk-layout-flex").children(".uitk-layout-flex").children(".uitk-type-200")
+                
+                // if (price.text()) {
+                    //console.log("Hotel: " + name.text() + " Price: " + price.text())
+                    // console.log('name: ' + name.text())
+                    // console.log('price: ' + price.text().split(" ")[0].substring(1) * 4.64)
+                    elements1.push({
+                        name: name.text(),
+                        price: price.text()
+                    })
+                    //resolve(elements1)
+                // }
+                // else return
+            })
+            
+            // resolve(array_of_arrays)
+            //array_of_arrays.push(elements1)
+            //console.log(elements1)
+            // array_of_arrays.push({
+            //     array:elements1
+            // })
+            resolve(elements1)
         })
     })
 
-    axios.get(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}${checkIn}${checkOut}`)
+    const promise1 = new Promise((resolve) => {
+        axios.get(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}${checkIn}${checkOut}`)
         .then((data) => {
-        //console.log(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}${checkIn}${checkOut}`)
-        const $ = cheerio.load(data.data)
-        !elements.length && $('.ef8295f3e6').each(function (i, elem) {
-            let rating_stars = 0
-            //console.log("text " + $(this).text())
-            const url_text = $(this).find(".fcab3ed991").text();
-            const url_href = $(this).children("div").find("a").attr("href")
-            const description = $(this).children(".d8eab2cf7f").text()
-            const location = $(this).children("div").children(".a1fbd102d9").children("a").children("span").children(".f4bd0794db").text();
-            let notes = ""
 
-            if (description.includes("Proprietate Călătorii durabile")) {
-                notes = "Travel sustenabillity property"
-            }
-            
-            $(this).find(".fbb11b26f5").children("span").each(function (item) {
-                rating_stars++
-            })
-           //onsole.log(rating_stars)
-            if(url_text)
-                description.length ? 
-                    elements.push({
-                        url_text,
-                        url_href,
-                        rating_stars,
-                        description: description.replace("Proprietate Călătorii durabile", ""),
-                        notes,
-                        location:location.replace("Arată pe hartă", " - Show on the map")
-                    }) : elements.push({
+            //console.log(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}${checkIn}${checkOut}`)
+
+            //console.log(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}${checkIn}${checkOut}`)
+            const $ = cheerio.load(data.data)
+            !elements.length && $('.d20f4628d0').each(function (i, elem) {
+                let rating_stars = 0
+                //console.log("text " + $(this).text())
+                const url_text = $(this).find(".ef8295f3e6").find(".fcab3ed991").text();
+                const url_href = $(this).find(".ef8295f3e6").children("div").find("a").attr("href")
+                const description = $(this).find(".ef8295f3e6").children(".d8eab2cf7f").text()
+                const location = $(this).find(".ef8295f3e6").children("div").children(".a1fbd102d9").children("a").children("span").children(".f4bd0794db").text();
+                const price = $(this).find('.fd1924b122').find(".fbd1d3018c ").text()
+                let notes = ""
+    //children(".fcab3ed991")
+            // console.log("price: " + price)
+                
+                if (description.includes("Proprietate Călătorii durabile")) {
+                    notes = "Travel sustenabillity property"
+                }
+        
+                $(this).find(".fbb11b26f5").children("span").each(function (item) {
+                    rating_stars++
+                })
+                //onsole.log(rating_stars)
+                if (url_text){
+                    description.length ?
+                        elements.push({
+                            url_text,
+                            url_href,
+                            rating_stars,
+                            description: description.replace("Proprietate Călătorii durabile", ""),
+                            notes,
+                            price,
+                            location: location.replace("Arată pe hartă", " - Show on the map")
+                        }) : elements.push({
                             url_text,
                             url_href,
                             rating_stars,
                             description: "Check the destination page",
                             notes,
-                            location:location.replace("Arată pe hartă", " - Show on the map")
+                            price,
+                            location: location.replace("Arată pe hartă", " - Show on the map")
                         })
-                
+                        //resolve(elements)
+                }
+
+                // array_of_arrays.push({
+                //     array:elements
+                // })
+
+                resolve(elements)
+            })
+    //    resolve(elements)
+
+        //console.log("da")
         })
-        //console.log(elements)
-        res.send(elements)
-    }).catch(err => console.log("error: " + err))
+
+    })
     
-    //src.function1(keyWord)
+    Promise.all([promise, promise1]).then((values) => {
+        //console.log(values[1])
+        for (let i = 0; i < values[0].length; i++) {
+            for (let j = 0; j < values[1].length; j++){
+                //console.log(values[1][j].price)
+                //if(values[0][i].price = values[1][j].url_text)
+                    console.log(values[0][i].price + " = " + values[1][j].price)
+                
+            }
+        }
+    })
+        //.catch(err => console.log("error: " + err))
 })
+
+function checkArray(array) {
+    let m = 0
+    // for (let i = 0; i < 1; i++){
+    //     // if (array[i].array.length) {
+    //     //     m++
+    //     //     console.log("complete")
+    //     // }
+    //     // else {
+    //     //     console.log("not complete")
+    //     //     return
+    //     // }
+    //     console.log(array[i])
+    // }
+    // if (array[1] && array[0])
+    //     console.log("complete")
+    // else console.log("not complete")
+    // //console.log("m = " + m)
+    console.log(array.length)
+}
 
 app.listen(3001, () => {
     console.log("Server started :)")
 })
+            
