@@ -12,7 +12,7 @@ export default function Home() {
             Find new destinations or post your wonderfull place
           </div>
           <div className = "links-section">
-            <Link to = "/form">Post a new destination</Link>
+            <Link to = "/form">Sign in</Link>
             <Link to = "/booking_page">Book a place</Link>
           </div>
         </section>

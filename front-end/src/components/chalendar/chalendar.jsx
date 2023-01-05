@@ -101,30 +101,30 @@ export default function Chalendar(props) {
             return <div id={index} onClick={() => {
               if (!checkIn) {
                 setDateIn(current_year + "-" + month + "-" + item_date)
-                dispatch(setCheckIn(current_year + "-" + month + "-" + item_date))
+                dispatch(setCheckIn(item_date + "." + month + "." + current_year))
               }
               
               else {
                 const selected_date = current_year + "-" + month + "-" + item_date
                 if (mode == "in") {
                   setDateIn(current_year + "-" + month + "-" + item_date)
-                  dispatch(setCheckIn(current_year + "-" + month + "-" + item_date))
+                  dispatch(setCheckIn(item_date + "." + month + "." + current_year))
                 }
                   
                 else {
                   setDateOut(current_year + "-" + month + "-" + item_date)
-                  dispatch(setCheckOut(current_year + "-" + month + "-" + item_date))
+                  dispatch(setCheckOut(item_date + "." + month + "." + current_year))
                   if (new Date(selected_date) < new Date(checkIn)) {
                     const new_date = item_date - 1;
                     setDateOut(current_year + "-" + month + "-" + item_date)
                     setDateIn(current_year + "-" + month + "-" + new_date)
-                    dispatch(setCheckOut(current_year + "-" + month + "-" + item_date))
-                    dispatch(setCheckIn(current_year + "-" + month + "-" + new_date))
+                    dispatch(setCheckOut(item_date + "." + month + "." + current_year))
+                    dispatch(setCheckIn(new_date + "." + month + "." + current_year))
                   }
                 }
               }
               
-            }} className={`chalendar-content__day chalendar-content__day--clear ${new Date(current_year + "-" + month + "-" + item_date) > new Date(checkIn) && new Date(current_year + "-" + month + "-" + item_date) < new Date(checkOut) ?
+            }} className={`chalendar-content__day chalendar-content__day--clear ${new Date(current_year + "-" + month + "-" + item_date) >= new Date(checkIn) && new Date(current_year + "-" + month + "-" + item_date) <= new Date(checkOut) ?
                 "chalendar-content__day--green"
                 :
                 "chalendar-content__day--none"}`}>{index + 1}</div> 

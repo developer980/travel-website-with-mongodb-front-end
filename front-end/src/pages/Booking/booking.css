@@ -1,9 +1,10 @@
 .layout-grid {
-  width: 70%;
+  width: 900px;
   margin: auto;
   display: grid;
-  grid-template-areas: "nav nav nav nav" "sidebar content content content";
+  grid-template-areas: "nav nav nav nav" "content content content content";
   gap: 30px;
+  position: relative;
 }
 
 .inputs {
@@ -14,11 +15,17 @@
   flex-wrap: wrap;
 }
 .inputs input, .inputs button {
-  width: 17%;
+  width: 17.925%;
 }
 
 .posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: none;
   grid-area: content;
+  width: 100%;
+  margin: auto;
 }
 
 .inputs-left {
@@ -30,7 +37,7 @@
   height: 50px;
   border-radius: 50px 0px 0px 50px;
   transition: all 0.25s;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 .inputs-left:hover {
   background-color: rgb(235, 236, 236);
@@ -49,7 +56,7 @@
   height: 50px;
   border-radius: 0px 0px 0px 0px;
   transition: all 0.25s;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 .inputs-center:hover {
   background-color: rgb(235, 236, 236);
@@ -68,7 +75,7 @@
   height: 50px;
   border-radius: 0px 50px 50px 0px;
   transition: all 0.25s;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 .inputs-right:hover {
   background-color: rgb(235, 236, 236);
@@ -79,64 +86,18 @@
 }
 
 .hotel-post {
-  width: 90%;
-  max-width: 9600px;
-  height: 300px;
+  width: 100%;
+  height: 200px;
   margin-bottom: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: white;
   border-radius: 20px;
   box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
   color: rgb(77, 124, 115);
-}
-.hotel-post div {
-  height: 90%;
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: space-between;
-}
-.hotel-post div div {
-  height: 35%;
-  width: 80%;
-  margin: auto;
-}
-.hotel-post div div a {
-  text-decoration: none;
-  padding: none;
-  padding: 10px;
-  text-align: center;
-  background-color: rgb(77, 124, 115);
-  border: none;
-  color: white;
-  border-radius: 50px;
-  font-weight: bold;
-  font-size: 17px;
-  transition: all 0.25s;
-  border: 1px solid rgb(77, 124, 115);
-  cursor: pointer;
-}
-.hotel-post div div a:hover {
-  background-color: rgb(229, 231, 230);
-  color: rgb(77, 124, 115);
-}
-.hotel-post div .hotel-img {
-  margin-top: 0px;
-  padding: 0;
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  border: 1px solid;
   overflow: hidden;
-}
-.hotel-post div img {
-  width: 100%;
 }
 .hotel-post div .rating {
   display: flex;
@@ -144,33 +105,76 @@
   justify-content: left;
 }
 .hotel-post div .rating img {
-  height: 20px;
+  height: 50%;
   width: auto;
 }
-.hotel-post .middle {
+.hotel-post .hotel-img {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  overflow: hidden;
+  background-color: rgb(66, 66, 66);
+}
+.hotel-post .middle, .hotel-post .links {
   display: flex;
   flex-direction: column;
   align-items: left;
-  justify-content: unset;
-  color: rgb(147, 151, 154);
-  border-left: 1px solid rgb(230, 230, 230);
-  border-right: 1px solid rgb(230, 230, 230);
-  width: 50%;
-  padding-left: 30px;
-  padding-right: 30px;
+  justify-content: space-between;
+  width: 36%;
+  height: 90%;
 }
-.hotel-post .middle span {
+.hotel-post .middle span, .hotel-post .links span {
   height: 20%;
 }
-.hotel-post .middle .description {
+.hotel-post .middle .description, .hotel-post .links .description {
   height: 50%;
   padding-bottom: 20px;
 }
-.hotel-post .middle .price {
+.hotel-post .middle .price, .hotel-post .links .price {
   font-weight: bold;
   font-size: 40px;
 }
-.hotel-post .middle .location {
+.hotel-post .middle .location, .hotel-post .links .location {
   font-weight: bold;
   font-size: 15px;
+}
+.hotel-post .middle {
+  padding: 0px 10px 0 10px;
+  color: rgb(98, 101, 104);
+}
+.hotel-post .main-img {
+  width: 120%;
+}
+.hotel-post .links {
+  display: flex;
+  gap: 5px;
+}
+.hotel-post .links a {
+  width: 95%;
+  border-radius: 10px;
+  height: 50%;
+  position: relative;
+  border: 1px solid rgb(98, 101, 104);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.hotel-post .links a div {
+  position: absolute;
+  font-weight: bold;
+  font-size: 30px;
+}
+.hotel-post .links a div, .hotel-post .links a span {
+  color: rgb(98, 101, 104);
+}
+.hotel-post .links a span {
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+}
+.hotel-post .links a:hover {
+  background-color: rgb(229, 231, 230);
+  color: rgb(77, 124, 115);
 }/*# sourceMappingURL=booking.css.map */

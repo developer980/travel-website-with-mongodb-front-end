@@ -22,8 +22,19 @@ export default function Booking() {
   const { checkIn } = useSelector(state => state.date)
   const { checkOut } = useSelector((state) => state.date)
 
-  console.log("in: " + checkIn)
-  console.log("out: " + checkOut)
+  const dateIn = {
+    day:checkIn.split(".")[0],
+    month:checkIn.split(".")[1],
+    year:checkIn.split(".")[2],
+  }
+  const dateOut = {
+    day:checkOut.split(".")[0],
+    month:checkOut.split(".")[1],
+    year:checkOut.split(".")[2],
+  }
+
+  console.log(dateIn)
+  console.log(dateOut)
   
   //console.log(hotelArray)
 
@@ -58,8 +69,8 @@ export default function Booking() {
             axios.post("http://localhost:3001/get_posts", {
               keyWord: keyWord.replace(" ", "+"),
               parameters: {
-                checkIn:checkIn,
-                checkOut:checkOut
+                checkIn:dateIn,
+                checkOut:dateOut
               }
             }).then(data => {
               console.log(data.data)
@@ -67,25 +78,26 @@ export default function Booking() {
             })
           }}>Search</button>
           <Guests />
+          
+        <div className = "side-section"><Sidebar/></div>
         </div>
         <Chalendar mode={mode} />
-        <div className = "side-section"><Sidebar/></div>
         
+        {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl3w9CFhn2FiIpAkXI7RtJbvQVRTP26hc67IYVg3hu&s" alt="" /> */}
         <div className = "posts">
           {
             hotelArray.length>1 && hotelArray.map(hotel => {
+              console.log("price: " + hotel.price.length)
               return(
                 <div className = "hotel-post">
-                  <div>
-                    <div className = "hotel-img">
-                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl3w9CFhn2FiIpAkXI7RtJbvQVRTP26hc67IYVg3hu&s" alt="" />
-                    </div>
-                    <h3>{hotel.url_text}</h3>
+                  <div className = "hotel-img">
+                    {/* <div className = "hotel-img"> */}
+                    <img className = "main-img" src={hotel.img} alt="" />
+                    {/* </div> */}
                   </div>
                   <div className="middle">
-                    <span className='description'>
-                      {hotel.description}
-                    </span>
+                    
+                    <h3>{hotel.url_text}</h3>
                     
                     {/* <span>
                       {hotel.notes}
@@ -97,25 +109,28 @@ export default function Booking() {
                           <img src = {Star}/>
                         ) :
                           <span>
-                            House property
+                            Rating stars not available
                           </span>
                       }
                     </span>
                     <span className = "location">
                       {hotel.location}
                   </span>
-                    <span className = "price">
+                    {/* <span className = "price">
                       {hotel.price}
-                  </span> </div>
-                  <div>
-                    <div>
-                      See reviews
-                    </div>
-                    <div>
-                      <a href={hotel.url_href} target = "_blank" rel="noopener noreferrer">
-                        Visit the page
+                  </span>  */}
+                  </div>
+                  <div className = 'links'>
+                    {hotel.price.map((price, index) => {
+                      //console.log("price " + index + ": " + price)
+                      // if (index <= price.length)
+                       if(price.value) return <a href={hotel.url_href[index]} target = "_blank" rel="noopener noreferrer">
+                          <div>
+                            {price.value} RON
+                          </div>
+                        <span>{price.website}</span>
                       </a>
-                    </div>
+                    })}
                     
                   </div>
                 </div>
