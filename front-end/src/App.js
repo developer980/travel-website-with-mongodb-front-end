@@ -7,15 +7,24 @@ import Shop from './pages/Shop/Shop';
 import Sign_up from './pages/Sign_up/Sign_up';
 import Form from './pages/Post/form';
 import Booking from './pages/Booking/booking';
+import { useSelector } from 'react-redux';
+import Verification from './pages/verification/verification';
+import Form1 from './pages/Post/form1';
+
+
 
 function App() {
+  // const { token } = useSelector(state => state.date)
+  // console.log("token: " + token)
   return (
     <Routes>
       <Route exact path = "/" element = {<Home/>}/>
       <Route path = "/sign_up" element = {<Sign_up/>}/>
       <Route path = "/shop" element = {<Shop/>}/>
       <Route path = "/form" element = {<Form/>}/>
-      <Route path = "/booking_page" element = {<Booking/>}/>
+      <Route path="/booking_page" element={<Booking />} />
+      <Route path="/confirm_:token" element={<Verification />} />
+      <Route path="/log_in" element={<Form1/>} />
     </Routes>
   );
 }

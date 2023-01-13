@@ -1,10 +1,10 @@
 form {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  max-width: 600px;
+  width: 40%;
+  max-width: 500px;
   margin: auto;
-  padding: 30px;
+  padding: 20px;
   border-radius: 30px;
   background-color: rgb(255, 255, 255);
   box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
@@ -31,9 +31,9 @@ form button {
   color: white;
   transition: all 0.25s;
   cursor: pointer;
+  border: 1px solid rgb(77, 124, 115);
 }
 form button:hover {
   background-color: white;
-  border: 1px solid rgb(77, 124, 115);
   color: rgb(77, 124, 115);
 }/*# sourceMappingURL=form.css.map */
