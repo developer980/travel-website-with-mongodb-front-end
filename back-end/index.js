@@ -59,24 +59,43 @@ app.post("/post_user", (req, res) => {
     const password = req.body.password
     const token = req.body.token
     console.log("Endpoint available")
-    db.collection("pending_users").insertOne({
-        username,
-        email,
-        password,
-        token,
+
+    const user_data = db.collection("users").find({
+        email:email
     })
-    const mailOptions = {
-        from: "confirm.test@outlook.com",
-        to: email,
-        subject: "Email confirmation",
-        html: `<div>
-            <b>Please verify your email</b>
-            <a href = "http://localhost:3000/confirm_${token}">Link</a>
-        </div>`
-    }
-    transport.sendMail(mailOptions, (err, res) => {
-        err ? console.log(err) : console.log("Email sent")
+    
+
+    const response = []
+
+    user_data.forEach(function (result, err) {
+        response.push(result)
+    }, () => {
+        if (response[0])
+            res.send("Email is invalid") 
+        else {
+            db.collection("pending_users").insertOne({
+                username,
+                email,
+                password,
+                token,
+            })
+            const mailOptions = {
+                from: "confirm.test@outlook.com",
+                to: email,
+                subject: "Email confirmation",
+                html: `<div>
+                    <b>Please verify your email</b>
+                    <a href = "http://localhost:3000/confirm_${token}">Link</a>
+                </div>`
+            }
+            transport.sendMail(mailOptions, (err, res) => {
+                err ? console.log(err) : console.log("Email sent")
+            })
+            res.send("Email sent")
+        }
     })
+
+
 })
 
 app.post("/verify_token", (req, res) => {
@@ -90,18 +109,42 @@ app.post("/verify_token", (req, res) => {
 
     result.forEach(function (result, err) {
         err && console.log(err)
-        console.log(result)
+        //console.log(result)
             response.push(result)
             //res.send(result)
     }, () => {
        // db.close()
-        console.log(response[0])
+        response[0] && console.log(response[0].email)
+        response[0] && db.collection("users").insertOne({
+            email: response[0].email,
+            username: response[0].username,
+            password: response[0].password
+        })
         response[0] && res.send(response[0])
         db.collection("pending_users").deleteOne({token:token})
     })
     // cursorTo.array.forEach(element => {
     //     console.log("element" + element)
     // });
+})
+
+app.post("/search_user", (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const result = []
+    const response = db.collection("users").find({email:email})
+    response.forEach((data, err) => {
+        //if(response.email && response.password)
+        console.log(data.email)
+            result.push({
+                email: data.email,
+                username:data.username,
+                password:data.password
+            })
+    }, () => {
+        console.log(result[0])
+        res.send(result[0])
+    })
 })
 
 app.post("/get_posts", (req, res) => {
