@@ -5,11 +5,11 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Shop from './pages/Shop/Shop';
 import Sign_up from './pages/Sign_up/Sign_up';
-import Form from './pages/Post/form';
+import Form from './pages/log_in/form';
 import Booking from './pages/Booking/booking';
 import { useSelector } from 'react-redux';
 import Verification from './pages/verification/verification';
-import Form1 from './pages/Post/form1';
+import Form1 from './pages/log_in/form1';
 
 
 
