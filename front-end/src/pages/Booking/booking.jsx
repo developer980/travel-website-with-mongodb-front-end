@@ -9,6 +9,7 @@ import Chalendar from '../../components/chalendar/chalendar'
 import { useSelector } from 'react-redux'
 import Guests from '../../components/guests/guests'
 import Sidebar from '../../components/sidebar/sidebar'
+import Hotel_post from '../hotel_post/hotel_post'
 //import { isHtmlElement } from 'react-router-dom/dist/dom'
 
 export default function Booking() {
@@ -89,51 +90,7 @@ export default function Booking() {
             hotelArray.length>1 && hotelArray.map(hotel => {
               console.log("price: " + hotel.price.length)
               return(
-                <div className = "hotel-post">
-                  <div className = "hotel-img">
-                    {/* <div className = "hotel-img"> */}
-                    <img className = "main-img" src={hotel.img} alt="" />
-                    {/* </div> */}
-                  </div>
-                  <div className="middle">
-                    
-                    <h3>{hotel.url_text}</h3>
-                    
-                    {/* <span>
-                      {hotel.notes}
-                    </span> */}
-
-                    <span className='rating'>
-                      {
-                        hotel.rating_stars ? Array.from(Array(hotel.rating_stars)).map((item, index) =>
-                          <img src = {Star}/>
-                        ) :
-                          <span>
-                            Rating stars not available
-                          </span>
-                      }
-                    </span>
-                    <span className = "location">
-                      {hotel.location}
-                  </span>
-                    {/* <span className = "price">
-                      {hotel.price}
-                  </span>  */}
-                  </div>
-                  <div className = 'links'>
-                    {hotel.price.map((price, index) => {
-                      //console.log("price " + index + ": " + price)
-                      // if (index <= price.length)
-                       if(price.value) return <a href={hotel.url_href[index]} target = "_blank" rel="noopener noreferrer">
-                          <div>
-                            {price.value} RON
-                          </div>
-                        <span>{price.website}</span>
-                      </a>
-                    })}
-                    
-                  </div>
-                </div>
+                <Hotel_post url_text = {hotel.url_text} url_href = {hotel.url_href} location = {hotel.location} img = {hotel.img} price={hotel.price} />
               )
             })
           }

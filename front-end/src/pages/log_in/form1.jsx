@@ -46,31 +46,35 @@ export default function Form1() {
         <input onChange = {(e) => setLocation(e.target.value)} type="email" placeholder='Insert email'/>
         <span className='field-name'>Password</span>
         <input onChange = {(e)=> setPrice(e.target.value)} type="password" placeholder='Insert password'/>
-        <button onClick={(e) => {
-                e.preventDefault()
-            generateToken()
-            console.log("token: " + token)
-                Axios.post("http://localhost:3001/search_user", {
-                    //username:username,
-                    email:email,
-                    password: password,
-                    token
-                }).then((data) => {
-                  bcrypt.compare(password, data.data.password, (err, result) => {
-                    
-                    if (result) {
-                      ls.set('eml', data.data.email)
-                      ls.set('usr', data.data.username)
-                      window.open("http://localhost:3000/", "_self")
-                    }
-                    else {
-                      console.log("Log in failed")
-                    }
+        <div className = "user-form__submit-section">
+          <button onClick={(e) => {
+                  e.preventDefault()
+              generateToken()
+              console.log("token: " + token)
+                  Axios.post("http://localhost:3001/search_user", {
+                      //username:username,
+                      email:email,
+                      password: password,
+                      token
+                  }).then((data) => {
+                    bcrypt.compare(password, data.data.password, (err, result) => {
+                      
+                      if (result) {
+                        ls.set('eml', data.data.email)
+                        ls.set('usr', data.data.username)
+                        window.open("http://localhost:3000/", "_self")
+                      }
+                      else {
+                        console.log("Log in failed")
+                      }
+                    })
                   })
-                })
-            token = ''
-                }}>Log in</button>
-        </form>
+              token = ''
+          }}>Log in</button>
+          <span>Don't have an account?</span>
+          <Link to="/form">Sign up</Link>
+        </div>  
+      </form>
     </Layout>
   )
 }

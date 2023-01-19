@@ -116,6 +116,23 @@
   width: 200px;
   overflow: hidden;
   background-color: rgb(66, 66, 66);
+  position: relative;
+}
+.hotel-post .hotel-mark {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 30px;
+  height: 30px;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background-color: rgba(177, 177, 177, 0.596);
+  border-radius: 50px;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.hotel-post .hotel-mark:hover {
+  background-color: rgba(255, 255, 255, 0.829);
 }
 .hotel-post .middle, .hotel-post .links {
   display: flex;

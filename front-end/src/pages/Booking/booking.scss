@@ -147,11 +147,28 @@ $darkColor:rgb(98, 101, 104);
             // border-radius: 10px;
                 // border:1px solid;
             overflow: hidden;
-            background-color: rgb(66, 66, 66)
+            background-color: rgb(66, 66, 66);
+            position: relative;
             // position:relative;
             // top:0px;
     
+    }
+
+    .hotel-mark{
+        position: absolute;
+        right:5px;
+        bottom:5px;
+        width: 30px;
+        height: 30px;
+        backdrop-filter: blur(5px);
+        background-color: rgba(177, 177, 177, 0.596);
+        border-radius: 50px;
+        transition: all 0.25s;
+        cursor: pointer;
+        &:hover{    
+            background-color: rgba(255, 255, 255, 0.829);
         }
+    }
 
     .middle, .links{
         @include display(column, left, space-between);
