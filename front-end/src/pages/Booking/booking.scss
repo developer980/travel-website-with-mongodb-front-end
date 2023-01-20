@@ -92,8 +92,8 @@ $darkColor:rgb(98, 101, 104);
     width:100%;
     //max-width:960px;
     height:200px;
+    margin-bottom:25px;
     // margin: auto;
-    margin-bottom:50px;
     @include display(row, center, space-between);
     background-color: white;
     border-radius: 20px;
@@ -130,6 +130,7 @@ $darkColor:rgb(98, 101, 104);
             }
         }
     }
+
 
     .hotel-img{
             // @include display(column, unset, unset);
@@ -261,5 +262,20 @@ $darkColor:rgb(98, 101, 104);
                 color:$color;
             }
         }
+    }
+}
+
+
+.hotel-map{
+    margin-bottom:50px;
+    background-color: white;
+    // padding: 20px;
+    width: 100%;
+    box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
+    border-radius: 20px;
+    overflow: hidden;
+    iframe{
+        width: 100%;
+        height: 500px;
     }
 }

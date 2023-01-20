@@ -40,7 +40,7 @@ export default function Form1() {
          
       }}>
         <h1 className='title'>
-          Log in
+          Sign in
         </h1>
         <span className='field-name'>Email</span>
         <input onChange = {(e) => setLocation(e.target.value)} type="email" placeholder='Insert email'/>
