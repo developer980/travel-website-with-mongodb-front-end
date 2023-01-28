@@ -11,6 +11,26 @@ const src = require("./function1");
 const { resolve } = require("path");
 const nodemailer = require("nodemailer");
 const { cursorTo } = require("readline");
+const path = require("path")
+
+const multer = require("multer");
+const { createBrotliCompress } = require("zlib");
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "images")
+    },
+
+    filename: (req, file, cb) => {
+        console.log(file)
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({storage: storage})
+
+app.post("/upload_img", upload.single("image"), (req, res) => {
+    res.send("image uploaded")
+})
 
 app.use(cors())
 const connectionURl = 'mongodb://127.0.0.1:27017';
@@ -139,11 +159,48 @@ app.post("/search_user", (req, res) => {
             result.push({
                 email: data.email,
                 username:data.username,
-                password:data.password
+                password: data.password,
+                id:data._id
             })
     }, () => {
         console.log(result[0])
         res.send(result[0])
+    })
+})
+
+app.post("/add_tofav", (req, res) => {
+    const name = req.body.name
+    const link = req.body.link
+    const price = req.body.price
+    const id = req.body.id
+    const email = req.body.email
+    const img = req.body.img
+    console.log("id: " + id)
+    db.collection("users").updateOne({ "email" : email}, {
+        $push: {
+            "favs": {
+                name: name,
+                link: link,
+                img: img,
+                price:price
+            }
+        }
+    })
+
+})
+
+app.post("/get_favourites", (req, res) => {
+    const email = req.body.email
+    const favs_list = []
+    const favs = db.collection("users").find({ email: email }).project({
+        _id: 0,
+        favs:1
+    })
+    favs.forEach(data => {
+        console.log(data)
+        favs_list.push(data)
+    }, () => {        
+        res.send(favs_list[0]);
     })
 })
 
@@ -336,8 +393,6 @@ app.post("/get_posts", (req, res) => {
         res.send(final_result)
     })
 })
-
-
 
 app.listen(3001, () => {
     console.log("Server started :)")
