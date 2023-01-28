@@ -60,8 +60,10 @@ export default function Form1() {
                     bcrypt.compare(password, data.data.password, (err, result) => {
                       
                       if (result) {
+                        //console.log(data.data.id)
                         ls.set('eml', data.data.email)
                         ls.set('usr', data.data.username)
+                        ls.set('i', data.data.id)
                         window.open("http://localhost:3000/", "_self")
                       }
                       else {

@@ -6,7 +6,10 @@ export const dateSlice = createSlice(
         initialState: {
             checkIn: '',
             checkOut: '',
-            token:''
+            token: '',
+            data: {
+                
+            }
         },
         reducers: {
             setCheckIn: (state, action) => {

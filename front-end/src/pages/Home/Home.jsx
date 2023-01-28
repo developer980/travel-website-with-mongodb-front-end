@@ -2,8 +2,15 @@ import React from 'react'
 import Layout from '../../components/layout/layout'
 import { Link } from 'react-router-dom'
 import "./home.css"
+import ls from "localstorage-slim"
+import axios from "axios"
+import { useState } from 'react'
+
+ls.config.encrypt = true
 
 export default function Home() {
+  console.log(ls.get("i"))
+  
   return (
     <Layout>
       <main>

@@ -10,6 +10,9 @@ import { useSelector } from 'react-redux'
 import Guests from '../../components/guests/guests'
 import Sidebar from '../../components/sidebar/sidebar'
 import Hotel_post from '../hotel_post/hotel_post'
+import ls from "localstorage-slim"
+
+ls.config.encrypt = true
 //import { isHtmlElement } from 'react-router-dom/dist/dom'
 
 export default function Booking() {
@@ -37,6 +40,22 @@ export default function Booking() {
   console.log(dateIn)
   console.log(dateOut)
   
+
+  const [list, setList] = useState([])
+
+  console.log(list)
+
+  axios.post("http://localhost:3001/get_favourites", {
+    email: ls.get("eml")
+  }).then(data => {
+    console.log(data.data.favs)
+    // data.data.map(item => {
+    //     setList(...list, item)
+    //     //console.log(item)
+    // })
+    !list.length && setList(data.data.favs)
+  })
+
   //console.log(hotelArray)
 
   function display(action, value, mode, id, displayMode) {
@@ -90,7 +109,7 @@ export default function Booking() {
             hotelArray.length>1 && hotelArray.map(hotel => {
               // console.log(`https://maps.google.com/maps?q=${hotel.url_text.replace(" ", "&")}&t=&z=13&ie=UTF8&iwloc=&output=embed`)
               return (                                 
-                  <Hotel_post url_text={hotel.url_text} url_href={hotel.url_href} location={hotel.location} img={hotel.img} price={hotel.price} />
+                  <Hotel_post list = {list} url_text={hotel.url_text} url_href={hotel.url_href} location={hotel.location} img={hotel.img} price={hotel.price} />
               )
             })
           }

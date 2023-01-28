@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import "./header.css"
 import ls from "localstorage-slim"
 import { useState } from 'react'
+import Icon from "../../icons/Mountain_Icon.svg"
 
 ls.config.encrypt = true
 
@@ -11,12 +12,12 @@ export default function Header() {
   return (
     <nav>
       <div className = "logo">
-        Icon
+       <img src={Icon} className = "logo-content" alt="" />
       </div>
       <section>
-          <Link to = "/">Home</Link>
-          <Link to = "/shop">Shop</Link>       
-          
+        <Link to="/">Home</Link>
+        {ls.get('eml') && <Link to = "/favourites">Favourites</Link>}
+                 
         {
           ls.get("eml") ?
           <div className="nav-user" onClick={() => { 

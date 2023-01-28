@@ -10,6 +10,7 @@ import Booking from './pages/Booking/booking';
 import { useSelector } from 'react-redux';
 import Verification from './pages/verification/verification';
 import Form1 from './pages/log_in/form1';
+import Favourites from './pages/favourites/favourites';
 
 
 
@@ -24,6 +25,7 @@ function App() {
       <Route path = "/form" element = {<Form/>}/>
       <Route path="/booking_page" element={<Booking />} />
       <Route path="/confirm_:token" element={<Verification />} />
+      <Route path="/favourites" element={<Favourites />} />
       <Route path="/log_in" element={<Form1/>} />
     </Routes>
   );

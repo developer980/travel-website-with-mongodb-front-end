@@ -43,6 +43,10 @@ body {
   width: 50%;
 }
 
+.logo-content {
+  filter: invert(50%) sepia(100%) saturate(150%) hue-rotate(100deg) brightness(70%) contrast(100%);
+}
+
 nav {
   display: flex;
   flex-direction: row;

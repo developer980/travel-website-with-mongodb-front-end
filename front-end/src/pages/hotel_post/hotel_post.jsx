@@ -2,22 +2,43 @@ import React from 'react'
 import Star from "../../icons/star.svg"
 import Mark from "../../icons/mark.svg"
 import { useState } from 'react';
+import ls from "localstorage-slim";
+import axios from "axios"
+
+ls.config.encrypt = true;
 
 export default function Hotel_post(props) {
-    const { img, rating_stars, location, price, url_href, url_text } = props;
+    const { img, list, rating_stars, location, price, url_href, url_text } = props;
     const [map, showMap] = useState(0)
+    const [marked, setMark] = useState(0)
 
+    console.log(list)
+
+    for (let i = 0; i < list.length; i++){
+        if (list[i].name == url_text) {
+            !marked && setMark(1)
+            // console.log(li)
+            //break;
+        }
+    }
     console.log(price)
   return (
     <>
       <div className="hotel-post">
-          <div className = "map">
-          </div>
         <div className="hotel-img">
         {/* <div className = "hotel-img"> */}
-              <img className="main-img" src={img} alt="" />
-              <div className='hotel-mark'>
-                <img src={Mark} alt="" />
+              <img className="main-img" name = "image" src={img} alt="" />
+                  <div className='hotel-mark' onClick={() => {
+                      axios.post("http://localhost:3001/add_tofav", {
+                          name: url_text,
+                          link: url_href,
+                          price:price,
+                          img: img,
+                          id: ls.get("i"),
+                          email: ls.get("eml")
+                      })
+              }}>
+                      {!marked && <img src={Mark} alt="" />}
               </div>
         {/* </div> */}
         </div>
@@ -43,7 +64,7 @@ export default function Hotel_post(props) {
                       map ? showMap(0) :
                           showMap(1)
         }}>
-            {location}
+            Show on the map
         </span>
         {/* <span className = "price">
             {hotel.price}
