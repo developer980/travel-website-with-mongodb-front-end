@@ -1,6 +1,7 @@
 import React from 'react'
 import Star from "../../icons/star.svg"
 import Mark from "../../icons/mark.svg"
+import Filled_mark from '../../icons/mark_filled.svg'
 import { useState } from 'react';
 import ls from "localstorage-slim";
 import axios from "axios"
@@ -23,7 +24,8 @@ export default function Hotel_post(props) {
     }
     console.log(price)
   return (
-    <>
+      <>
+          {/* <img src={Filled_mark} alt="" /> */}
       <div className="hotel-post">
         <div className="hotel-img">
         {/* <div className = "hotel-img"> */}
@@ -38,7 +40,7 @@ export default function Hotel_post(props) {
                           email: ls.get("eml")
                       })
               }}>
-                      {!marked && <img src={Mark} alt="" />}
+                      {marked ? <img src={Filled_mark} alt="" /> : <img src={Mark} alt="" />}
               </div>
         {/* </div> */}
         </div>
@@ -56,7 +58,7 @@ export default function Hotel_post(props) {
                 <img src = {Star}/>
             ) :
                 <span>
-                Rating stars not available
+                    Rating stars not available
                 </span>
             }
         </span>

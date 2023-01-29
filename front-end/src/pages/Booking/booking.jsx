@@ -106,10 +106,11 @@ export default function Booking() {
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl3w9CFhn2FiIpAkXI7RtJbvQVRTP26hc67IYVg3hu&s" alt="" /> */}
         <div className = "posts">
           {
-            hotelArray.length>1 && hotelArray.map(hotel => {
+            hotelArray.length > 1 && hotelArray.map(hotel => {
+              console.log(hotel)
               // console.log(`https://maps.google.com/maps?q=${hotel.url_text.replace(" ", "&")}&t=&z=13&ie=UTF8&iwloc=&output=embed`)
               return (                                 
-                  <Hotel_post list = {list} url_text={hotel.url_text} url_href={hotel.url_href} location={hotel.location} img={hotel.img} price={hotel.price} />
+                  <Hotel_post list = {list} rating_stars = {hotel.rating_stars} url_text={hotel.url_text} url_href={hotel.url_href} location={hotel.location} img={hotel.img} price={hotel.price} />
               )
             })
           }

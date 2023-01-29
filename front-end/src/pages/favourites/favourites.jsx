@@ -12,25 +12,30 @@ export default function Favourites() {
     
     const [list, setList] = useState([])
     console.log(list)
-    axios.post("http://localhost:3001/get_favourites", {
+    !list.length && axios.post("http://localhost:3001/get_favourites", {
         email: ls.get("eml")
     }).then(data => {
         console.log(data.data.favs)
-        // data.data.map(item => {
-        //     setList(...list, item)
-        //     //console.log(item)
-        // })
         !list.length && setList(data.data.favs)
     })
   return (
       <Layout>
           <div className="fav-list">
               {
-                  list && list.map((item) => {
+                  list && list.map((item, index) => {
                       return <Favourites_element name={item.name} price = {item.price} url = {item.link} img = {item.img} />
                   })
               }
           </div>
       </Layout>
   )
+}
+
+export function setFavs(list, setList) {
+    axios.post("http://localhost:3001/get_favourites", {
+        email: ls.get("eml")
+    }).then(data => {
+        console.log(data.data.favs)
+        !list.length && setList(data.data.favs)
+    })
 }

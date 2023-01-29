@@ -39,28 +39,59 @@ body {
   font-weight: bold;
 }
 
-.logo {
-  width: 50%;
+#logo {
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
 }
 
-.logo-content {
+.logo-outsidenav {
+  height: 150px;
+  position: fixed;
+  left: 0;
+  top: 10px;
+  z-index: 2;
+}
+
+.logo-insidenav {
+  height: 100px;
+  position: fixed;
+  left: 20px;
+  top: 0;
+  z-index: 2;
+}
+
+#logo-content {
+  transition: all 0.5s;
+  height: 100%;
+}
+
+.logo-content-green {
   filter: invert(50%) sepia(100%) saturate(150%) hue-rotate(100deg) brightness(70%) contrast(100%);
+}
+
+.logo-content-white {
+  height: 30px;
+  filter: invert(50%) sepia(100%) saturate(0%) hue-rotate(100deg) brightness(200%) contrast(100%);
 }
 
 nav {
   display: flex;
   flex-direction: row;
+  justify-content: end;
   width: 100%;
-  padding-top: 30px;
   height: 15%;
-  position: relative;
+  position: absolute;
+  top: 0;
+  z-index: 1;
 }
 nav section {
-  width: 50%;
-  background-image: linear-gradient(90deg, rgb(77, 124, 115), rgba(77, 124, 115, 0.168));
-  height: 70%;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
+  transition: all 0.5s;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  box-shadow: -5px 5px 5px -2px rgb(170, 170, 170);
+  background: linear-gradient(90deg, rgba(77, 124, 115, 0.89), rgba(77, 124, 115, 0.89), rgba(77, 124, 115, 0.89), rgba(189, 228, 220, 0.459));
+  background-size: 120%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -73,4 +104,31 @@ nav section a {
 }
 nav section a:hover {
   transform: scale(1.3, 1.3);
+}
+
+.nav-big {
+  padding-top: 30px;
+}
+
+.nav-fixed {
+  position: fixed;
+}
+
+.section-narrow {
+  width: 50%;
+  height: 70%;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 0px;
+  background-position: 100% 0%;
+}
+
+.section-wide {
+  width: 100%;
+  height: 70%;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  padding-left: 50%;
+  background-position: 10% 0%;
 }/*# sourceMappingURL=header.css.map */

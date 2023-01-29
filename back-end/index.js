@@ -15,22 +15,22 @@ const path = require("path")
 
 const multer = require("multer");
 const { createBrotliCompress } = require("zlib");
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "images")
-    },
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, "images")
+//     },
 
-    filename: (req, file, cb) => {
-        console.log(file)
-        cb(null, Date.now() + path.extname(file.originalname))
-    }
-})
+//     filename: (req, file, cb) => {
+//         console.log(file)
+//         cb(null, Date.now() + path.extname(file.originalname))
+//     }
+// })
 
-const upload = multer({storage: storage})
+//const upload = multer({storage: storage})
 
-app.post("/upload_img", upload.single("image"), (req, res) => {
-    res.send("image uploaded")
-})
+// app.post("/upload_img", upload.single("image"), (req, res) => {
+//     res.send("image uploaded")
+// })
 
 app.use(cors())
 const connectionURl = 'mongodb://127.0.0.1:27017';
@@ -204,6 +204,30 @@ app.post("/get_favourites", (req, res) => {
     })
 })
 
+app.post("/remove_fromFav", (req, res) => {
+    const email = req.body.email
+    const name = req.body.name
+    db.collection("users").update({ email: email }, {
+        $pull: {
+            "favs": {
+                name:name
+        }
+        }
+    })
+    
+    const favs_list = []
+    const favs = db.collection("users").find({ email: email }).project({
+        _id: 0,
+        favs:1
+    })
+    favs.forEach(data => {
+        console.log(data)
+        favs_list.push(data)
+    }, () => {        
+        res.send(favs_list[0]);
+    })
+})
+
 app.post("/get_posts", (req, res) => {
     let keyWord = req.body.keyWord
     const checkIn = {
@@ -257,7 +281,7 @@ app.post("/get_posts", (req, res) => {
                     url:[url]
                 })
             })
-            console.log("l2 " + elements1.length)
+            //console.log("l2 " + elements1.length)
             resolve(elements1)
         })
     })
@@ -276,20 +300,22 @@ app.post("/get_posts", (req, res) => {
                 const url_href = $(this).find(".ef8295f3e6").children("div").find("a").attr("href")
                 const description = $(this).find(".ef8295f3e6").children(".d8eab2cf7f").text()
                 const location = $(this).find(".ef8295f3e6").children("div").children(".a1fbd102d9").children("a").children("span").children(".f4bd0794db").text();
-                const price = $(this).find('.fd1924b122').find(".fbd1d3018c ").text().split("lei")[0].split(".").join('')
+                const price_text = $(this).find('.fd1924b122').find(".fbd1d3018c ").text()
                 const img = $(this).find(".c90a25d457").find("img").attr("src")
                 //console.log(pretty(img.attr("src")))
+                const price = price_text.split("lei")[0].split(".").join('')
+                console.log("price " + price + " " + price_text)
                 let notes = ""
                 
                 if (description.includes("Proprietate Călătorii durabile")) {
                     notes = "Travel sustenabillity property"
                 }
         
-                $(this).find(".fbb11b26f5").children("span").each(function (item) {
+                $(this).find(".b978843432").find(".fbb11b26f5").children("span").each(function (item) {
                     rating_stars++
                 })
-                //onsole.log(rating_stars)
-                if (url_text){
+                console.log("rating_stars: " + rating_stars)
+                if (url_text && price){
                     //description.length ?
                     elements.push({
                         url_text,
@@ -344,6 +370,7 @@ app.post("/get_posts", (req, res) => {
         }
 
         for (let i = 0; i < values[1].length; i++) {
+            console.log(values[1][i].price)
             for (let j = 0; j < values[0].length; j++){
 
                 
@@ -351,6 +378,9 @@ app.post("/get_posts", (req, res) => {
                 if (values[1][i].url_text == values[0][j].name) {
                     const price1 = values[1][i].price
                     const price2 = values[0][j].price
+
+                 //   console.log(price1.value) // + " & " +  price1.value.toFixed(2))
+                  //  console.log(price2)// + " & " + price2.toFixed(2))
 
                     price1.push({
                         website:"expedia.com",
@@ -364,7 +394,7 @@ app.post("/get_posts", (req, res) => {
                    
                     if (values[0][j].img) {
                         
-                        console.log(values[0][j])
+                        //console.log(values[0][j])
                         let n_o_elems = 0
                         for (let k = 0; k < final_result.length; k++){
                             if (final_result[k].url_text == values[0][j].name)

@@ -9,11 +9,19 @@ $color1:rgb(106, 232, 211);
 }
 
 main{ 
-    height:70%;
+    //border:1px solid;
+    // height:80%;
+    position: absolute;
+    width: 100%;
+    bottom:0;
+    // left: 100px;
+    // right: 100px;
+    top:200px;
+    // margin: 0px 0px 0px 100px;
 
     @include display(flex, row, center, space-around);
-    section{
-        width: 70%;
+    section{        
+        width: 40%;
         @include display(flex, column, left, space-between);
         .description{
             width: 70%;
@@ -46,5 +54,16 @@ main{
                 }
             }
         }
+    }
+
+
+}    
+
+.background-image{
+    //border:1px solid;
+    height: 100%;
+    overflow: hidden;
+    img{
+        height:120%;
     }
 }
