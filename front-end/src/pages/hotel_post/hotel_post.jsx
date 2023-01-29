@@ -78,7 +78,7 @@ export default function Hotel_post(props) {
                 // if (index <= price.length)
                 if(price.value) return <a href={url_href[index]} target = "_blank" rel="noopener noreferrer">
                     <div>
-                    {price.value} RON
+                    {price.value} €
                     </div>
                 <span>{price.website}</span>
                 </a>
