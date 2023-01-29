@@ -276,7 +276,7 @@ app.post("/get_posts", (req, res) => {
 
                 elements1.push({
                     name: name.text(),
-                    price: price.text().split(" ")[0].substring(1).replace(",", "") * 4.64,
+                    price: price.text().split(" ")[0].substring(1).replace(",", "") / 1.09,
                     img,
                     url:[url]
                 })
@@ -315,6 +315,7 @@ app.post("/get_posts", (req, res) => {
                     rating_stars++
                 })
                 console.log("rating_stars: " + rating_stars)
+                const converted_price = parseInt(price) / 4.90
                 if (url_text && price){
                     //description.length ?
                     elements.push({
@@ -325,7 +326,7 @@ app.post("/get_posts", (req, res) => {
                         img,
                         price:[{
                             website:"booking.com",
-                            value:parseInt(price).toFixed(2)
+                            value:converted_price.toFixed(2)
                         }],
                         location: location.replace("Arată pe hartă", " ")
                     })
