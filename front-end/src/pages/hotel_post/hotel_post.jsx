@@ -10,19 +10,24 @@ ls.config.encrypt = true;
 
 export default function Hotel_post(props) {
     const { img, list, rating_stars, location, price, url_href, url_text } = props;
+    const [array, setArray] = useState(list)
     const [map, showMap] = useState(0)
     const [marked, setMark] = useState(0)
+    //const [added, add] = useState(0)
 
-    console.log(list)
-
-    for (let i = 0; i < list.length; i++){
-        if (list[i].name == url_text) {
-            !marked && setMark(1)
-            // console.log(li)
-            //break;
+    //console.log(array)
+    if(list)
+        for (let i = 0; i < list.length; i++){
+            if (list[i].name == url_text) {
+                
+                if (!marked)
+                    setMark(1)
+                // console.log(li)
+                //break;
+            }
         }
-    }
-    console.log(price)
+    //console.log(price)
+    marked && console.log(url_text + " " + marked)
   return (
       <>
           {/* <img src={Filled_mark} alt="" /> */}
@@ -31,14 +36,25 @@ export default function Hotel_post(props) {
         {/* <div className = "hotel-img"> */}
               <img className="main-img" name = "image" src={img} alt="" />
                   <div className='hotel-mark' onClick={() => {
-                      axios.post("http://localhost:3001/add_tofav", {
-                          name: url_text,
-                          link: url_href,
-                          price:price,
-                          img: img,
-                          id: ls.get("i"),
-                          email: ls.get("eml")
-                      })
+                      if (!marked) {
+                          axios.post("http://localhost:3001/add_tofav", {
+                              name: url_text,
+                              link: url_href,
+                              price: price,
+                              img: img,
+                              id: ls.get("i"),
+                              email: ls.get("eml")
+                          })
+                          setMark(1)
+                      }
+                      else {
+                          axios.post("http://localhost:3001/remove_fromFav", {
+                              email: ls.get("eml"),
+                              name: url_text
+                          })
+                          setMark(0)
+                        //   setArray(list.splice(list.indexOf(url_text), 1))
+                      }
               }}>
                       {marked ? <img src={Filled_mark} alt="" /> : <img src={Mark} alt="" />}
               </div>

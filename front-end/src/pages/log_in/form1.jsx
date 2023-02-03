@@ -29,7 +29,8 @@ function generateToken() {
 export default function Form1() {
    // const[username, setName] = useState('')
     const[email, setLocation] = useState('')
-    const[password, setPrice] = useState('')
+  const [password, setPrice] = useState('')
+  const[failed, isFailed] = useState(0)
 
     //console.log("Name = " + username)
     console.log("Location = " + email)
@@ -67,7 +68,7 @@ export default function Form1() {
                         window.open("http://localhost:3000/", "_self")
                       }
                       else {
-                        console.log("Log in failed")
+                        isFailed(1)
                       }
                     })
                   })
@@ -75,6 +76,14 @@ export default function Form1() {
           }}>Log in</button>
           <span>Don't have an account?</span>
           <Link to="/form">Sign up</Link>
+          {
+            failed ?
+              <div className="negative-message">
+                <div>Unable to find your account :(</div>
+              </div>
+              :
+              null
+          }
         </div>  
       </form>
     </Layout>

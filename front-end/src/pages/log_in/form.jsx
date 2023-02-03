@@ -28,6 +28,8 @@ export default function Form() {
   const [status, setMessageStatus] = useState(0)
   const [message, displayMessage] = useState(0)
 
+  const [warning, showWarning] = useState(0);
+
     console.log("Name = " + username)
     console.log("Location = " + email)
     console.log("Price = " + password)
@@ -54,14 +56,17 @@ export default function Form() {
               err && console.log(err)
               return hash
             })
-
             console.log("hashed password: " + hashedpassword)
+            username && email && password ?
                Axios.post("http://localhost:3001/post_user", {
                 username:username,
                 email:email,
                 password: hashedpassword,
                 token
                }).then(data => {
+                 
+                 warning && showWarning(0)
+                 
                  displayMessage(1)
                  console.log("Data:" + data.data)
                  if (data.data == "Email sent")
@@ -69,7 +74,9 @@ export default function Form() {
                  else {
                   setMessageStatus(0)
                  }
-               })
+               }) :
+              showWarning(1)
+              
           token = ''
         }}>Sign up</button>
         
@@ -87,6 +94,14 @@ export default function Form() {
                 <div className="negative-message">
                       <div>The email is invalid</div>
                 </div>
+              :
+              null
+          }
+          {
+            warning ?
+              <div className="negative-message">
+                <div>All fields are mandatory</div>
+              </div>
               :
               null
           }

@@ -43,18 +43,19 @@ export default function Booking() {
 
   const [list, setList] = useState([])
 
-  console.log(list)
+  console.log(list.length)
 
-  axios.post("http://localhost:3001/get_favourites", {
+  if (list.length == 0 && ls.get("eml"))
+    axios.post("http://localhost:3001/get_favourites", {
     email: ls.get("eml")
-  }).then(data => {
-    console.log(data.data.favs)
-    // data.data.map(item => {
-    //     setList(...list, item)
-    //     //console.log(item)
-    // })
-    !list.length && setList(data.data.favs)
-  })
+    }).then(data => {
+      console.log("searching data")
+      // data.data.map(item => {
+      //     setList(...list, item)
+      //     //console.log(item)
+      // })
+      data.data.favs[0] && setList(data.data.favs)
+    })
 
   //console.log(hotelArray)
 
@@ -69,7 +70,7 @@ export default function Booking() {
     <Layout>
       <div className = "layout-grid">
         <div className = "inputs"> 
-          <input className = "inputs-left" type="text" placeholder='Search by location' onChange={(e) => {
+          <input className = "inputs-left" type="text" placeholder='Destination' onChange={(e) => {
             setKeyWord(e.target.value)
           }} />
 

@@ -22,13 +22,13 @@ html, body{
 }
 
 body{
-    background-color: rgb(239, 241, 242);
+    background-color: rgb(231, 231, 231);
 }
 
 .nav-user{
     color:white;
     color: white;
-    font-size: 20px;
+    // font-size: 1.25rem;
     cursor: pointer;
 } 
 
@@ -75,7 +75,7 @@ body{
 }
 
 .logo-insidenav{
-    height:100px;
+    height:70px;
     position: fixed;
     left: 20px;
     top:0;
@@ -90,6 +90,10 @@ body{
     //     contrast(100%);
 }
 
+.logo-content-small{
+    height: 30px;
+}
+
 .logo-content-green{
     
     filter: invert(50%) sepia(100%) saturate(150%)
@@ -98,7 +102,6 @@ body{
 }
 
 .logo-content-white{
-    height: 30px;
     filter: invert(50%) sepia(100%) saturate(0%)
     hue-rotate(100deg) brightness(200%) 
     contrast(100%);
@@ -110,11 +113,9 @@ nav{
     flex-direction: row;
     justify-content: end;
     width:100%;
-    height:15%;
     position: absolute;
-    top:0;
     z-index:1;
-    //transition: all 0.5s;
+    transition: all 0.25s;
 
     section{
         transition: all 0.5s;
@@ -126,12 +127,11 @@ nav{
         // height:70%;
         // border-top-left-radius: 50px;
         // border-bottom-left-radius: 50px;
-        @include display(flex, center, space-around);
+            font-size: 1.25rem;
         a{
             text-decoration: none;
             color: white;
-            font-size: 20px;
-            transition: all 0.25s;
+            transition: transform 0.25s;
             &:hover{
                 transform:scale(1.3,1.3);
                 //font-weight: ;
@@ -140,23 +140,53 @@ nav{
     }
 }
 
+#section{
+    animation: flyIn 1s;
+}
+
+@keyframes flyIn{
+    from{
+        width:0%;
+        font-size: 0rem;
+    }
+    to{
+        width:30%;
+        font-size: 1.25rem;
+    }
+}
+
 .nav-big{
     padding-top: 30px;
+    height:9.3rem;
 }
 
 .nav-fixed{
     position: fixed;
+    height:7rem;
+    top:0;
+}
+
+.nav-fixed-hidden{
+    position: fixed;
+    height:7rem;
+    top:-10%;
 }
 
 .section-narrow{
-    @include section(50%, 70%, 50px, 50px, 0px);
+    @include section(30%, 70%, 50px, 50px, 0px);
     background-position: 100% 0%;  
+    @include display(flex, center, end);
+    padding-right: 30px;
+    gap:10%;
 }
 
 .section-wide{
     @include section(100%, 70%, 0px, 50px, 50px);
-    padding-left: 50%;
+    // padding-left: 50%;
+    padding-right: 50px;
     background-position: 10% 0%;  
+    @include display(flex, center, end);
+    gap:7%;
     //background-image: linear-gradient(90deg, $color,rgba(77, 124, 115, 0.168));
         //background-color: rgba(175, 219, 211, 0.808);
      //animation:bgcolor 3s

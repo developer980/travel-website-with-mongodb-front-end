@@ -4,8 +4,11 @@ import "./header.css"
 import ls from "localstorage-slim"
 import { useState } from 'react'
 import Icon from "../../icons/Mountain_Icon.svg"
+import Axios from "axios"
 
 ls.config.encrypt = true
+
+let offsetvalue = 0;
 
 export default function Header() {
   const [display, displayOptions] = useState(0)
@@ -17,12 +20,25 @@ export default function Header() {
     if (offset > 34) {
       document.getElementById("section").classList.add("section-wide")
       document.getElementById("section").classList.remove("section-narrow")
-      document.getElementById("nav").classList.remove("nav-big")
-      document.getElementById("nav").classList.add("nav-fixed")
       document.getElementById("logo").classList.add("logo-insidenav")
       document.getElementById("logo").classList.remove("logo-outsidenav")
-      document.getElementById("logo-content").classList.add("logo-content-white")
-      document.getElementById("logo-content").classList.remove("logo-content-green")
+      document.getElementById("nav").classList.remove("nav-big")
+      
+      if (offset > offsetvalue) {
+        document.getElementById("nav").classList.remove("nav-fixed")
+        document.getElementById("nav").classList.add("nav-fixed-hidden")
+        document.getElementById("logo-content").classList.add("logo-content-green")
+        document.getElementById("logo-content").classList.remove("logo-content-white")
+        offsetvalue = offset
+      }
+      else if(offset < offsetvalue){
+        document.getElementById("nav").classList.remove("nav-fixed-hidden")
+        document.getElementById("nav").classList.add("nav-fixed")
+        document.getElementById("logo-content").classList.remove("logo-content-green")
+        document.getElementById("logo-content").classList.add("logo-content-white")
+        offsetvalue = offset
+      }
+      // if (offset > offsetvalue) 
     }
     else {
       document.getElementById("section").classList.remove("section-wide")
@@ -37,11 +53,13 @@ export default function Header() {
   })
   return (
     <nav id = "nav" className = "nav-big">
-      <div id = "logo" className = "logo-outsidenav">
-       <img id = "logo-content" src={Icon} className = "logo-content-green" alt="" />
-      </div>
+      <Link to="/">
+        <div id="logo" className="logo-outsidenav">
+            <img id="logo-content" src={Icon} className="logo-content-green" alt="" />
+        </div>
+      </Link>
       <section id = "section" className='section-narrow'>
-        <Link to="/">Home</Link>
+        {/* Home */}
         
         <Link to="/booking_page">Book a place</Link>
         {ls.get('eml') && <Link to = "/favourites">Favourites</Link>}
@@ -64,13 +82,23 @@ export default function Header() {
       {
             display ?
               <div className="nav-user-settings">
-                <Link>Account</Link>
             <Link onClick={() => {
               ls.remove("eml");
               ls.remove("usr")
               ls.remove("pasd")
               window.location.reload()
-                }}>Log out</Link>
+            }}>Log out</Link>
+            
+            <Link onClick={() => {
+              Axios.post("http://localhost:3001/delete_user", {
+                email:ls.get("eml")
+              }).then(() => {
+                ls.remove("eml");
+                ls.remove("usr")
+                ls.remove("pasd")
+                window.location.reload()
+              })
+            }}>Delete account</Link>
               </div> :
               null
           }

@@ -9,7 +9,7 @@ main {
   justify-content: space-around;
 }
 main section {
-  width: 40%;
+  margin-left: 100px;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -20,7 +20,8 @@ main section .description {
   max-width: 900px;
   font-size: 60px;
   color: rgb(110, 110, 110);
-  font-family: "Arial black";
+  font-family: "Open Sans";
+  font-weight: bold;
 }
 main section .links-section {
   width: 60%;

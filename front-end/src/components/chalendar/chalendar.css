@@ -2,7 +2,8 @@
     background-color: white;
     /* width:50%; */
     position: absolute;
-    top:250px;
+    z-index:1;
+    top:12rem;
     left:20%;
     right: 20%;
     height:500px;
@@ -79,4 +80,26 @@
 .chalendar-content__day--clear:hover{
     background-color: rgb(212, 212, 212);
     border-radius: 10px;
+}
+
+.arrow{
+    display: flex;
+    align-items: center;
+}
+
+.arrow > img {
+    width: 40px;    
+    filter: invert(50%) sepia(100%) saturate(0%)
+    hue-rotate(100deg) brightness(200%) 
+    contrast(100%);
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.arrow > img:hover{
+    transform: scale(1.2);
+}
+
+.arrow-inverted{
+    transform: rotate(180deg);
 }

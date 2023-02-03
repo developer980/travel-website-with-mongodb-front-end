@@ -19,6 +19,63 @@
   width: 17.925%;
 }
 
+.inputs-left {
+  border: none;
+  border-right: 1px solid rgb(219, 219, 219);
+  cursor: pointer;
+  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+  font-size: 1.1rem;
+  height: 50px;
+  border-radius: 50px 0px 0px 50px;
+  transition: all 0.25s;
+  padding-left: 1rem;
+}
+.inputs-left:hover {
+  background-color: rgb(230, 230, 230);
+}
+.inputs-left:focus {
+  outline-width: 0px;
+  background-color: rgb(221, 221, 221);
+}
+
+.inputs-center {
+  border: none;
+  border-right: 1px solid rgb(219, 219, 219);
+  cursor: pointer;
+  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+  font-size: 1.1rem;
+  height: 50px;
+  border-radius: 0px 0px 0px 0px;
+  transition: all 0.25s;
+  padding-left: 20px;
+}
+.inputs-center:hover {
+  background-color: rgb(230, 230, 230);
+}
+.inputs-center:focus {
+  outline-width: 0px;
+  background-color: rgb(221, 221, 221);
+}
+
+.inputs-right {
+  border: none;
+  border-right: 1px solid rgb(219, 219, 219);
+  cursor: pointer;
+  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+  font-size: 1.1rem;
+  height: 50px;
+  border-radius: 0px 50px 50px 0px;
+  transition: all 0.25s;
+  padding-left: 20px;
+}
+.inputs-right:hover {
+  background-color: rgb(230, 230, 230);
+}
+.inputs-right:focus {
+  outline-width: 0px;
+  background-color: rgb(221, 221, 221);
+}
+
 .posts {
   display: flex;
   flex-direction: column;
@@ -27,63 +84,6 @@
   grid-area: content;
   width: 100%;
   margin: auto;
-}
-
-.inputs-left {
-  border: none;
-  border-right: 1px solid rgb(219, 219, 219);
-  cursor: pointer;
-  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-  font-size: 20px;
-  height: 50px;
-  border-radius: 50px 0px 0px 50px;
-  transition: all 0.25s;
-  padding-left: 20px;
-}
-.inputs-left:hover {
-  background-color: rgb(235, 236, 236);
-}
-.inputs-left:focus {
-  outline-width: 0px;
-  background-color: rgb(235, 236, 236);
-}
-
-.inputs-center {
-  border: none;
-  border-right: 1px solid rgb(219, 219, 219);
-  cursor: pointer;
-  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-  font-size: 20px;
-  height: 50px;
-  border-radius: 0px 0px 0px 0px;
-  transition: all 0.25s;
-  padding-left: 20px;
-}
-.inputs-center:hover {
-  background-color: rgb(235, 236, 236);
-}
-.inputs-center:focus {
-  outline-width: 0px;
-  background-color: rgb(235, 236, 236);
-}
-
-.inputs-right {
-  border: none;
-  border-right: 1px solid rgb(219, 219, 219);
-  cursor: pointer;
-  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-  font-size: 20px;
-  height: 50px;
-  border-radius: 0px 50px 50px 0px;
-  transition: all 0.25s;
-  padding-left: 20px;
-}
-.inputs-right:hover {
-  background-color: rgb(235, 236, 236);
-}
-.inputs-right:focus {
-  outline-width: 0px;
-  background-color: rgb(235, 236, 236);
 }
 
 .hotel-post {
@@ -216,6 +216,7 @@
 .hotel-map {
   margin-bottom: 50px;
   background-color: white;
+  border: 1px solid rgb(182, 182, 182);
   width: 100%;
   height: 500px;
   box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);

@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 // import setCheckOut from '../../redux/action/date_out'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCheckIn, setCheckOut } from '../../redux/reducer/date'
+import Arrow from "../../icons/arrow.svg"
 
 export default function Chalendar(props) {
 
@@ -52,26 +53,29 @@ export default function Chalendar(props) {
     <div id = "chalendar" className = "chalendar" style = {{display:"none"}}>
       <div className="chalendar-header">
 
-        <button onClick={() => {
+        <div className = "arrow arrow-inverted" onClick={() => {
           if (month_index + amount > 0)
             setMonth(amount - 1)
           else {
             setMonth(months.length - month_index - 1)
             setYear(year_index - 1)
           }
-        }}>Left</button>
+        }}>
+          <img src={Arrow} alt="" />
+        </div>
 
         {months[month_index + amount]}
 
-        <button onClick={() => {
+        <div className = "arrow" onClick={() => {
           if (month_index + amount < months.length - 1)
             setMonth(amount + 1)
           else {
             setMonth(-month_index)
             setYear(year_index + 1)
           }
-        }}>Right
-        </button>
+        }}>
+        <img src={Arrow} alt="" />
+        </div>
       </div>
       
       <div className = "chalendar-bar">              {

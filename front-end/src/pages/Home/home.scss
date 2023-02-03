@@ -21,14 +21,16 @@ main{
 
     @include display(flex, row, center, space-around);
     section{        
-        width: 40%;
+        // width: 70%;
+        margin-left:100px; 
         @include display(flex, column, left, space-between);
         .description{
             width: 70%;
             max-width: 900px;
             font-size: 60px;
             color:rgb(110, 110, 110);
-            font-family: 'Arial black';
+            font-family: 'Open Sans';
+            font-weight: bold;
         }
         .links-section{
             //border: 2px solid black;
