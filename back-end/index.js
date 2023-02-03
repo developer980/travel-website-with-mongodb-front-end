@@ -15,23 +15,6 @@ const path = require("path")
 
 const multer = require("multer");
 const { createBrotliCompress } = require("zlib");
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, "images")
-//     },
-
-//     filename: (req, file, cb) => {
-//         console.log(file)
-//         cb(null, Date.now() + path.extname(file.originalname))
-//     }
-// })
-
-//const upload = multer({storage: storage})
-
-// app.post("/upload_img", upload.single("image"), (req, res) => {
-//     res.send("image uploaded")
-// })
-
 app.use(cors())
 const connectionURl = 'mongodb://127.0.0.1:27017';
 const database = "travelMDB"
@@ -87,7 +70,8 @@ app.post("/post_user", (req, res) => {
 
     const response = []
 
-    user_data.forEach(function (result, err) {
+    user_data.forEach((result, err) => {
+        console.log(result)
         response.push(result)
     }, () => {
         if (response[0])
@@ -129,7 +113,7 @@ app.post("/verify_token", (req, res) => {
 
     result.forEach(function (result, err) {
         err && console.log(err)
-        //console.log(result)
+        console.log(result)
             response.push(result)
             //res.send(result)
     }, () => {
@@ -153,9 +137,9 @@ app.post("/search_user", (req, res) => {
     const password = req.body.password;
     const result = []
     const response = db.collection("users").find({email:email})
-    response.forEach((data, err) => {
+    response.forEach(data => {
         //if(response.email && response.password)
-        console.log(data.email)
+        console.log(data)
             result.push({
                 email: data.email,
                 username:data.username,
@@ -166,6 +150,13 @@ app.post("/search_user", (req, res) => {
         console.log(result[0])
         res.send(result[0])
     })
+})
+
+app.post("/delete_user", (req, res) => {
+    const email = req.body.email;
+
+    db.collection("users").deleteOne({ email: email })
+    res.send("Account deleted")
 })
 
 app.post("/add_tofav", (req, res) => {
@@ -196,12 +187,19 @@ app.post("/get_favourites", (req, res) => {
         _id: 0,
         favs:1
     })
+
+    // cursorTo
+
     favs.forEach(data => {
-        console.log(data)
+        // console.log("sending data")
+        // console.log(data)
         favs_list.push(data)
     }, () => {        
         res.send(favs_list[0]);
+        // return
     })
+    // console.log(favs)
+    // console.log("getting favs")
 })
 
 app.post("/remove_fromFav", (req, res) => {
@@ -257,6 +255,9 @@ app.post("/get_posts", (req, res) => {
             $('.uitk-card').each(function () {
                 const name = $(this).find(".uitk-layout-flex").find("h2")
                 const price = $(this).find(".uitk-layout-flex").find(".uitk-layout-flex").find(".uitk-layout-flex").children(".uitk-layout-flex").children(".uitk-type-200")
+                const location = $(this).find(".uitk-layout-flex").children(".uitk-spacing").find("div .truncate-lines-2")
+
+                console.log("Location " + location.text())
                 let url = $(this).find("a").attr("href")
                 let img;
 
@@ -269,14 +270,13 @@ app.post("/get_posts", (req, res) => {
               //  console.log("url: " + url)
 
                 $(this).find(".uitk-gallery-carousel-items").children(".uitk-gallery-carousel-item-current").each(function () {
-                    //console.log($(this).find("img").attr("src"))
-                    //if ($(this).find("img").attr("src"))
                     img = $(this).find("img").attr("src")
                 })
 
                 elements1.push({
                     name: name.text(),
                     price: price.text().split(" ")[0].substring(1).replace(",", "") / 1.09,
+                    location:location.text(),
                     img,
                     url:[url]
                 })
@@ -342,9 +342,7 @@ app.post("/get_posts", (req, res) => {
         const final_result = []
 
         const test_array1 = []
-        // for (let i = 0; i < values[0].length; i++){
-        //     test_array1.push(values[0][i].name)
-        // }
+
         for (let i = 0; i < values[1].length; i++) {
             for (let j = 0; j < values[1].length; j++) {
                 if (i != j)
@@ -361,6 +359,7 @@ app.post("/get_posts", (req, res) => {
                     }
             }
         }
+
         const test_array = []
         for (let i = 0; i < values[0].length; i++){
             test_array.push(values[0][i].name)
@@ -373,15 +372,10 @@ app.post("/get_posts", (req, res) => {
         for (let i = 0; i < values[1].length; i++) {
             console.log(values[1][i].price)
             for (let j = 0; j < values[0].length; j++){
-
-                
                 //console.log(values[1][j].price)
                 if (values[1][i].url_text == values[0][j].name) {
                     const price1 = values[1][i].price
                     const price2 = values[0][j].price
-
-                 //   console.log(price1.value) // + " & " +  price1.value.toFixed(2))
-                  //  console.log(price2)// + " & " + price2.toFixed(2))
 
                     price1.push({
                         website:"expedia.com",
@@ -391,23 +385,20 @@ app.post("/get_posts", (req, res) => {
                     values[1][i].url_href.push(values[0][j].url[0])
                 }
                 else if (i == values[1].length - 1) {
-                    //console.log("Url: " + values[0][j].url)
                    
                     if (values[0][j].img) {
-                        
-                        //console.log(values[0][j])
                         let n_o_elems = 0
                         for (let k = 0; k < final_result.length; k++){
                             if (final_result[k].url_text == values[0][j].name)
                             {
-                                //console.log(final_result[k])
                                 n_o_elems++
                             }
                         }
-                       // console.log(n_o_elems)
+                        
                         !n_o_elems && final_result.push({
-                            url_text: [values[0][j].name],
-                            url_href: [values[0][j].url],
+                            url_text: values[0][j].name,
+                            url_href: values[0][j].url,
+                            location: values[0][j].location,
                             price: [{
                                 website: "expedia.com",
                                 value: values[0][j].price.toFixed(2)
