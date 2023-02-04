@@ -18,10 +18,16 @@ const { createBrotliCompress } = require("zlib");
 app.use(cors())
 const connectionURl = 'mongodb://127.0.0.1:27017';
 const database = "travelMDB"
+
+require('dotenv').config();
+
 let db; 
 let elements = []
 let elements1 = []
 let elements2 = []
+
+console.log(process.env.EML)
+console.log(process.env.PASS)
 
 mongoClient.connect(
     connectionURl,
@@ -49,8 +55,8 @@ mongoClient.connect(
 const transport = nodemailer.createTransport({
     service: "hotmail",
     auth: {
-        user: "confirm.test@outlook.com",
-        pass:"confirm_1440"
+        user: process.env.EML,
+        pass:process.env.PASS
     }
 })
 
@@ -84,7 +90,7 @@ app.post("/post_user", (req, res) => {
                 token,
             })
             const mailOptions = {
-                from: "confirm.test@outlook.com",
+                from: process.env.EML,
                 to: email,
                 subject: "Email confirmation",
                 html: `<div>
