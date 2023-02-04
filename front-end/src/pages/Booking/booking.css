@@ -246,4 +246,61 @@
   to {
     height: 500px;
   }
+}
+.posts-placeholder {
+  position: absolute;
+  top: 15rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(146, 146, 146);
+}
+
+.waiting {
+  position: relative;
+  top: 15rem;
+  left: auto;
+  right: auto;
+  height: 150px;
+  width: 110px;
+}
+
+.waiting-message {
+  position: absolute;
+  bottom: 0;
+  width: 110px;
+  text-align: center;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 5px solid rgb(99, 99, 99);
+  border-top: 5px solid rgba(209, 209, 209, 0);
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: auto;
+  -webkit-animation: spin 1s linear;
+          animation: spin 1s linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=booking.css.map */

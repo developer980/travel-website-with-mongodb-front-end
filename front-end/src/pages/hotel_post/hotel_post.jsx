@@ -12,22 +12,31 @@ export default function Hotel_post(props) {
     const { img, list, rating_stars, location, price, url_href, url_text } = props;
     const [array, setArray] = useState(list)
     const [map, showMap] = useState(0)
-    const [marked, setMark] = useState(0)
+    const [status, setStatus] = useState({
+        marked: 0,
+        inList: 0
+    })
     //const [added, add] = useState(0)
 
-    //console.log(array)
+    console.log(status)
     if(list)
         for (let i = 0; i < list.length; i++){
             if (list[i].name == url_text) {
                 
-                if (!marked)
-                    setMark(1)
+                if (!status.inList && !status.marked) {
+                    setStatus({
+                            marked: 1,
+                            inList: 1
+                    })
+                }
                 // console.log(li)
                 //break;
             }
         }
+    
+    // !marked && isInList && setMark(1)
     //console.log(price)
-    marked && console.log(url_text + " " + marked)
+    //marked && console.log(url_text + " " + marked)
   return (
       <>
           {/* <img src={Filled_mark} alt="" /> */}
@@ -36,7 +45,7 @@ export default function Hotel_post(props) {
         {/* <div className = "hotel-img"> */}
               <img className="main-img" name = "image" src={img} alt="" />
                   <div className='hotel-mark' onClick={() => {
-                      if (!marked) {
+                      if (!status.marked) {
                           axios.post("http://localhost:3001/add_tofav", {
                               name: url_text,
                               link: url_href,
@@ -45,18 +54,31 @@ export default function Hotel_post(props) {
                               id: ls.get("i"),
                               email: ls.get("eml")
                           })
-                          setMark(1)
+                          //setMark(1)
+                          setStatus(prevStatus => {
+                              return {
+                                  marked: 1,
+                                  inList:prevStatus.inList
+                              }
+                          })
                       }
                       else {
                           axios.post("http://localhost:3001/remove_fromFav", {
                               email: ls.get("eml"),
                               name: url_text
                           })
-                          setMark(0)
+
+                          setStatus(prevStatus => {
+                            return {
+                                marked: 0,
+                                inList:prevStatus.inList
+                            }
+                        })
+                          //setMark(0)
                         //   setArray(list.splice(list.indexOf(url_text), 1))
                       }
               }}>
-                      {marked ? <img src={Filled_mark} alt="" /> : <img src={Mark} alt="" />}
+                      {status.marked ? <img src={Filled_mark} alt="" /> : <img src={Mark} alt="" />}
               </div>
         {/* </div> */}
         </div>

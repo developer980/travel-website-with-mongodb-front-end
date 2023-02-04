@@ -15,7 +15,7 @@ export default function Header() {
   window.addEventListener('scroll', () => {
     const offset = window.scrollY
 
-    console.log(offset)
+    // console.log(offset)
 
     if (offset > 34) {
       document.getElementById("section").classList.add("section-wide")
