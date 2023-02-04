@@ -1,0 +1,306 @@
+.layout-grid {
+  width: 900px;
+  margin: auto;
+  margin-top: 170px;
+  display: grid;
+  grid-template-areas: "nav nav nav nav" "content content content content";
+  gap: 30px;
+  position: relative;
+}
+
+.inputs {
+  width: 100%;
+  position: relative;
+  margin: auto;
+  grid-area: nav;
+  flex-wrap: wrap;
+}
+.inputs input, .inputs button {
+  width: 17.925%;
+}
+
+.inputs-left {
+  border: none;
+  border-right: 1px solid rgb(219, 219, 219);
+  cursor: pointer;
+  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+  font-size: 1.1rem;
+  height: 50px;
+  border-radius: 50px 0px 0px 50px;
+  transition: all 0.25s;
+  padding-left: 1rem;
+}
+.inputs-left:hover {
+  background-color: rgb(230, 230, 230);
+}
+.inputs-left:focus {
+  outline-width: 0px;
+  background-color: rgb(221, 221, 221);
+}
+
+.inputs-center {
+  border: none;
+  border-right: 1px solid rgb(219, 219, 219);
+  cursor: pointer;
+  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+  font-size: 1.1rem;
+  height: 50px;
+  border-radius: 0px 0px 0px 0px;
+  transition: all 0.25s;
+  padding-left: 20px;
+}
+.inputs-center:hover {
+  background-color: rgb(230, 230, 230);
+}
+.inputs-center:focus {
+  outline-width: 0px;
+  background-color: rgb(221, 221, 221);
+}
+
+.inputs-right {
+  border: none;
+  border-right: 1px solid rgb(219, 219, 219);
+  cursor: pointer;
+  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+  font-size: 1.1rem;
+  height: 50px;
+  border-radius: 0px 50px 50px 0px;
+  transition: all 0.25s;
+  padding-left: 20px;
+}
+.inputs-right:hover {
+  background-color: rgb(230, 230, 230);
+}
+.inputs-right:focus {
+  outline-width: 0px;
+  background-color: rgb(221, 221, 221);
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: none;
+  grid-area: content;
+  width: 100%;
+  margin: auto;
+}
+
+.hotel-post {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
+  color: rgb(77, 124, 115);
+  overflow: hidden;
+}
+.hotel-post div .rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+.hotel-post div .rating img {
+  height: 50%;
+  width: auto;
+}
+.hotel-post .hotel-img {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  overflow: hidden;
+  background-color: rgb(66, 66, 66);
+  position: relative;
+}
+.hotel-post .middle, .hotel-post .links {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-between;
+  width: 36%;
+  height: 90%;
+}
+.hotel-post .middle span, .hotel-post .links span {
+  height: 20%;
+}
+.hotel-post .middle .description, .hotel-post .links .description {
+  height: 50%;
+  padding-bottom: 20px;
+}
+.hotel-post .middle .price, .hotel-post .links .price {
+  font-weight: bold;
+  font-size: 40px;
+}
+.hotel-post .middle .location, .hotel-post .links .location {
+  width: 150px;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.hotel-post .middle .location:hover, .hotel-post .links .location:hover {
+  transform: scale(1.25);
+}
+.hotel-post .middle {
+  padding: 0px 10px 0 10px;
+  color: rgb(98, 101, 104);
+}
+.hotel-post .main-img {
+  width: 120%;
+}
+.hotel-post .links {
+  display: flex;
+  gap: 5px;
+}
+.hotel-post .links a {
+  width: 95%;
+  border-radius: 10px;
+  height: 50%;
+  position: relative;
+  border: 1px solid rgb(98, 101, 104);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.hotel-post .links a div {
+  position: absolute;
+  font-weight: bold;
+  font-size: 30px;
+}
+.hotel-post .links a div, .hotel-post .links a span {
+  color: rgb(98, 101, 104);
+}
+.hotel-post .links a span {
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+}
+.hotel-post .links a:hover {
+  background-color: rgb(229, 231, 230);
+  color: rgb(77, 124, 115);
+}
+
+.hotel-mark {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 30px;
+  height: 30px;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background-color: rgba(177, 177, 177, 0.596);
+  border-radius: 50px;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.hotel-mark img {
+  width: 70%;
+}
+.hotel-mark:hover {
+  background-color: rgba(255, 255, 255, 0.829);
+}
+
+.hotel-map {
+  margin-bottom: 50px;
+  background-color: white;
+  border: 1px solid rgb(182, 182, 182);
+  width: 100%;
+  height: 500px;
+  box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
+  border-radius: 20px;
+  overflow: hidden;
+  -webkit-animation: show 0.5s;
+          animation: show 0.5s;
+}
+.hotel-map iframe {
+  width: 100%;
+  height: 500px;
+}
+
+@-webkit-keyframes show {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 500px;
+  }
+}
+
+@keyframes show {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 500px;
+  }
+}
+.posts-placeholder {
+  position: absolute;
+  top: 15rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(146, 146, 146);
+}
+
+.waiting {
+  position: relative;
+  top: 10rem;
+  left: auto;
+  right: auto;
+  height: 150px;
+  width: 110px;
+}
+
+.waiting-message {
+  position: absolute;
+  bottom: 0;
+  width: 110px;
+  text-align: center;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 5px solid rgb(99, 99, 99);
+  border-top: 5px solid rgba(209, 209, 209, 0);
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: auto;
+  -webkit-animation: spin 1s linear;
+          animation: spin 1s linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=booking.css.map */

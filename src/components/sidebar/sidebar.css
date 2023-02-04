@@ -1,0 +1,55 @@
+.sidebar {
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: none;
+  gap: 30px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
+}
+
+.sidebar-flex {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.item-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: unset;
+  gap: 5px;
+}
+
+.sidebar-flex-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.criteria-name {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.criteria {
+  margin-left: 30px;
+  font-size: 20px;
+}
+.criteria div {
+  border: 1px solid;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 50px;
+  text-align: center;
+}/*# sourceMappingURL=sidebar.css.map */
