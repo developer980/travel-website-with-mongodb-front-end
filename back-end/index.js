@@ -254,6 +254,8 @@ app.post("/get_posts", (req, res) => {
     elements1 = []
     elements2 = []
 
+    //
+
     console.log(`https://www.expedia.com/Hotel-Search?destination=${keyWord}&startDate=${checkIn.year + "-" + checkIn.month + "-" + checkIn.day}${"&endDate=" + checkOut.year + "-" + checkOut.month + "-" + checkOut.day}`)
 
     const promise = new Promise((resolve) => {
