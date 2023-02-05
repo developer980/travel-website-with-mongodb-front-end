@@ -90,7 +90,7 @@ export default function Header() {
             }}>Log out</Link>
             
             <Link onClick={() => {
-              Axios.post("http://localhost:3001/delete_user", {
+              Axios.post("https://mydestinationapp.onrender.com/delete_user", {
                 email:ls.get("eml")
               }).then(() => {
                 ls.remove("eml");

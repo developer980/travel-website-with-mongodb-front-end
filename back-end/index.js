@@ -16,9 +16,9 @@ const path = require("path")
 const multer = require("multer");
 const { createBrotliCompress } = require("zlib");
 app.use(cors())
-const connectionURl = 'mongodb://127.0.0.1:27017';
+const connectionURl = process.env.MONGODB_URI;
 const database = "travelMDB"
-
+'mongodb://127.0.0.1:27017'
 require('dotenv').config();
 
 let db; 
@@ -28,6 +28,7 @@ let elements2 = []
 
 console.log(process.env.EML)
 console.log(process.env.PASS)
+console.log("URI: " + process.env.MONGODB_URI)
 
 mongoClient.connect(
     connectionURl,
@@ -95,7 +96,7 @@ app.post("/post_user", (req, res) => {
                 subject: "Email confirmation",
                 html: `<div>
                     <b>Please verify your email</b>
-                    <a href = "http://localhost:3000/confirm_${token}">Link</a>
+                    <a href = "https://travel-website-with-mongodb-front-end-bszn-992f5shze.vercel.app/confirm_${token}">Link</a>
                 </div>`
             }
             transport.sendMail(mailOptions, (err, res) => {
@@ -310,7 +311,7 @@ app.post("/get_posts", (req, res) => {
                 const img = $(this).find(".c90a25d457").find("img").attr("src")
                 //console.log(pretty(img.attr("src")))
                 const price = price_text.split("lei")[0].split(".").join('')
-                console.log("price " + price + " " + price_text)
+                console.log("price " + price_text.split("lei")[0].split(".").join('') + " " + price_text.split("lei")[0].split(".").join('') / 4.90)
                 let notes = ""
                 
                 if (description.includes("Proprietate Călătorii durabile")) {
@@ -321,7 +322,7 @@ app.post("/get_posts", (req, res) => {
                     rating_stars++
                 })
                 console.log("rating_stars: " + rating_stars)
-                const converted_price = parseInt(price) / 4.90
+                const converted_price = price / 4.90
                 if (url_text && price){
                     //description.length ?
                     elements.push({
@@ -332,7 +333,7 @@ app.post("/get_posts", (req, res) => {
                         img,
                         price:[{
                             website:"booking.com",
-                            value:converted_price.toFixed(2)
+                            value:price.replace("€", "").trim()
                         }],
                         location: location.replace("Arată pe hartă", " ")
                     })
@@ -422,7 +423,9 @@ app.post("/get_posts", (req, res) => {
     })
 })
 
+// process.env.PORT &&
 app.listen(3001, () => {
     console.log("Server started :)")
 })
             
+module.exports = app

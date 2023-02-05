@@ -47,7 +47,7 @@ export default function Booking() {
   console.log(list.length)
 
   if (list.length == 0 && ls.get("eml"))
-    axios.post("http://localhost:3001/get_favourites", {
+    axios.post("https://mydestinationapp.onrender.com/get_favourites", {
     email: ls.get("eml")
     }).then(data => {
       console.log("searching data")
@@ -89,7 +89,7 @@ export default function Booking() {
           
           <button className="inputs-right" onClick={() => {
             setSearch(1)
-            axios.post("http://localhost:3001/get_posts", {
+            axios.post("https://mydestinationapp.onrender.com/get_posts", {
               keyWord: keyWord.replace(" ", "+"),
               parameters: {
                 checkIn:dateIn,
@@ -129,6 +129,7 @@ export default function Booking() {
               : 
               <div className = "posts-placeholder">
                 Search for a destination
+                {/* {"€ 100".replace("€ ", "")} */}
               </div>
           }
         </div>

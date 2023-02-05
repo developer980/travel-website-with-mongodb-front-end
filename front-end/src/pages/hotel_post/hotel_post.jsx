@@ -19,6 +19,7 @@ export default function Hotel_post(props) {
     //const [added, add] = useState(0)
 
     console.log(status)
+
     if(list)
         for (let i = 0; i < list.length; i++){
             if (list[i].name == url_text) {
@@ -46,7 +47,7 @@ export default function Hotel_post(props) {
               <img className="main-img" name = "image" src={img} alt="" />
                   <div className='hotel-mark' onClick={() => {
                       if (!status.marked) {
-                          axios.post("http://localhost:3001/add_tofav", {
+                          axios.post("https://mydestinationapp.onrender.com/add_tofav", {
                               name: url_text,
                               link: url_href,
                               price: price,
@@ -63,7 +64,7 @@ export default function Hotel_post(props) {
                           })
                       }
                       else {
-                          axios.post("http://localhost:3001/remove_fromFav", {
+                          axios.post("https://mydestinationapp.onrender.com/remove_fromFav", {
                               email: ls.get("eml"),
                               name: url_text
                           })
@@ -112,8 +113,7 @@ export default function Hotel_post(props) {
         </div>
         <div className = 'links'>
             {price.map((price, index) => {
-                //console.log("price " + index + ": " + price)
-                // if (index <= price.length)
+                console.log(price.value.replace("€", "").trim())
                 if(price.value) return <a href={url_href[index]} target = "_blank" rel="noopener noreferrer">
                     <div>
                     {price.value} €
