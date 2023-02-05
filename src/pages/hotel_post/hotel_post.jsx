@@ -116,7 +116,7 @@ export default function Hotel_post(props) {
                 console.log(price.value.replace("€", "").trim())
                 if(price.value) return <a href={url_href[index]} target = "_blank" rel="noopener noreferrer">
                     <div>
-                    {price.value.replace("€", "").trim()} €
+                    {price.value} €
                     </div>
                 <span>{price.website}</span>
                 </a>
