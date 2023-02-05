@@ -15,7 +15,7 @@ export default function Favourites() {
     const link = <Link className='place-holder__link' to="/booking_page">destination</Link>
     console.log(list)
     if (list.length == 0 && ls.get("eml"))
-        axios.post("http://localhost:3001/get_favourites", {
+        axios.post("https://mydestinationapp.onrender.com/get_favourites", {
             email: ls.get("eml")
         }).then(data => {
             console.log(data.data.favs)
@@ -39,7 +39,7 @@ export default function Favourites() {
 }
 
 export function setFavs(list, setList) {
-    axios.post("http://localhost:3001/get_favourites", {
+    axios.post("https://mydestinationapp.onrender.com/get_favourites", {
         email: ls.get("eml")
     }).then(data => {
         console.log(data.data.favs)

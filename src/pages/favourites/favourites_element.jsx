@@ -17,7 +17,7 @@ export default function favourites_element(props) {
         <img className="elem-img-content" src={img} />
         <div className='unmark'>
           <img className = "unmark_img" src={Filled_Mark} onClick={() => {
-            axios.post("http://localhost:3001/remove_fromFav", {
+            axios.post("https://mydestinationapp.onrender.com/remove_fromFav", {
               email: ls.get('eml'),
               name:name
             }).then(data => {
