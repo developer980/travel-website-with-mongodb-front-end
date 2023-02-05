@@ -52,7 +52,7 @@ export default function Form1() {
                   e.preventDefault()
               generateToken()
               console.log("token: " + token)
-                  Axios.post("http://localhost:3001/search_user", {
+                  Axios.post("https://mydestinationapp.onrender.com/search_user", {
                       //username:username,
                       email:email,
                       password: password,

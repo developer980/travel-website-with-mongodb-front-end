@@ -58,7 +58,7 @@ export default function Form() {
             })
             console.log("hashed password: " + hashedpassword)
             username && email && password ?
-               Axios.post("http://localhost:3001/post_user", {
+               Axios.post("https://mydestinationapp.onrender.com/post_user", {
                 username:username,
                 email:email,
                 password: hashedpassword,

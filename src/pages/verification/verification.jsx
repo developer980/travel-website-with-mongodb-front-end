@@ -10,7 +10,7 @@ export default function Verification() {
     const token = useParams().token
   const[message, setMessage] = useState(0)
   console.log(token)
-  Axios.post("http://localhost:3001/verify_token", {
+  Axios.post("https://mydestinationapp.onrender.com/verify_token", {
     token:token
   }).then(data => {
     console.log(data)
