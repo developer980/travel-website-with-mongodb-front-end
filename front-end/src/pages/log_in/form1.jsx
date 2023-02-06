@@ -65,7 +65,7 @@ export default function Form1() {
                         ls.set('eml', data.data.email)
                         ls.set('usr', data.data.username)
                         ls.set('i', data.data.id)
-                        window.open("https://travel-website-with-mongodb-front-end-bszn-10d1oe6de.vercel.app/", "_self")
+                        window.open("https://travel-website-with-mongodb-front-end-bszn.vercel.app/", "_self")
                       }
                       else {
                         isFailed(1)
