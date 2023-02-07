@@ -11,6 +11,7 @@ import Guests from '../../components/guests/guests'
 import Sidebar from '../../components/sidebar/sidebar'
 import Hotel_post from '../hotel_post/hotel_post'
 import ls from "localstorage-slim"
+import X from "../../icons/x.svg"
 
 ls.config.encrypt = true
 //import { isHtmlElement } from 'react-router-dom/dist/dom'
@@ -19,11 +20,15 @@ export default function Booking() {
 
   const [hotelArray, setHotels] = useState([]);
   const [keyWord, setKeyWord] = useState('');
-  const [chalendar, displayChalendar] = useState(false)
+  // const [chalendar, displayChalendar] = useState({
+  //   display: 0,
+  //   mode:''
+  // })
   const [guests, displayGuests] = useState(false)
   const [mode, setMode] = useState("")
   const [search, setSearch] = useState(0)
-  
+  const [chalendar, displayChalendar] = useState(false)
+
   const { checkIn } = useSelector(state => state.date)
   const { checkOut } = useSelector((state) => state.date)
 
@@ -68,7 +73,7 @@ export default function Booking() {
   }
 
   return (
-    <Layout>
+    <Layout mode = "book">
       <div className = "layout-grid">
         <div className = "inputs"> 
           <input className = "inputs-left" type="text" placeholder='Destination' onChange={(e) => {
@@ -76,11 +81,26 @@ export default function Booking() {
           }} />
 
           <input className="inputs-center" onClick={() => {
-            display(displayChalendar, chalendar, "in", "chalendar", "block")
+            display(displayChalendar, chalendar, "in", "chalendar", "block")     
+            // setMode('in')
+            // chalendar.display ? displayChalendar({
+            //   display: 0,
+            //   mode:"in"
+            // }) : displayChalendar({
+            //   display: 1,
+            //   mode:"in"
+            // })
           }} type="text" placeholder='Date check-in' value={checkIn}/>
 
           <input className = "inputs-center" type="text" onClick = {() => {
-            display(displayChalendar, chalendar, "out", "chalendar", "block")
+            display(displayChalendar, chalendar, "out", "chalendar", "block")     
+            // chalendar.display ? displayChalendar({
+            //   display: 0,
+            //   mode:"out"
+            // }) : displayChalendar({
+            //   display: 1,
+            //   mode:"out"
+            // })
           }} placeholder='Date check-out' value={checkOut} />
           
           <input className="inputs-center" type="text" onClick={() => {
@@ -104,7 +124,17 @@ export default function Booking() {
           
         <div className = "side-section"><Sidebar/></div>
         </div>
-        <Chalendar mode={mode} />
+        {/* {
+          chalendar.display ?
+            <Chalendar mode={chalendar.mode} /> : null
+        } */}
+        <div id = "chalendar" className='chalendar-window' style = {{display:"none"}}>
+          <img src={X} className="close-button" onClick={() => {
+            document.getElementById("chalendar").style.display = "none"
+            displayChalendar(false)
+          }} />
+          <Chalendar mode={chalendar.mode} />
+        </div>
 
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl3w9CFhn2FiIpAkXI7RtJbvQVRTP26hc67IYVg3hu&s" alt="" /> */}
         <div className = "posts">

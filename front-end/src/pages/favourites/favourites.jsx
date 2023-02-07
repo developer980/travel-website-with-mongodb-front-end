@@ -22,7 +22,7 @@ export default function Favourites() {
             data.data.favs[0] && setList(data.data.favs)
         })
     return (
-      <Layout>
+      <Layout mode = "favourites">
           <div className="fav-list">
               {
                   list.map((item, index) => {

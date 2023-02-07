@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setCheckIn, setCheckOut } from '../../redux/reducer/date'
 import Arrow from "../../icons/arrow.svg"
 
+
 export default function Chalendar(props) {
 
   const dispatch = useDispatch();
@@ -47,11 +48,21 @@ export default function Chalendar(props) {
   let total_days  = 1
   const month_index = new Date(date.getFullYear() + year_index, date.getMonth()).getMonth()
 
+  // if (mode == "in") {
+  //   console.log("mode is in")
+  // }
+
+  // else {
+  //   console.log("mode is out")
+  // }
+
   //console.log("month " + month)
 
+  // style = {{display:"none"}}
   return (
-    <div id = "chalendar" className = "chalendar" style = {{display:"none"}}>
+    <div className = "chalendar">
       <div className="chalendar-header">
+
 
         <div className = "arrow arrow-inverted" onClick={() => {
           if (month_index + amount > 0)
@@ -111,11 +122,13 @@ export default function Chalendar(props) {
               else {
                 const selected_date = current_year + "-" + month + "-" + item_date
                 if (mode == "in") {
+                  console.log("mode is in")
                   setDateIn(current_year + "-" + month + "-" + item_date)
                   dispatch(setCheckIn(item_date + "." + month + "." + current_year))
                 }
                   
                 else {
+                  console.log("mode is out")
                   setDateOut(current_year + "-" + month + "-" + item_date)
                   dispatch(setCheckOut(item_date + "." + month + "." + current_year))
                   if (new Date(selected_date) < new Date(checkIn)) {

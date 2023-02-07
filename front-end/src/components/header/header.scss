@@ -114,7 +114,7 @@ nav{
     justify-content: end;
     width:100%;
     position: absolute;
-    z-index:1;
+    z-index:2;
     transition: all 0.25s;
 
     section{
@@ -133,8 +133,8 @@ nav{
             color: white;
             transition: transform 0.25s;
             &:hover{
-                transform:scale(1.3,1.3);
-                //font-weight: ;
+                transform:scale(1.3, 1.3);
+                // font-weight: bold;
             }
         }
     }
@@ -150,7 +150,7 @@ nav{
         font-size: 0rem;
     }
     to{
-        width:30%;
+        width:40rem;
         font-size: 1.25rem;
     }
 }
@@ -173,11 +173,14 @@ nav{
 }
 
 .section-narrow{
-    @include section(30%, 70%, 50px, 50px, 0px);
+    @include section(40rem, 70%, 50px, 50px, 0px);
     background-position: 100% 0%;  
     @include display(flex, center, end);
     padding-right: 30px;
     gap:10%;
+    // a{
+    //     width: 50%;
+    // }
 }
 
 .section-wide{

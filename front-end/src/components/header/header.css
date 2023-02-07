@@ -83,7 +83,7 @@ nav {
   justify-content: end;
   width: 100%;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   transition: all 0.25s;
 }
 nav section {
@@ -115,7 +115,7 @@ nav section a:hover {
     font-size: 0rem;
   }
   to {
-    width: 30%;
+    width: 40rem;
     font-size: 1.25rem;
   }
 }
@@ -126,7 +126,7 @@ nav section a:hover {
     font-size: 0rem;
   }
   to {
-    width: 30%;
+    width: 40rem;
     font-size: 1.25rem;
   }
 }
@@ -148,7 +148,7 @@ nav section a:hover {
 }
 
 .section-narrow {
-  width: 30%;
+  width: 40rem;
   height: 70%;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;

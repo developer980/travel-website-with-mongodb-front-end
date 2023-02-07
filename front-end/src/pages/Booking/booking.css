@@ -5,7 +5,6 @@
   display: grid;
   grid-template-areas: "nav nav nav nav" "content content content content";
   gap: 30px;
-  position: relative;
 }
 
 .inputs {
@@ -14,6 +13,7 @@
   margin: auto;
   grid-area: nav;
   flex-wrap: wrap;
+  z-index: 1;
 }
 .inputs input, .inputs button {
   width: 17.925%;
@@ -84,6 +84,29 @@
   grid-area: content;
   width: 100%;
   margin: auto;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.close-button:hover {
+  transform: scale(1.5);
+}
+
+.chalendar-window {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(179, 179, 179, 0.63);
+  z-index: 2;
 }
 
 .hotel-post {
@@ -249,7 +272,7 @@
 }
 .posts-placeholder {
   position: absolute;
-  top: 15rem;
+  top: 25rem;
   font-size: 2rem;
   font-weight: bold;
   color: rgb(146, 146, 146);
