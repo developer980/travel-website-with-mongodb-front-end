@@ -9,9 +9,11 @@
 
 .inputs {
   width: 100%;
+  position: relative;
   margin: auto;
   grid-area: nav;
   flex-wrap: wrap;
+  z-index: 1;
 }
 .inputs input, .inputs button {
   width: 17.925%;

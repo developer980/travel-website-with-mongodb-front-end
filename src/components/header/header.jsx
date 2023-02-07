@@ -10,7 +10,8 @@ ls.config.encrypt = true
 
 let offsetvalue = 0;
 
-export default function Header() {
+export default function Header(props) {
+  const { mode } = props
   const [display, displayOptions] = useState(0)
   window.addEventListener('scroll', () => {
     const offset = window.scrollY
@@ -60,9 +61,10 @@ export default function Header() {
       </Link>
       <section id = "section" className='section-narrow'>
         {/* Home */}
-        
-        <Link to="/booking_page">Book a place</Link>
-        {ls.get('eml') && <Link to = "/favourites">Favourites</Link>}
+        {
+          mode != "home" && <Link style = {{fontWeight:mode == "book" && "bold"}} to="/booking_page">Book a place</Link>
+        }
+        {ls.get('eml') && <Link style = {{fontWeight:mode == "favourites" && "bold"}} to = "/favourites">Favourites</Link>}
                  
         {
           ls.get("eml") ?

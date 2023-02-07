@@ -73,7 +73,7 @@ export default function Booking() {
   }
 
   return (
-    <Layout>
+    <Layout mode = "book">
       <div className = "layout-grid">
         <div className = "inputs"> 
           <input className = "inputs-left" type="text" placeholder='Destination' onChange={(e) => {

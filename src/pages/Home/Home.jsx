@@ -13,7 +13,7 @@ export default function Home() {
   console.log(ls.get("i"))
   
   return (
-    <Layout>
+    <Layout mode = "home">
       <main>
         <section>
           <div className = "description">
