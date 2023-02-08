@@ -106,7 +106,7 @@
   left: 0;
   right: 0;
   background-color: rgba(179, 179, 179, 0.63);
-  z-index: 1;
+  z-index: 2;
 }
 
 .hotel-post {

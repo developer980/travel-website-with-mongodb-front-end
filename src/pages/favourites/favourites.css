@@ -23,7 +23,11 @@
 }
 
 .elem-img{
-    width: 30%;
+    width: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(192, 192, 192);
     position:relative;
     overflow: hidden;
 }
