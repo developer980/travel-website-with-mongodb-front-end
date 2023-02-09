@@ -105,19 +105,7 @@ nav section a:hover {
 }
 
 #section {
-  -webkit-animation: flyIn 1s;
-          animation: flyIn 1s;
-}
-
-@-webkit-keyframes flyIn {
-  from {
-    width: 0%;
-    font-size: 0rem;
-  }
-  to {
-    width: 40rem;
-    font-size: 1.25rem;
-  }
+  animation: flyIn 1s;
 }
 
 @keyframes flyIn {

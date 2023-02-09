@@ -6,6 +6,7 @@ import Axios from "axios";
 import bcrypt, { hash } from "bcryptjs"
 import setToken from '../../redux/action/token';
 import { Link } from 'react-router-dom';
+import { setEmail } from '../../redux/reducer/date';
 
 const salt = bcrypt.genSaltSync(10, (err, salt) => {
   console.log("salt = " + salt)
@@ -41,12 +42,14 @@ export default function Form() {
         <h1 className='title'>
           Create an account
         </h1>
-            <span className='field-name'>Username</span>
-            <input onChange = {(e) => setName(e.target.value)} id = "name" type="text" placeholder='Insert username'/>
-            <span className='field-name'>Email</span>
-            <input onChange = {(e) => setLocation(e.target.value)} type="email" placeholder='Insert email'/>
-            <span className='field-name'>Password</span>
+
+        <span className='field-name'>Username</span>
+        <input onChange = {(e) => setName(e.target.value)} id = "name" type="text" placeholder='Insert username'/>
+        <span className='field-name'>Email</span>
+        <input onChange = {(e) => setLocation(e.target.value)} type="email" placeholder='Insert email'/>
+        <span className='field-name'>Password</span>
         <input onChange={(e) => setPrice(e.target.value)} type="password" placeholder='Insert password' />
+        
         <div className = "user-form__submit-section">
             <button onClick={(e) => {
               e.preventDefault()
@@ -56,6 +59,7 @@ export default function Form() {
               err && console.log(err)
               return hash
             })
+            setEmail(email)
             console.log("hashed password: " + hashedpassword)
             username && email && password ?
                Axios.post("https://mydestinationapp.onrender.com/post_user", {

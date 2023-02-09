@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import Verification from './pages/verification/verification';
 import Form1 from './pages/log_in/form1';
 import Favourites from './pages/favourites/favourites';
+import Password_recovery from './pages/log_in/password_recovery';
 
 
 
@@ -27,6 +28,7 @@ function App() {
       <Route path="/confirm_:token" element={<Verification />} />
       <Route path="/favourites" element={<Favourites />} />
       <Route path="/log_in" element={<Form1/>} />
+      <Route path="/password_recovery" element={<Password_recovery/>} />
     </Routes>
   );
 }

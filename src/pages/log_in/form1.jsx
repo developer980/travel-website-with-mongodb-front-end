@@ -84,6 +84,9 @@ export default function Form1() {
               :
               null
           }
+          <Link to= "/password_recovery">
+            Forgor your password?
+          </Link>
         </div>  
       </form>
     </Layout>
