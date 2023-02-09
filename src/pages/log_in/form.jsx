@@ -7,6 +7,7 @@ import bcrypt, { hash } from "bcryptjs"
 import setToken from '../../redux/action/token';
 import { Link } from 'react-router-dom';
 import { setEmail } from '../../redux/reducer/date';
+import { useDispatch } from 'react-redux';
 
 const salt = bcrypt.genSaltSync(10, (err, salt) => {
   console.log("salt = " + salt)
@@ -16,6 +17,7 @@ const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX
 
 let token = ""
 
+
 function generateToken() {
   for (let i = 0; i < 25; i++)
     token += characters[Math.floor(Math.random() * characters.length)]
@@ -23,8 +25,11 @@ function generateToken() {
 }
 
 export default function Form() {
-    const[username, setName] = useState('')
-    const[email, setLocation] = useState('')
+  
+  const [username, setName] = useState('')
+  const [email, setLocation] = useState('')
+
+  const dispatch = useDispatch()
   const [password, setPrice] = useState('')
   const [status, setMessageStatus] = useState(0)
   const [message, displayMessage] = useState(0)
@@ -59,7 +64,7 @@ export default function Form() {
               err && console.log(err)
               return hash
             })
-            setEmail(email)
+            dispatch(setEmail(email))
             console.log("hashed password: " + hashedpassword)
             username && email && password ?
                Axios.post("https://mydestinationapp.onrender.com/post_user", {

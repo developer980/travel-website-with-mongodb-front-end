@@ -10,13 +10,14 @@ import { useSelector } from 'react-redux'
 export default function Verification() {
   const token = useParams().token
   
-  const email = useSelector(state => state.email)
+  const email = useSelector(state => state.date)
 
   console.log("email: " + email)
 
   const[message, setMessage] = useState(0)
   console.log(token)
   Axios.post("https://mydestinationapp.onrender.com/verify_token", {
+    email: email,
     token:token
   }).then(data => {
     console.log(data)

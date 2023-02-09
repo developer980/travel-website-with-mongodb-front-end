@@ -31,6 +31,8 @@ export default function Booking() {
 
   const { checkIn } = useSelector(state => state.date)
   const { checkOut } = useSelector((state) => state.date)
+  // const {email} = useSelector(state => state.date)
+  // console.log(email)
 
   const dateIn = {
     day:checkIn.split(".")[0],
