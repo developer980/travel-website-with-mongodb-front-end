@@ -245,21 +245,11 @@
   box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
   border-radius: 20px;
   overflow: hidden;
-  -webkit-animation: show 0.5s;
-          animation: show 0.5s;
+  animation: show 0.5s;
 }
 .hotel-map iframe {
   width: 100%;
   height: 500px;
-}
-
-@-webkit-keyframes show {
-  from {
-    height: 0px;
-  }
-  to {
-    height: 500px;
-  }
 }
 
 @keyframes show {
@@ -304,19 +294,8 @@
   top: 0;
   left: auto;
   right: auto;
-  -webkit-animation: spin 1s linear;
-          animation: spin 1s linear;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-}
-
-@-webkit-keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  animation: spin 1s linear;
+  animation-iteration-count: infinite;
 }
 
 @keyframes spin {

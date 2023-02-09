@@ -10,7 +10,8 @@ export const dateSlice = createSlice(
             favourites:[],
             data: {
                 
-            }
+            },
+            email:""
         },
         reducers: {
             setCheckIn: (state, action) => {
@@ -26,6 +27,9 @@ export const dateSlice = createSlice(
             },
             setToken: (state, action) => {
                 state.token = action.payload
+            },
+            setEmail: (state, action) => {
+                state.email = action.payload
             }
             // setFavourites: (state, action) => {
             //     state.favourites = action.payload
@@ -35,5 +39,5 @@ export const dateSlice = createSlice(
     }
 )
 
-export const { setCheckIn, setCheckOut, setToken, setFavourites } = dateSlice.actions
+export const { setCheckIn, setCheckOut, setToken, setEmail } = dateSlice.actions
 export default dateSlice.reducer
