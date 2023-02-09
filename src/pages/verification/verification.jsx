@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 export default function Verification() {
   const token = useParams().token
   
-  const email = useSelector(state => state.date)
+  const {email} = useSelector(state => state.date)
 
   console.log(email)
 
