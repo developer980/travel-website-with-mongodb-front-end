@@ -15,16 +15,30 @@ let token = ""
 // }
 
 export default function Password_recovery() {
-    const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, displayMessage] = useState(0)
+  
   return (
     <Layout>
         <form className="user-form" action="">
           <span className='field-name'>Insert your email address</span>
           <input onChange = {(e) => setEmail(e.target.value)} id = "name" type="text" placeholder='Insert email'/>
-
-          <button>
+          
+        <button onClick={(e) => {
+          e.preventDefault()
+          axios.post("https://mydestinationapp.onrender.com/reset_email", {
+            email
+          }).then(data => {
+            if (data.data == "Email sent") {
+              displayMessage(1)
+            }
+          })
+          }}>
             Send recovery email
-          </button>
+        </button>
+        {
+          message && <div className = "message">An email with a password recovery link has been sent to <b>{email}</b></div>
+        }
         </form>
     </Layout>
   )
