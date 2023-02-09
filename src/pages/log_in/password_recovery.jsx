@@ -7,11 +7,11 @@ import Layout from '../../components/layout/layout'
 
 let token = ""
 
-function generateToken() {
-  for (let i = 0; i < 25; i++)
-    token += characters[Math.floor(Math.random() * characters.length)]
-  //setToken(token)
-}
+// function generateToken() {
+//   for (let i = 0; i < 25; i++)
+//     token += characters[Math.floor(Math.random() * characters.length)]
+//   //setToken(token)
+// }
 
 export default function Password_recovery() {
     const [email, setEmail] = useState('')
@@ -22,7 +22,7 @@ export default function Password_recovery() {
             <input onChange = {(e) => setEmail(e.target.value)} id = "name" type="text" placeholder='Insert email'/>
 
         <button>
-            
+
                   Send recovery email
               </button>
         </form>
