@@ -1,6 +1,17 @@
 import React from 'react'
 import { useState } from 'react'
 import Layout from '../../components/layout/layout'
+// import bcrypt from "bcryptjs"
+
+// const salt = bcrypt.genSaltSync(10)
+
+let token = ""
+
+function generateToken() {
+  for (let i = 0; i < 25; i++)
+    token += characters[Math.floor(Math.random() * characters.length)]
+  //setToken(token)
+}
 
 export default function Password_recovery() {
     const [email, setEmail] = useState('')
@@ -10,7 +21,8 @@ export default function Password_recovery() {
             <span className='field-name'>Insert your email address</span>
             <input onChange = {(e) => setEmail(e.target.value)} id = "name" type="text" placeholder='Insert email'/>
 
-              <button>
+        <button>
+            
                   Send recovery email
               </button>
         </form>

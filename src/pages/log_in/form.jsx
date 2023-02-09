@@ -74,7 +74,7 @@ export default function Form() {
                Axios.post("https://mydestinationapp.onrender.com/post_user", {
                 username:username,
                 email:email,
-                password: hashedpassword,
+                password: password,
                 token
                }).then(data => {
                  
