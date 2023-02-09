@@ -12,7 +12,7 @@ export default function Verification() {
   
   const email = useSelector(state => state.date)
 
-  console.log("email: " + email)
+  console.log(email)
 
   const[message, setMessage] = useState(0)
   console.log(token)
