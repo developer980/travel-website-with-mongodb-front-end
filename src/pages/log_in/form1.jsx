@@ -59,6 +59,7 @@ export default function Form1() {
                       token
                   }).then((data) => {
                     if (data.data) {
+                      console.log(data.data)
                       ls.set('eml', data.data.email)
                     }
                     else {
