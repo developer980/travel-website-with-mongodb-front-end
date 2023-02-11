@@ -29,8 +29,8 @@ export default function Password_recovery() {
           <input onChange = {(e) => setEmail(e.target.value)} id = "name" type="text" placeholder='Insert email'/>
           
         <button onClick={(e) => {
-          dispatch(setEmail(email))
           e.preventDefault()
+          dispatch(setEmail(email))
           axios.post("https://mydestinationapp.onrender.com/reset_email", {
             email
           }).then(data => {
