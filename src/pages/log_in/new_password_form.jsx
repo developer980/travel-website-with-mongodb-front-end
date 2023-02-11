@@ -10,15 +10,16 @@ export default function New_password_form() {
     axios.post('https://mydestinationapp.onrender.com/verify_token', {
         email:ls.get('eml')
     }).then((data) => {
+        console.log(data.data)
         data.data && setMessage(1)
     })
 
     return (
         <Layout>
-            <form className='user-from'>
+            
                 {
                     message ?
-                    <div>
+                    <form className='user-form'>
                         <span className='field-name'>Insert your new password</span>
                         <input onChange = {(e) => setPassword(e.target.value)} id = "name" type="password" placeholder='Insert password'/>
                         
@@ -32,13 +33,15 @@ export default function New_password_form() {
                                 
                         }}>
                         </button>
-                    </div> :
-                    <div className='negative-message'>
-                        Token invalid or has expired          
-                    </div>      
+                    </form>
+                    :
+                    <div className = 'error'>
+                        <div className='negative-message'>
+                            Token invalid or has expired          
+                        </div>
+                    </div>    
                 }
             
-            </form>
         </Layout>
   )
 }
