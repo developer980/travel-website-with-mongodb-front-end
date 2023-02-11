@@ -28,7 +28,7 @@ export const dateSlice = createSlice(
             setToken: (state, action) => {
                 state.token = action.payload
             },
-            setEmail: (state, action) => {
+            getEmail: (state, action) => {
                 console.log(action.payload)
                 state.email = action.payload
             }
@@ -40,5 +40,5 @@ export const dateSlice = createSlice(
     }
 )
 
-export const { setCheckIn, setCheckOut, setToken, setEmail } = dateSlice.actions
+export const { setCheckIn, setCheckOut, setToken, getEmail } = dateSlice.actions
 export default dateSlice.reducer

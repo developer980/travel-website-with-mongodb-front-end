@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import Layout from '../../components/layout/layout'
 import axios from 'axios'
-import { setEmail } from '../../redux/reducer/date'
+import { getEmail } from '../../redux/reducer/date'
 import { useDispatch } from 'react-redux'
 
 // import bcrypt from "bcryptjs"
@@ -30,7 +30,7 @@ export default function Password_recovery() {
           
         <button onClick={(e) => {
           e.preventDefault()
-          dispatch(setEmail(email))
+          dispatch(getEmail(email))
           axios.post("https://mydestinationapp.onrender.com/reset_email", {
             email
           }).then(data => {
