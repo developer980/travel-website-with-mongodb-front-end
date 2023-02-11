@@ -2,6 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 import Layout from '../../components/layout/layout'
 import axios from 'axios'
+import { setEmail } from '../../redux/reducer/date'
+import { useDispatch } from 'react-redux'
+
+const dispatch = useDispatch()
 // import bcrypt from "bcryptjs"
 
 // const salt = bcrypt.genSaltSync(10)
@@ -25,6 +29,7 @@ export default function Password_recovery() {
           <input onChange = {(e) => setEmail(e.target.value)} id = "name" type="text" placeholder='Insert email'/>
           
         <button onClick={(e) => {
+          dispatch(setEmail(email))
           e.preventDefault()
           axios.post("https://mydestinationapp.onrender.com/reset_email", {
             email

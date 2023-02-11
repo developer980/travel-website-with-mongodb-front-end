@@ -3,10 +3,19 @@ import { useState } from 'react'
 import axios from "axios"
 import ls from "localstorage-slim"
 import Layout from '../../components/layout/layout'
+import { useParams } from 'react-router'
+import { useSelector } from 'react-redux'
+
 
 export default function New_password_form() {
+
+    const { email } = useSelector(state => state.date)
+    
+    console.log("email: " + email)
+
     const [password, setPassword] = useState('')
     const [message, setMessage] = useState(0)
+    const token = useParams().token
     axios.post('https://mydestinationapp.onrender.com/verify_token', {
         email:ls.get('eml')
     }).then((data) => {
