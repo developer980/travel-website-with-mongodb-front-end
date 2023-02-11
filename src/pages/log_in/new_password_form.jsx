@@ -10,6 +10,7 @@ export default function New_password_form() {
     axios.post('https://mydestinationapp.onrender.com/verify_token', {
         email:ls.get('eml')
     }).then((data) => {
+        console.log("data retrieved")
         console.log(data.data)
         data.data && setMessage(1)
     })
