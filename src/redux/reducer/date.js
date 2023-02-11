@@ -29,6 +29,7 @@ export const dateSlice = createSlice(
                 state.token = action.payload
             },
             setEmail: (state, action) => {
+                console.log(action.payload)
                 state.email = action.payload
             }
             // setFavourites: (state, action) => {

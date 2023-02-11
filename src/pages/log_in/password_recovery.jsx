@@ -5,7 +5,6 @@ import axios from 'axios'
 import { setEmail } from '../../redux/reducer/date'
 import { useDispatch } from 'react-redux'
 
-const dispatch = useDispatch()
 // import bcrypt from "bcryptjs"
 
 // const salt = bcrypt.genSaltSync(10)
@@ -21,6 +20,7 @@ let token = ""
 export default function Password_recovery() {
   const [email, setEmail] = useState('')
   const [message, displayMessage] = useState(0)
+  const dispatch = useDispatch()
   
   return (
     <Layout>
