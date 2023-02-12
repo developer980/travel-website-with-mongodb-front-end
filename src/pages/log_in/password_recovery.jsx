@@ -4,6 +4,7 @@ import Layout from '../../components/layout/layout'
 import axios from 'axios'
 import { getEmail } from '../../redux/reducer/date'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 // import bcrypt from "bcryptjs"
 
@@ -44,6 +45,9 @@ export default function Password_recovery() {
         {
           message && <div className = "message">An email with a password recovery link has been sent to <b>{email}</b></div>
         }
+        <Link to="/resetPasswordfor:token">
+          test
+        </Link>
         </form>
     </Layout>
   )
