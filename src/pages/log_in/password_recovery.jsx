@@ -5,6 +5,7 @@ import axios from 'axios'
 import { getEmail } from '../../redux/reducer/date'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import ls from "localstorage-slim"
 
 // import bcrypt from "bcryptjs"
 
@@ -21,7 +22,7 @@ let token = ""
 export default function Password_recovery() {
   const [email, setEmail] = useState('')
   const [message, displayMessage] = useState(0)
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   
   return (
     <Layout>
@@ -31,7 +32,8 @@ export default function Password_recovery() {
           
         <button onClick={(e) => {
           e.preventDefault()
-          dispatch(getEmail(email))
+          //dispatch(getEmail(email))
+          ls.set("dest_eml", email)
           axios.post("https://mydestinationapp.onrender.com/reset_email", {
             email
           }).then(data => {

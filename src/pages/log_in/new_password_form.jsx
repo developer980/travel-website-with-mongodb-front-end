@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 
 export default function New_password_form() {
 
-    const { email } = useSelector(state => state.date)
+    // const { email } = useSelector(state => state.date)
     
     console.log("email: " + email)
 
@@ -17,11 +17,14 @@ export default function New_password_form() {
     const [message, setMessage] = useState(0)
     const token = useParams().token
     axios.post('https://mydestinationapp.onrender.com/verify_token', {
-        email:ls.get('eml')
+        email:ls.get('dest_eml')
     }).then((data) => {
         console.log("data retrieved")
         console.log(data.data)
-        data.data && setMessage(1)
+        if (data.data) {
+            ls.remove("dest_eml")
+            setMessage(1)
+        }
     })
 
     return (
