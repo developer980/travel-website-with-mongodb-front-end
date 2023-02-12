@@ -13,6 +13,8 @@ const nodemailer = require("nodemailer");
 const { cursorTo } = require("readline");
 const path = require("path")
 
+const bcrypt = require('bcryptjs')
+
 const multer = require("multer");
 const { createBrotliCompress } = require("zlib");
 app.use(cors())
@@ -68,6 +70,11 @@ app.post("/post_user", (req, res) => {
     const username = req.body.username
     const password = req.body.password
     const token = req.body.token
+
+    const salt = bcrypt.genSaltSync(process.env.SLENGTH)
+
+    const hashedPassword = bcrypt.hashSync(password, salt)
+
     console.log("Endpoint available")
 
     const user_data = db.collection("users").find({
@@ -87,7 +94,7 @@ app.post("/post_user", (req, res) => {
             db.collection("pending_users").insertOne({
                 username,
                 email,
-                password,
+                password: hashedPassword,
                 token,
             })
             const mailOptions = {
@@ -117,10 +124,7 @@ app.post("/verify_token", (req, res) => {
     console.log("verifying...")
     const result = db.collection("pending_users").find({
         email:email
-    }).project({
-            _id: 0,
-            token:token
-        })
+    })
 
     result.forEach(function (result, err) {
         err && console.log(err)
@@ -129,7 +133,7 @@ app.post("/verify_token", (req, res) => {
             //res.send(result)
     }, () => {
        // db.close()
-        response[0] && console.log(response[0].email)
+        response[0].token == token && console.log(response[0].email)
         response[0] && db.collection("users").insertOne({
             email: response[0].email,
             username: response[0].username,
@@ -159,7 +163,13 @@ app.post("/search_user", (req, res) => {
             })
     }, () => {
         console.log(result[0])
-        res.send(result[0])
+        bcrypt.compare(password, result[0].password, (err, succes) => {
+            console.log("password matches")
+            succes && res.send({
+                email: result[0].email,
+                username:result[0].username
+            })
+        })
     })
 })
 
@@ -168,6 +178,69 @@ app.post("/delete_user", (req, res) => {
 
     db.collection("users").deleteOne({ email: email })
     res.send("Account deleted")
+})
+
+app.post("/reset_email", (req, res) => {
+    
+    const email = req.body.email;
+
+    const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+    let token = ''
+
+    for (let i = 0; i < 25; i++){
+        token += characters[Math.floor(Math.random() * characters.length)]
+    }
+
+    db.collection("users").updateOne({ "email": email }, {
+        $set: {
+            "pass_token":token
+        }
+    })
+
+    const mailOptions = {
+        from: process.env.EML,
+        to: email,
+        subject: "Password reset",
+        html: `<div>
+            <b>Reset your password by accesing this </b>
+            <a href = "https://travel-website-with-mongodb-front-end-bszn.vercel.app/resetPasswordfor_${token}">Link</a>
+        </div>`
+    }
+    transport.sendMail(mailOptions, (err, res) => {
+        err ? console.log(err) : console.log("Email sent")
+    })  
+})
+
+app.post("/verify_token", (req, res) => {
+    const result = []
+    const token = req.body.token
+    const email = req.body.email
+    const response = db.collection("users").find({ email: email })
+    response.forEach(data => {
+        result.push(data)
+    }, () => {
+        result[0] && res.send("Token matches")
+    })
+})
+
+app.post("/reset_password", (req, res) => {
+    const password = req.body.password
+    const email = req.body.email
+    const token = req.body.token
+    const salt = bcrypt.genSaltSync(10)
+    const hashedPassword = bcrypt.hashSync(password, salt, (err, result) => {
+        err && console.log(err)
+        if (result) {
+            db.collection("users").updateOne({ email: email }, {
+                $set: {
+                    "password": hashedPassword,
+                    "pass_token":''
+                }
+            })
+        }
+        res.send("Password succesfully changed")
+    })
 })
 
 app.post("/add_tofav", (req, res) => {
@@ -236,6 +309,8 @@ app.post("/remove_fromFav", (req, res) => {
         res.send(favs_list[0]);
     })
 })
+
+// app.post("/recovery_email", (req, res) => {})
 
 app.post("/get_posts", (req, res) => {
     let keyWord = req.body.keyWord

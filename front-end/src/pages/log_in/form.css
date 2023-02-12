@@ -3,6 +3,7 @@
 }
 
 .user-form {
+  border: 1px solid;
   display: flex;
   flex-direction: column;
   width: 40%;
@@ -126,4 +127,9 @@
     height: 50px;
     padding: 10px;
   }
+}
+.error {
+  margin: auto;
+  margin-top: 12rem;
+  width: 16rem;
 }/*# sourceMappingURL=form.css.map */

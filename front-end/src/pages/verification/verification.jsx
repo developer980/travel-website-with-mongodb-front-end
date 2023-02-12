@@ -5,14 +5,18 @@ import { useState } from 'react'
 import "./verification.css"
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import ls from "localstorage-slim"
 
+ls.config.encrypt = true
 
 export default function Verification() {
   const token = useParams().token
   
-  const email = useSelector(state => state.date)
+  // const {email} = useSelector(state => state.date)
 
-  console.log("email: " + email)
+  // console.log(email)
+
+  const email = ls.get('check_eml')
 
   const[message, setMessage] = useState(0)
   console.log(token)

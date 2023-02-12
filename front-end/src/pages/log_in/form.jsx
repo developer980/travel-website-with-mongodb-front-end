@@ -6,8 +6,9 @@ import Axios from "axios";
 import bcrypt, { hash } from "bcryptjs"
 import setToken from '../../redux/action/token';
 import { Link } from 'react-router-dom';
-import { setEmail } from '../../redux/reducer/date';
+import { getEmail } from '../../redux/reducer/date';
 import { useDispatch } from 'react-redux';
+import ls from "localstorage-slim"
 
 const salt = bcrypt.genSaltSync(10, (err, salt) => {
   console.log("salt = " + salt)
@@ -16,6 +17,8 @@ const salt = bcrypt.genSaltSync(10, (err, salt) => {
 const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 let token = ""
+
+ls.config.encrypt = true
 
 
 function generateToken() {
@@ -56,21 +59,22 @@ export default function Form() {
         <input onChange={(e) => setPrice(e.target.value)} type="password" placeholder='Insert password' />
         
         <div className = "user-form__submit-section">
-            <button onClick={(e) => {
-              e.preventDefault()
-          generateToken()
+          <button onClick={(e) => {
+            ls.set("check_eml", email)
+            e.preventDefault()
+            generateToken()
             console.log("token: " + token)
             const hashedpassword = bcrypt.hashSync(password, salt, (err, hash) => {
               err && console.log(err)
               return hash
             })
-            dispatch(setEmail(email))
+            dispatch(getEmail(email))
             console.log("hashed password: " + hashedpassword)
             username && email && password ?
                Axios.post("https://mydestinationapp.onrender.com/post_user", {
                 username:username,
                 email:email,
-                password: hashedpassword,
+                password: password,
                 token
                }).then(data => {
                  

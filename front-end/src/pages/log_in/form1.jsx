@@ -58,19 +58,28 @@ export default function Form1() {
                       password: password,
                       token
                   }).then((data) => {
-                    bcrypt.compare(password, data.data.password, (err, result) => {
+                    if (data.data) {
+                      console.log(data.data)
+                      ls.set('eml', data.data.email)
+                      ls.set('usr', data.data.username)
+                      window.open("https://travel-website-with-mongodb-front-end-bszn.vercel.app/", "_self")
+                    }
+                    else {
+                      isFailed(1)
+                    }
+                    // bcrypt.compare(password, data.data.password, (err, result) => {
                       
-                      if (result) {
-                        //console.log(data.data.id)
-                        ls.set('eml', data.data.email)
-                        ls.set('usr', data.data.username)
-                        ls.set('i', data.data.id)
-                        window.open("https://travel-website-with-mongodb-front-end-bszn.vercel.app/", "_self")
-                      }
-                      else {
-                        isFailed(1)
-                      }
-                    })
+                    //   if (result) {
+                    //     //console.log(data.data.id)
+                    //     ls.set('eml', data.data.email)
+                    //     ls.set('usr', data.data.username)
+                    //     ls.set('i', data.data.id)
+                    //    
+                    //   }
+                    //   else {
+                    //     isFailed(1)
+                    //   }
+                    // })
                   })
               token = ''
           }}>Log in</button>

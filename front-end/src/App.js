@@ -12,6 +12,7 @@ import Verification from './pages/verification/verification';
 import Form1 from './pages/log_in/form1';
 import Favourites from './pages/favourites/favourites';
 import Password_recovery from './pages/log_in/password_recovery';
+import New_password_form from './pages/log_in/new_password_form';
 
 
 
@@ -29,6 +30,7 @@ function App() {
       <Route path="/favourites" element={<Favourites />} />
       <Route path="/log_in" element={<Form1/>} />
       <Route path="/password_recovery" element={<Password_recovery/>} />
+      <Route path="/resetPasswordfor:token" element={<New_password_form/>} />
     </Routes>
   );
 }

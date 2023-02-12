@@ -6,6 +6,7 @@ $color2: rgb(58, 58, 58);
     color:$color2;
 }
 .user-form{
+    border: 1px solid;
     display:flex;
     flex-direction: column;
     width: 40%;
@@ -130,4 +131,10 @@ $color2: rgb(58, 58, 58);
         height: 50px;
         padding: 10px;
     }
+}
+
+.error{
+    margin: auto;
+    margin-top: 12rem;
+    width: 16rem;
 }
