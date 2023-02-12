@@ -39,7 +39,8 @@ export default function New_password_form() {
                         <span className='field-name'>Insert your new password</span>
                         <input onChange = {(e) => setPassword(e.target.value)} id = "name" type="password" placeholder='Insert password'/>
                         
-                        <button onClick={() => {
+                        <button onClick={(e) => {
+                            e.preventDefault()
                             axios.post('https://mydestinationapp.onrender.com/reset_password', {
                                 email:ls.get('eml'),
                                 password
