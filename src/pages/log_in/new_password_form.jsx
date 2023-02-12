@@ -6,13 +6,14 @@ import Layout from '../../components/layout/layout'
 import { useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
+ls.config.encrypt = true
 
 export default function New_password_form() {
 
     // const { email } = useSelector(state => state.date)
     
     // console.log("email: " + email)
-
+    console.log(ls.get('dest_eml'))
     const [password, setPassword] = useState('')
     const [message, setMessage] = useState(0)
     const token = useParams().token
