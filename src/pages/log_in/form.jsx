@@ -6,7 +6,7 @@ import Axios from "axios";
 import bcrypt, { hash } from "bcryptjs"
 import setToken from '../../redux/action/token';
 import { Link } from 'react-router-dom';
-import { setEmail } from '../../redux/reducer/date';
+import { getEmail } from '../../redux/reducer/date';
 import { useDispatch } from 'react-redux';
 import ls from "localstorage-slim"
 
@@ -68,7 +68,7 @@ export default function Form() {
               err && console.log(err)
               return hash
             })
-            dispatch(setEmail(email))
+            dispatch(getEmail(email))
             console.log("hashed password: " + hashedpassword)
             username && email && password ?
                Axios.post("https://mydestinationapp.onrender.com/post_user", {
