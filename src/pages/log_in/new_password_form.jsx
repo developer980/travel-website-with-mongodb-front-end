@@ -17,8 +17,9 @@ export default function New_password_form() {
     const [password, setPassword] = useState('')
     const [message, setMessage] = useState(0)
     const token = useParams().token
-    axios.post('https://mydestinationapp.onrender.com/verify_token', {
-        email:ls.get('dest_eml')
+    axios.post('https://mydestinationapp.onrender.com/verify_user', {
+        email: ls.get('dest_eml'),
+        token:token
     }).then((data) => {
         console.log("data retrieved")
         console.log(data.data)
