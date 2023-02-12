@@ -25,7 +25,8 @@ export default function New_password_form() {
         console.log(data.data)
         if (data.data) {
             ls.remove("dest_eml")
-            setMessage(1)
+            // setMessage(1)
+            console.log(data.data)
         }
     })
 
