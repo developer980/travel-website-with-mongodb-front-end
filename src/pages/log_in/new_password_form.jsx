@@ -11,7 +11,7 @@ export default function New_password_form() {
 
     // const { email } = useSelector(state => state.date)
     
-    console.log("email: " + email)
+    // console.log("email: " + email)
 
     const [password, setPassword] = useState('')
     const [message, setMessage] = useState(0)
