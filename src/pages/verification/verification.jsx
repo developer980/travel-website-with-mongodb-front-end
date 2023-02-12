@@ -24,7 +24,8 @@ export default function Verification() {
     email: email,
     token:token
   }).then(data => {
-    console.log(data)
+    console.log()
+    console.log(data.data)
     data && setMessage(1)
   })
   return message ?
