@@ -26,7 +26,7 @@ export default function Verification() {
   }).then(data => {
     console.log()
     console.log(data.data)
-    data && setMessage(1)
+    data.data && setMessage(1)
   })
   return message ?
         <div className='message-container'>

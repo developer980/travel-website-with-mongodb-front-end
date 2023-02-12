@@ -40,7 +40,7 @@ export default function New_password_form() {
                         
                         <button onClick={() => {
                             axios.post('https://mydestinationapp.onrender.com/reset_password', {
-                                mail:ls.get('eml'),
+                                email:ls.get('eml'),
                                 password
                             }).then((data) => {
                                 data.data && setMessage(1)
