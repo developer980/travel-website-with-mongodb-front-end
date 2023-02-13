@@ -44,12 +44,17 @@ export default function Password_recovery() {
           }}>
             Send recovery email
         </button>
+        <div className = "message-section">
         {
-          message && <div className = "message">An email with a password recovery link has been sent to <b>{email}</b></div>
+          message ? <div className="message">An email with a password recovery link has been sent to <b>{email}</b></div>
+            :
+            null
         }
-        <Link to="/resetPasswordfor:token">
+        <div className="message">An email with a password recovery link has been sent to <b>{email}</b></div>
+        {/* <Link to="/resetPasswordfor:token">
           test
-        </Link>
+        </Link> */}
+          </div>
         </form>
     </Layout>
   )

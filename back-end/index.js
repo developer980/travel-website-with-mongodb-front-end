@@ -119,7 +119,7 @@ app.post("/post_user", (req, res) => {
 app.post("/verify_token", (req, res) => {
     const token = req.body.token
     const email = req.body.email
-    console.log(token)
+    //console.log(token)
     const response = []
     console.log("verifying...")
     const result = db.collection("pending_users").find({
@@ -134,12 +134,14 @@ app.post("/verify_token", (req, res) => {
     }, () => {
        // db.close()
         response[0].token == token && console.log(response[0].email)
-        response[0] && db.collection("users").insertOne({
-            email: response[0].email,
-            username: response[0].username,
-            password: response[0].password
-        })
-        response[0] && res.send(response[0])
+        if (response[0].token == token) {
+            db.collection("users").insertOne({
+                email: response[0].email,
+                username: response[0].username,
+                password: response[0].password
+            })
+            response[0] && res.send("Succesfully registered")
+        }
         db.collection("pending_users").deleteOne({token:token})
     })
     // cursorTo.array.forEach(element => {
@@ -208,19 +210,25 @@ app.post("/reset_email", (req, res) => {
         </div>`
     }
     transport.sendMail(mailOptions, (err, res) => {
-        err ? console.log(err) : console.log("Email sent")
+        err ? console.log(err) : res.send("Email sent")
     })  
 })
 
-app.post("/verify_token", (req, res) => {
+app.post("/verify_user", (req, res) => {
     const result = []
     const token = req.body.token
+    console.log("token: " + token)
     const email = req.body.email
     const response = db.collection("users").find({ email: email })
     response.forEach(data => {
         result.push(data)
     }, () => {
-        result[0] && res.send("Token matches")
+        console.log(result[0])
+        if (result[0].pass_token && token == result[0].pass_token) {
+            console.log("Token matches")
+            res.send("Token matches")
+        }
+        // res.send(result[0])
     })
 })
 
@@ -229,18 +237,15 @@ app.post("/reset_password", (req, res) => {
     const email = req.body.email
     const token = req.body.token
     const salt = bcrypt.genSaltSync(10)
-    const hashedPassword = bcrypt.hashSync(password, salt, (err, result) => {
-        err && console.log(err)
-        if (result) {
-            db.collection("users").updateOne({ email: email }, {
-                $set: {
-                    "password": hashedPassword,
-                    "pass_token":''
-                }
-            })
+    const hashedPassword = bcrypt.hashSync(password, salt)
+    db.collection("users").updateOne({ email: email }, {
+        $set: {
+            "password": hashedPassword,
+            "pass_token":''
         }
-        res.send("Password succesfully changed")
     })
+    
+    res.send("Password succesfully changed")
 })
 
 app.post("/add_tofav", (req, res) => {

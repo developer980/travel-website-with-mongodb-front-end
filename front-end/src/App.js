@@ -30,7 +30,7 @@ function App() {
       <Route path="/favourites" element={<Favourites />} />
       <Route path="/log_in" element={<Form1/>} />
       <Route path="/password_recovery" element={<Password_recovery/>} />
-      <Route path="/resetPasswordfor:token" element={<New_password_form/>} />
+      <Route path="/resetPasswordfor_:token" element={<New_password_form/>} />
     </Routes>
   );
 }

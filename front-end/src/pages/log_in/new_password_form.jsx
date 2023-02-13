@@ -15,17 +15,24 @@ export default function New_password_form() {
     // console.log("email: " + email)
     console.log(ls.get('dest_eml'))
     const [password, setPassword] = useState('')
-    const [message, setMessage] = useState(0)
+    const [state, setState] = useState({
+        message: 0,
+        checked: 0
+    })
+    // const[checked, setStatus] = useState(0)
     const token = useParams().token
-    axios.post('https://mydestinationapp.onrender.com/verify_token', {
+    !state.checked && axios.post('https://mydestinationapp.onrender.com/verify_user', {
         email: ls.get('dest_eml'),
         token:token
     }).then((data) => {
         console.log("data retrieved")
         console.log(data.data)
         if (data.data) {
-            ls.remove("dest_eml")
-            setMessage(1)
+            setState({
+                message: 1,
+                checked:1,
+            })
+           // console.log(data.data)
         }
     })
 
@@ -33,20 +40,22 @@ export default function New_password_form() {
         <Layout>
             
                 {
-                    message ?
+                    state.message ?
                     <form className='user-form'>
                         <span className='field-name'>Insert your new password</span>
                         <input onChange = {(e) => setPassword(e.target.value)} id = "name" type="password" placeholder='Insert password'/>
                         
-                        <button onClick={() => {
+                        <button onClick={(e) => {
+                            e.preventDefault()
                             axios.post('https://mydestinationapp.onrender.com/reset_password', {
-                                mail:ls.get('eml'),
+                                email:ls.get('dest_eml'),
                                 password
                             }).then((data) => {
-                                data.data && setMessage(1)
+                                data.data && console.log(data.data)
+                                ls.remove("dest_eml")
                             })
                                 
-                        }}>
+                        }}>Reset password
                         </button>
                     </form>
                     :
