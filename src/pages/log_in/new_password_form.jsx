@@ -48,7 +48,7 @@ export default function New_password_form() {
                                 ls.remove("dest_eml")
                             })
                                 
-                        }}>
+                        }}>Reset password
                         </button>
                     </form>
                     :
