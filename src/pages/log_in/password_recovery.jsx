@@ -34,12 +34,13 @@ export default function Password_recovery() {
           e.preventDefault()
           //dispatch(getEmail(email))
           ls.set("dest_eml", email)
+          displayMessage(1)
           axios.post("https://mydestinationapp.onrender.com/reset_email", {
             email
           }).then(data => {
             console.log(data.data)
             if (data.data) {
-              displayMessage(1)
+              // displayMessage(1)
             }
           })
           }}>
