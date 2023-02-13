@@ -15,16 +15,23 @@ export default function New_password_form() {
     // console.log("email: " + email)
     console.log(ls.get('dest_eml'))
     const [password, setPassword] = useState('')
-    const [message, setMessage] = useState(0)
+    const [state, setState] = useState({
+        message: 0,
+        checked: 0
+    })
+    // const[checked, setStatus] = useState(0)
     const token = useParams().token
-    axios.post('https://mydestinationapp.onrender.com/verify_user', {
+    !state.checked && axios.post('https://mydestinationapp.onrender.com/verify_user', {
         email: ls.get('dest_eml'),
         token:token
     }).then((data) => {
         console.log("data retrieved")
         console.log(data.data)
         if (data.data) {
-            setMessage(1)
+            setState({
+                message: 1,
+                checked:1,
+            })
            // console.log(data.data)
         }
     })
