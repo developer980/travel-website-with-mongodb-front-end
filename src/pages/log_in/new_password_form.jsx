@@ -24,7 +24,6 @@ export default function New_password_form() {
         console.log("data retrieved")
         console.log(data.data)
         if (data.data) {
-            ls.remove("dest_eml")
             setMessage(1)
            // console.log(data.data)
         }
@@ -42,10 +41,11 @@ export default function New_password_form() {
                         <button onClick={(e) => {
                             e.preventDefault()
                             axios.post('https://mydestinationapp.onrender.com/reset_password', {
-                                email:ls.get('eml'),
+                                email:ls.get('dest_eml'),
                                 password
                             }).then((data) => {
-                                data.data && setMessage(1)
+                                data.data && console.log(data.data)
+                                ls.remove("dest_eml")
                             })
                                 
                         }}>
