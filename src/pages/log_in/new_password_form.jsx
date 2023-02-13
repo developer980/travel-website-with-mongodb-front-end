@@ -40,7 +40,7 @@ export default function New_password_form() {
         <Layout>
             
                 {
-                    message ?
+                    state.message ?
                     <form className='user-form'>
                         <span className='field-name'>Insert your new password</span>
                         <input onChange = {(e) => setPassword(e.target.value)} id = "name" type="password" placeholder='Insert password'/>
