@@ -37,6 +37,7 @@ export default function Password_recovery() {
           axios.post("https://mydestinationapp.onrender.com/reset_email", {
             email
           }).then(data => {
+            console.log(data.data)
             if (data.data) {
               displayMessage(1)
             }
