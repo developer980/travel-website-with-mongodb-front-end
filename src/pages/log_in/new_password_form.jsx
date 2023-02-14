@@ -60,10 +60,12 @@ export default function New_password_form() {
                         }}>Reset password
                         </button>
                         {
-                            message ? <div>
-                                Your password has been changed!
-                                You can now return to the <Link to = "/log_in">login page</Link>?
-                            </div> : null
+                            message ?
+                                <div className = "message">
+                                    Your password has been changed!
+                                    You can now return to the <Link to = "/log_in">login page</Link>?
+                                </div>
+                                : null
                         }
                     </form>
                     :
