@@ -5,6 +5,7 @@ import ls from "localstorage-slim"
 import Layout from '../../components/layout/layout'
 import { useParams } from 'react-router'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 ls.config.encrypt = true
 
