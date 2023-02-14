@@ -15,6 +15,7 @@ export default function New_password_form() {
     // console.log("email: " + email)
     console.log(ls.get('dest_eml'))
     const [password, setPassword] = useState('')
+    const [message, displayMessage] = useState(0)
     const [state, setState] = useState({
         message: 0,
         checked: 0
@@ -51,12 +52,18 @@ export default function New_password_form() {
                                 email:ls.get('dest_eml'),
                                 password
                             }).then((data) => {
-                                data.data && console.log(data.data)
+                                data.data && displayMessage(1)
                                 ls.remove("dest_eml")
                             })
                                 
                         }}>Reset password
                         </button>
+                        {
+                            message ? <div>
+                                Your password has been changed!
+                                You can now return to the <Link to = "/log_in">login page</Link>?
+                            </div> : null
+                        }
                     </form>
                     :
                     <div className = 'error'>
