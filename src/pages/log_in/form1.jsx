@@ -30,7 +30,8 @@ export default function Form1() {
    // const[username, setName] = useState('')
     const[email, setLocation] = useState('')
   const [password, setPrice] = useState('')
-  const[failed, isFailed] = useState(0)
+  const [failed, isFailed] = useState(0)
+  console.log("failed = " + 0)
 
     //console.log("Name = " + username)
     console.log("Location = " + email)
@@ -65,6 +66,7 @@ export default function Form1() {
                       window.open("https://travel-website-with-mongodb-front-end-bszn.vercel.app/", "_self")
                     }
                     else {
+                      console.log("no data")
                       isFailed(1)
                     }
                     // bcrypt.compare(password, data.data.password, (err, result) => {
