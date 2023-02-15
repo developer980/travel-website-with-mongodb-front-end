@@ -60,12 +60,12 @@ export default function Form1() {
                       token
                   }).then((data) => {
                     console.log("data" + data.data)
-                    if (data.data) {
+                    if (data.data && data.data != 'error') {
                       ls.set('eml', data.data.email)
                       ls.set('usr', data.data.username)
                       window.open("https://travel-website-with-mongodb-front-end-bszn.vercel.app/", "_self")
                     }
-                    else {
+                    else if(data.data == 'error') {
                       console.log("no data")
                       isFailed(1)
                     }
