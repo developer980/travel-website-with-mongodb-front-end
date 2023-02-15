@@ -31,7 +31,7 @@ export default function Form1() {
     const[email, setLocation] = useState('')
   const [password, setPrice] = useState('')
   // const [warning, setWarning] = useState(0)
-  const [failed, isFailed] = useState('Wrong email or password :(')
+  const [failed, isFailed] = useState('')
   console.log("failed = " + 0)
 
     //console.log("Name = " + username)
@@ -73,9 +73,9 @@ export default function Form1() {
 
                 else if(data.data == 'error') {
                   console.log("no data")
-                  isFailed(1)
+                  isFailed('Wrong email or password :(')
                 }
-              }) : isFailed(1)
+              }) : isFailed('Wrong email or password :(')
               token = ''
           }}>Log in</button>
           <span>Don't have an account?</span>
