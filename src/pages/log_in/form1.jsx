@@ -83,8 +83,8 @@ export default function Form1() {
 
           {
             failed ?
-              <div className= {failed}>
-                <div>Wrong email or password :(</div>
+              <div className= "negative-message">
+                <div>{failed}</div>
               </div>
               :
               null
