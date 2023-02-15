@@ -58,8 +58,8 @@ export default function Form1() {
                       password: password,
                       token
                   }).then((data) => {
+                    console.log("data" + data.data)
                     if (data.data) {
-                      console.log(data.data)
                       ls.set('eml', data.data.email)
                       ls.set('usr', data.data.username)
                       window.open("https://travel-website-with-mongodb-front-end-bszn.vercel.app/", "_self")
