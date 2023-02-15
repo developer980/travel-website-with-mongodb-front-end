@@ -28,8 +28,8 @@ main section .links-section {
   margin-top: 50px;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  align-items: left;
+  justify-content: none;
 }
 main section .links-section a {
   font-weight: bold;
