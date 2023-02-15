@@ -37,22 +37,27 @@ main{
             width: 60%;
             margin-top: 50px;
             @include display(flex, row, left, none);
+            gap:20px;
             a{
                 font-weight: bold;
                 width: 40%;
-                text-align: center;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 background-color: $color;
                 border: 1px solid $color;
-                border-radius: 50px;
+                border-radius: 5px;
                 padding: 10px;
                 text-decoration: none;
                 color:white;
-                font-size: 17px;
+                font-size: 1.5rem;
                 transition: all 0.25s;
                 max-width: 200px;
                 &:hover{
                     background-color: rgb(255, 255, 255);
-                    color:$color
+                    color:$color;
+                    border-radius: 50px;
                 }
             }
         }
