@@ -69,11 +69,39 @@ export default function New_password_form() {
                         }
                     </form>
                     :
-                    <div className = 'error'>
-                        <div className='negative-message'>
-                            Token invalid or has expired          
+                    <form className='user-form'>
+                        <span className='field-name'>Insert your new password</span>
+                        <input onChange = {(e) => setPassword(e.target.value)} id = "name" type="password" placeholder='Insert password'/>
+                        
+                        <button onClick={(e) => {
+                            e.preventDefault()
+                            axios.post('https://mydestinationapp.onrender.com/reset_password', {
+                                email:ls.get('dest_eml'),
+                                password
+                            }).then((data) => {
+                                data.data && displayMessage(1)
+                                ls.remove("dest_eml")
+                            })
+                                
+                        }}>Reset password
+                        </button>
+                        <div className = "message-section">
+                        {/* {
+                            message ?
+                                <div className = "message">
+                                    Your password has been changed!
+                                    You can now return to the <Link to = "/log_in">login page</Link>?
+                                </div>
+                                : null
+                        } */}
+                            <div className="message">
+                                <span>
+                                    Your password has been changed!
+                                    You can now return to the <Link to = "/log_in">login page</Link>
+                                </span>
+                            </div>
                         </div>
-                    </div>    
+                    </form>
                 }
             
         </Layout>

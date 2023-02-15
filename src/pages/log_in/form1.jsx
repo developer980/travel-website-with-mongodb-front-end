@@ -88,7 +88,7 @@ export default function Form1() {
           {
             failed ?
               <div className="negative-message">
-                <div>Unable to find your account :(</div>
+                <div>Wrong email or password :(</div>
               </div>
               :
               null
