@@ -77,54 +77,61 @@ export default function Booking() {
   return (
     <Layout mode = "book">
       <div className = "layout-grid">
-        <div className = "inputs"> 
-          <input className = "inputs-left" type="text" placeholder='Destination' onChange={(e) => {
-            setKeyWord(e.target.value)
-          }} />
-
-          <input className="inputs-center" onClick={() => {
-            display(displayChalendar, chalendar, "in", "chalendar", "block")     
-            // setMode('in')
-            // chalendar.display ? displayChalendar({
-            //   display: 0,
-            //   mode:"in"
-            // }) : displayChalendar({
-            //   display: 1,
-            //   mode:"in"
-            // })
-          }} type="text" placeholder='Date check-in' value={checkIn}/>
-
-          <input className = "inputs-center" type="text" onClick = {() => {
-            display(displayChalendar, chalendar, "out", "chalendar", "block")     
-            // chalendar.display ? displayChalendar({
-            //   display: 0,
-            //   mode:"out"
-            // }) : displayChalendar({
-            //   display: 1,
-            //   mode:"out"
-            // })
-          }} placeholder='Date check-out' value={checkOut} />
+        <div className="inputs"> 
+          <div className = "search-section">
+            <div className='inputs__search-section'>
+              <input className = "inputs-left" type="text" placeholder='Destination' onChange={(e) => {
+                setKeyWord(e.target.value)
+                }} />
+            </div>
+            <div className='inputs__section'>
+              <input className="inputs-center-left" onClick={() => {
+                display(displayChalendar, chalendar, "in", "chalendar", "block")     
+                // setMode('in')
+                // chalendar.display ? displayChalendar({
+                //   display: 0,
+                //   mode:"in"
+                // }) : displayChalendar({
+                //   display: 1,
+                //   mode:"in"
+                // })
+              }} type="text" placeholder='Date check-in' value={checkIn}/>
+              
+                
+              <input className = "inputs-center-middle" type="text" onClick = {() => {
+                display(displayChalendar, chalendar, "out", "chalendar", "block")     
+                // chalendar.display ? displayChalendar({
+                //   display: 0,
+                //   mode:"out"
+                // }) : displayChalendar({
+                //   display: 1,
+                //   mode:"out"
+                // })
+              }} placeholder='Date check-out' value={checkOut} />
+            </div>
+            <div className='inputs__section'>
+              <input className="inputs-center-right" type="text" onClick={() => {
+                display(displayGuests, guests, null, "guests", "flex")
+              }} placeholder='Guests' />  
+              
+              <button className="search-button inputs-right" onClick={() => {
+                setSearch(1)
+                axios.post("https://mydestinationapp.onrender.com/get_posts", {
+                  keyWord: keyWord.replace(" ", "+"),
+                  parameters: {
+                    checkIn:dateIn,
+                    checkOut:dateOut
+                  }
+                }).then(data => {
+                  console.log(data.data)
+                  setHotels(data.data)
+                })
+              }}>Search</button>
+                <Guests />
+            </div>
+          </div>
           
-          <input className="inputs-center" type="text" onClick={() => {
-            display(displayGuests, guests, null, "guests", "flex")
-          }} placeholder='Guests' />  
-          
-          <button className="inputs-right" onClick={() => {
-            setSearch(1)
-            axios.post("https://mydestinationapp.onrender.com/get_posts", {
-              keyWord: keyWord.replace(" ", "+"),
-              parameters: {
-                checkIn:dateIn,
-                checkOut:dateOut
-              }
-            }).then(data => {
-              console.log(data.data)
-              setHotels(data.data)
-            })
-          }}>Search</button>
-          <Guests />
-          
-        <div className = "side-section"><Sidebar/></div>
+          <div className = "filter-section"><Sidebar/></div>
         </div>
         {/* {
           chalendar.display ?

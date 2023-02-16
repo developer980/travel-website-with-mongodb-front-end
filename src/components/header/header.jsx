@@ -64,8 +64,8 @@ export default function Header(props) {
         {
           mode != "home" && <Link style = {{fontWeight:mode == "book" && "bold"}} to="/booking_page">Book a place</Link>
         }
-        {ls.get('eml') && <Link style = {{fontWeight:mode == "favourites" && "bold"}} to = "/favourites">Favourites</Link>}
-                 
+        {/* {ls.get('eml') && <Link style = {{fontWeight:mode == "favourites" && "bold"}} to = "/favourites">Favourites</Link>} */}
+        <Link style = {{fontWeight:mode == "favourites" && "bold"}} to = "/favourites">Favourites</Link>          
         {
           ls.get("eml") ?
           <div className="nav-user" onClick={() => { 

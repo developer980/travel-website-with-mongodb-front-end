@@ -150,7 +150,7 @@ nav{
         font-size: 0rem;
     }
     to{
-        width:40rem;
+        width:30%;
         font-size: 1.25rem;
     }
 }
@@ -173,7 +173,8 @@ nav{
 }
 
 .section-narrow{
-    @include section(40rem, 70%, 50px, 50px, 0px);
+    @include section(30%, 70%, 50px, 50px, 0px);
+    // max-width: 40rem;
     background-position: 100% 0%;  
     @include display(flex, center, end);
     padding-right: 30px;
@@ -194,6 +195,13 @@ nav{
         //background-color: rgba(175, 219, 211, 0.808);
      //animation:bgcolor 3s
         //background-position: 0% 0%;  
+}
+
+@media (max-width:1500px)
+{
+    .section-narrow{
+        @include section(50%, 70%, 50px, 50px, 0px);
+    }
 }
 
 // @keyframes bgcolor{

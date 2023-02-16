@@ -1,6 +1,7 @@
 $color:rgb(77, 124, 115);
 $color1: rgb(230, 230, 230);
 $darkColor:rgb(98, 101, 104);
+$percent:100/3;
 
 .layout-grid{
     width: 900px;
@@ -14,6 +15,12 @@ $darkColor:rgb(98, 101, 104);
     gap:30px;
     // position: relative;
     //padding:10px
+}
+
+@media (max-width:1500px){
+    .layout-grid{
+        width: 70%;
+    }
 }
 
 @mixin display($direction, $align, $justify){
@@ -30,13 +37,14 @@ $darkColor:rgb(98, 101, 104);
 
 @mixin input($top-left, $top-right, $bot-left, $bot-right){
     border:none;
-    border-right:1px solid rgb(219, 219, 219);
+    border:1px solid rgb(219, 219, 219);
     cursor: pointer;
     box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
     font-size: 1.1rem;
     height:50px;
     border-radius: $top-left $top-right $bot-left $bot-right;
     transition: all 0.25s;
+    box-sizing: border-box;
     &:hover{
         background-color: rgb(230, 230, 230);
     }
@@ -54,12 +62,82 @@ $darkColor:rgb(98, 101, 104);
     position:relative;
     margin:auto;
     grid-area: nav;
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     z-index:1;
     //border:2px solid;
     // width: 100%;
-    input, button{
-        width: 17.925%;
+
+    // @media (max-width:1500px)
+    // {
+    //     input{
+    //         width: 40%;
+    //     }
+    // }
+}
+
+.search-section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.inputs__section, .inputs__search-section{
+    width: calc(100% / 3);
+    flex-wrap: wrap;
+}
+
+.inputs__section{
+    input{
+        width: 50%;
+    }
+
+    .search-button{
+        box-sizing: border-box;
+        width: 50%;
+        display: inline;
+    }
+}
+
+.inputs__search-section{
+    input{
+        width: 100%;
+    }
+}
+
+.filter-section{
+    width: 100%;
+    // border: 1px solid;
+}
+
+@media (max-width:1500px){
+    .filter-section{
+        width: 100%;
+        // border: 1px solid;
+    }
+}
+
+
+// .inputs__search-section{
+//     input{
+//         width:100%;
+//     }
+// }
+
+@media (max-width:1500px)
+{
+    .search-section{
+        flex-direction: column
+    }
+    .inputs__section, .inputs__search-section{
+        width: 100%;
+    }
+    
+    .inputs__search-section{
+        input{
+            width:100%;
+        }
     }
 }
 
@@ -68,7 +146,7 @@ $darkColor:rgb(98, 101, 104);
     padding-left:1rem;
 }
 
-.inputs-center{
+.inputs-center-left, .inputs-center-middle, .inputs-center-right{
     @include input(0px, 0px, 0px, 0px);
     padding-left:20px;
 }
@@ -76,6 +154,21 @@ $darkColor:rgb(98, 101, 104);
 .inputs-right{
     @include input(0px, 50px, 50px, 0px);
     padding-left:20px;
+}
+
+
+@media (max-width:1500px)
+{   
+    .inputs-left{
+        @include input(20px, 20px, 0px, 0px);
+    }
+
+    .inputs-center-right{
+        @include input(0px, 0px, 0px, 20px);
+    } 
+    .inputs-right{
+        @include input(0px, 0px, 20px, 0px);
+    }
 }
 
 .posts{

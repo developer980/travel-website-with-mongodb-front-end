@@ -114,7 +114,7 @@ nav section a:hover {
     font-size: 0rem;
   }
   to {
-    width: 40rem;
+    width: 30%;
     font-size: 1.25rem;
   }
 }
@@ -136,7 +136,7 @@ nav section a:hover {
 }
 
 .section-narrow {
-  width: 40rem;
+  width: 30%;
   height: 70%;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
@@ -161,4 +161,14 @@ nav section a:hover {
   align-items: center;
   justify-content: end;
   gap: 7%;
+}
+
+@media (max-width: 1500px) {
+  .section-narrow {
+    width: 50%;
+    height: 70%;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 0px;
+  }
 }/*# sourceMappingURL=header.css.map */
