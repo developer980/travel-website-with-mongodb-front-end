@@ -80,12 +80,12 @@ export default function Booking() {
         <div className="inputs"> 
           <div className = "search-section">
             <div className='inputs__search-section'>
-              <input className = "inputs-left" type="text" placeholder='Destination' onChange={(e) => {
+              <input className = "inputs__element inputs-left" type="text" placeholder='Destination' onChange={(e) => {
                 setKeyWord(e.target.value)
                 }} />
             </div>
-            <div className='inputs__section'>
-              <input className="inputs-center-left" onClick={() => {
+            <div className='inputs__element inputs__section'>
+              <input className="inputs__element inputs-center-left" onClick={() => {
                 display(displayChalendar, chalendar, "in", "chalendar", "block")     
                 // setMode('in')
                 // chalendar.display ? displayChalendar({
@@ -98,7 +98,7 @@ export default function Booking() {
               }} type="text" placeholder='Date check-in' value={checkIn}/>
               
                 
-              <input className = "inputs-center-middle" type="text" onClick = {() => {
+              <input className = "inputs__element inputs-center-middle" type="text" onClick = {() => {
                 display(displayChalendar, chalendar, "out", "chalendar", "block")     
                 // chalendar.display ? displayChalendar({
                 //   display: 0,
@@ -110,7 +110,7 @@ export default function Booking() {
               }} placeholder='Date check-out' value={checkOut} />
             </div>
             <div className='inputs__section'>
-              <input className="inputs-center-right" type="text" onClick={() => {
+              <input className="inputs__element inputs-center-right" type="text" onClick={() => {
                 display(displayGuests, guests, null, "guests", "flex")
               }} placeholder='Guests' />  
               
@@ -146,7 +146,8 @@ export default function Booking() {
         </div>
 
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl3w9CFhn2FiIpAkXI7RtJbvQVRTP26hc67IYVg3hu&s" alt="" /> */}
-        <div className = "posts">
+        <div className="posts">
+        <Hotel_post list = {list} rating_stars = {4} url_text={"Hotel"} url_href={"/hotel"} location={"italy"} img={"https://cf.bstatic.com/xdata/images/hotel/square200/184333288.webp?k=00d9c006eb1fc320f72c1012b4d29578af89c72edb504cb1d84ccffc901e76cc&o=&s=1"} price={[{value:"100", website:"website.com"},{value:"120", website:"website.com"}]} />
           {
             search ?
             hotelArray.length > 1 ? hotelArray.map(hotel => {
@@ -167,7 +168,7 @@ export default function Booking() {
               </div>
               : 
               <div className = "posts-placeholder">
-                Search for a destination
+                
                 {/* {"€ 100".replace("€ ", "")} */}
               </div>
           }

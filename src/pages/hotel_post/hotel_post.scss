@@ -22,6 +22,7 @@ $percent:100/3;
     margin-bottom:25px;
     // margin: auto;
     @include display(row, center, space-between);
+    gap:15px;
     background-color: white;
     border-radius: 20px;
     box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
@@ -30,33 +31,25 @@ $percent:100/3;
     // img{
     //     height:100%;
     // }
-    div{
-        //background-color: red;
-        // padding: 5px;
-        // //padding-right: 20px;
-        // width: 25%;
-        //@include display(column, left, unset);
+    // div{
+    //     //background-color: red;
+    //     // padding: 5px;
+    //     // //padding-right: 20px;
+    //     // width: 25%;
+    //     //@include display(column, left, unset);
 
-        // div{
-        //     // height:35%;
-        //     // width:80%;
-        //     // margin:auto;
-        //     // padding: 10px;
-        //     border:1px solid;
+    //     // div{
+    //     //     // height:35%;
+    //     //     // width:80%;
+    //     //     // margin:auto;
+    //     //     // padding: 10px;
+    //     //     border:1px solid;
 
-        // }
+    //     // }
 
         
-        .rating{
-            display: flex;
-            flex-direction: row;
-            justify-content: left;
-            img{
-                height: 50%;
-                width: auto;
-            }
-        }
-    }
+
+    // }
 
 
     .hotel-img{
@@ -71,7 +64,9 @@ $percent:100/3;
             justify-content: center;
             // border: 1px solid;
             //width:50%;
-            width:200px;
+            width:30%;
+            max-width: 200px;
+            // min-width: 150px;
             // border-radius: 10px;
                 // border:1px solid;
             overflow: hidden;
@@ -83,105 +78,168 @@ $percent:100/3;
     
     }
 
-    .middle, .links{
-        @include display(column, left, space-between);
-        
-        // border-left: 1px solid $color1;
-        // border-right: 1px solid $color1;
-        width:36%;
-        // padding-left: 30px;
-        // padding-right: 30px;
-        height: 90%;
+    .hotel-post__content{
+        height:100%;
+        width:80%;
+        @include display(row, center, space-between);
+    }
+
+    @media (max-width:630px){
+        .hotel-post__content{
+            // height:100%;
+            // width:calc(100% - 215px);
+            @include display(column, unset, space-between);
+        }
+    }
+}
+
+.middle, .links{
+    @include display(column, left, space-between);
+    width:50%;
+    height: 90%;
+    span{
+        height:20%;
+        // border-bottom:1px solid;
+    }
+
+    .description{
+        height:50%;
+        padding-bottom:20px;
+    }
+
+    .price{
+        @include span-display(bold, 40px)
+    }
+
+    .location{
+        width: 80%;
+        @include span-display(bold, 15px);
+        // text-align: center;
+        display: flex;
+        align-items: center;
+        transition:all 0.25s;
+        cursor:pointer;
+        font-size: 15px;
+        &:hover{
+            transform:scale(1.25)
+        }
+    }
+}
+
+
+
+.middle{
+    padding: 0px 10px 0 10px;
+    color:$darkColor;
+}
+
+.main-img{
+    // position: absolute;
+    // bottom:0    
+    //height:100%;
+    width: 120%;
+    //width: 200px;
+   // border:2px solid red;
+}
+
+.hotel-post__name{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.rating{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    img{
+        height: 50%;
+        width: auto;
+    }
+}
+
+.links{
+    // div{
+    //     height: 100%;
+    //     padding: 20px;
+    // }
+    //display: flex;
+    flex-direction: column;
+    gap:5px;
+    a{
+        width: 95%;
+        border-radius: 10px;
+        height: 50%;
+        position:relative;
+        border:1px solid $darkColor;
+            text-decoration: none;
+        div{
+            position: absolute;
+            // padding: none;
+            // padding:10px;
+            //height: 50px;
+            //text-align: center;
+            //background-color: $color;
+            //border:none;
+            
+            //border-radius: 50px;
+            font-weight:bold;
+            //] height:50%;
+            font-size:30px;
+            //border: 1px solid$color;
+        }
+
+        div, span{
+            color:$darkColor;
+        }
+
         span{
-            height:20%;
-            // border-bottom:1px solid;
+            //background-color: red;
+            position: absolute;
+            right:5px;
+            bottom:10px;
+            font-size: 1rem;
         }
+        
+        cursor:pointer;
+        transition:all 0.25s;
 
-        .description{
-            height:50%;
-            padding-bottom:20px;
+        &:hover{
+            background-color: rgb(229, 231, 230);
+            color:$color;
         }
+    }
+}
 
-        .price{
-            @include span-display(bold, 40px)
-        }
+@media (max-width:630px){
+    .middle, .links{
+        width:100%;
+        height: 50%;
+        @include display(column, normal, space-around);
 
         .location{
-            width: 150px;
-            @include span-display(bold, 15px);
-            text-align: center;
-            display: flex;
-            align-items: center;
-            transition:all 0.25s;
-            cursor:pointer;
-            &:hover{
-                transform:scale(1.25)
-            }
+            font-size: 10px;
         }
-    }
-
-    .middle{
-        padding: 0px 10px 0 10px;
-        color:$darkColor;
-    }
-
-    .main-img{
-        // position: absolute;
-        // bottom:0    
-        //height:100%;
-        width: 120%;
-        //width: 200px;
-       // border:2px solid red;
     }
 
     .links{
-        // div{
-        //     height: 100%;
-        //     padding: 20px;
-        // }
-        display: flex;
-        gap:5px;
+        @include display(row, center, left);
+        gap: 10px;
         a{
-            width: 95%;
-            border-radius: 10px;
-            height: 50%;
-            position:relative;
-            border:1px solid $darkColor;
-                text-decoration: none;
+            height: 55%;
+            width:40%;
             div{
-                position: absolute;
-                // padding: none;
-                // padding:10px;
-                //height: 50px;
-                //text-align: center;
-                //background-color: $color;
-                //border:none;
-                
-                //border-radius: 50px;
-                font-weight:bold;
-                //] height:50%;
-                font-size:30px;
-                //border: 1px solid$color;
-            }
-
-            div, span{
-                color:$darkColor;
+                font-size:15px;
             }
 
             span{
-                //background-color: red;
-                position: absolute;
-                right:5px;
-                bottom:10px;
-            }
-            
-            cursor:pointer;
-            transition:all 0.25s;
-
-            &:hover{
-                background-color: rgb(229, 231, 230);
-                color:$color;
+                font-size: 0.5rem;
             }
         }
     }
 }
+
+// @media (max-width:630px){
+//     .hotel-post{
+//         @include display(column, center, space-between);
+//     }
+// }

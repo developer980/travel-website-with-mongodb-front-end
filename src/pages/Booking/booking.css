@@ -34,6 +34,11 @@
   flex-wrap: wrap;
 }
 
+.inputs__element {
+  font-size: 1.1rem;
+  height: 50px;
+}
+
 .inputs__section input {
   width: 50%;
 }
@@ -56,24 +61,11 @@
     width: 100%;
   }
 }
-@media (max-width: 1500px) {
-  .search-section {
-    flex-direction: column;
-  }
-  .inputs__section, .inputs__search-section {
-    width: 100%;
-  }
-  .inputs__search-section input {
-    width: 100%;
-  }
-}
 .inputs-left {
   border: none;
   border: 1px solid rgb(219, 219, 219);
   cursor: pointer;
   box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-  font-size: 1.1rem;
-  height: 50px;
   border-radius: 50px 0px 0px 50px;
   transition: all 0.25s;
   box-sizing: border-box;
@@ -92,8 +84,6 @@
   border: 1px solid rgb(219, 219, 219);
   cursor: pointer;
   box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-  font-size: 1.1rem;
-  height: 50px;
   border-radius: 0px 0px 0px 0px;
   transition: all 0.25s;
   box-sizing: border-box;
@@ -112,8 +102,6 @@
   border: 1px solid rgb(219, 219, 219);
   cursor: pointer;
   box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-  font-size: 1.1rem;
-  height: 50px;
   border-radius: 0px 50px 50px 0px;
   transition: all 0.25s;
   box-sizing: border-box;
@@ -128,13 +116,24 @@
 }
 
 @media (max-width: 1500px) {
+  .inputs__element {
+    font-size: 0.8rem;
+    height: 20px;
+  }
+  .search-section {
+    flex-direction: column;
+  }
+  .inputs__section, .inputs__search-section {
+    width: 100%;
+  }
+  .inputs__search-section input {
+    width: 100%;
+  }
   .inputs-left {
     border: none;
     border: 1px solid rgb(219, 219, 219);
     cursor: pointer;
     box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-    font-size: 1.1rem;
-    height: 50px;
     border-radius: 20px 20px 0px 0px;
     transition: all 0.25s;
     box-sizing: border-box;
@@ -151,8 +150,6 @@
     border: 1px solid rgb(219, 219, 219);
     cursor: pointer;
     box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-    font-size: 1.1rem;
-    height: 50px;
     border-radius: 0px 0px 0px 20px;
     transition: all 0.25s;
     box-sizing: border-box;
@@ -169,8 +166,6 @@
     border: 1px solid rgb(219, 219, 219);
     cursor: pointer;
     box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-    font-size: 1.1rem;
-    height: 50px;
     border-radius: 0px 0px 20px 0px;
     transition: all 0.25s;
     box-sizing: border-box;

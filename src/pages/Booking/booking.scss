@@ -40,8 +40,7 @@ $percent:100/3;
     border:1px solid rgb(219, 219, 219);
     cursor: pointer;
     box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-    font-size: 1.1rem;
-    height:50px;
+    // font-size: 1.1rem;
     border-radius: $top-left $top-right $bot-left $bot-right;
     transition: all 0.25s;
     box-sizing: border-box;
@@ -88,6 +87,11 @@ $percent:100/3;
     flex-wrap: wrap;
 }
 
+.inputs__element {
+    font-size: 1.1rem;
+    height:50px;
+}
+
 .inputs__section{
     input{
         width: 50%;
@@ -125,21 +129,7 @@ $percent:100/3;
 //     }
 // }
 
-@media (max-width:1500px)
-{
-    .search-section{
-        flex-direction: column
-    }
-    .inputs__section, .inputs__search-section{
-        width: 100%;
-    }
-    
-    .inputs__search-section{
-        input{
-            width:100%;
-        }
-    }
-}
+
 
 .inputs-left{
     @include input(50px, 0px, 0px, 50px);
@@ -156,9 +146,30 @@ $percent:100/3;
     padding-left:20px;
 }
 
-
 @media (max-width:1500px)
-{   
+{
+
+    .inputs__element {
+        font-size: 0.8rem;
+        height:20px;
+    }
+
+    .search-section{
+        flex-direction: column
+    }
+    .inputs__section, .inputs__search-section{
+        width: 100%;
+    }
+    
+    .inputs__search-section{
+        input{
+            width:100%;
+        }
+    }
+// }
+
+// @media (max-width:1500px)
+// {   
     .inputs-left{
         @include input(20px, 20px, 0px, 0px);
     }
