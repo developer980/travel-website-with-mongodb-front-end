@@ -5,6 +5,7 @@ import Filled_mark from '../../icons/mark_filled.svg'
 import { useState } from 'react';
 import ls from "localstorage-slim";
 import axios from "axios"
+import "./hotel-post.css"
 
 ls.config.encrypt = true;
 
