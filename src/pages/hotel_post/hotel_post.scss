@@ -1,3 +1,20 @@
+$color:rgb(77, 124, 115);
+$color1: rgb(230, 230, 230);
+$darkColor:rgb(98, 101, 104);
+$percent:100/3;
+
+@mixin display($direction, $align, $justify){
+    display:flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin span-display($weight, $size){
+    font-weight: $weight;
+    font-size: $size;
+}
+
 .hotel-post{
     width:100%;
     //max-width:960px;
