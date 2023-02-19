@@ -144,7 +144,7 @@ export default function Booking() {
 
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl3w9CFhn2FiIpAkXI7RtJbvQVRTP26hc67IYVg3hu&s" alt="" /> */}
         <div className="posts">
-        <Hotel_post list = {list} rating_stars = {4} url_text={"Hotel"} url_href={"/hotel"} location={"italy"} img={"https://cf.bstatic.com/xdata/images/hotel/square200/184333288.webp?k=00d9c006eb1fc320f72c1012b4d29578af89c72edb504cb1d84ccffc901e76cc&o=&s=1"} price={[{value:"100", website:"website.com"},{value:"120", website:"website.com"}]} />
+        {/* <Hotel_post list = {list} rating_stars = {4} url_text={"Hotel"} url_href={"/hotel"} location={"italy"} img={"https://cf.bstatic.com/xdata/images/hotel/square200/184333288.webp?k=00d9c006eb1fc320f72c1012b4d29578af89c72edb504cb1d84ccffc901e76cc&o=&s=1"} price={[{value:"100", website:"website.com"},{value:"120", website:"website.com"}]} /> */}
           {
             search ?
             hotelArray.length > 1 ? hotelArray.map(hotel => {
