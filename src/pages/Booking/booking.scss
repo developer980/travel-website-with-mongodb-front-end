@@ -3,25 +3,6 @@ $color1: rgb(230, 230, 230);
 $darkColor:rgb(98, 101, 104);
 $percent:100/3;
 
-.layout-grid{
-    width: 900px;
-    margin: auto;
-    margin-top: 170px;
-    //border:2px solid;
-    display: grid;
-    grid-template-areas: 
-    'nav nav nav nav'
-    'content content content content';
-    gap:30px;
-    // position: relative;
-    //padding:10px
-}
-
-@media (max-width:1500px){
-    .layout-grid{
-        width: 70%;
-    }
-}
 
 @mixin display($direction, $align, $justify){
     display:flex;
@@ -54,6 +35,33 @@ $percent:100/3;
     }
 }
 
+.layout-grid{
+    width: 900px;
+    margin: auto;
+    margin-top: 170px;
+    //border:2px solid;
+    display: grid;
+    grid-template-areas: 
+    'nav nav nav nav'
+    'content content content content';
+    gap:30px;
+    // position: relative;
+    //padding:10px
+}
+
+@media (max-width:1500px){
+    .layout-grid{
+        width: 70%;
+    }
+}
+
+@media (max-width:630px){
+    .layout-grid{
+        width: 100%;
+    }
+}
+
+
 .inputs{
     // background-color: #2196F3;
     // text-align: center;
@@ -84,7 +92,8 @@ $percent:100/3;
 
 .inputs__section, .inputs__search-section{
     width: calc(100% / 3);
-    flex-wrap: wrap;
+    @include display(row, center, none);
+    // flex-wrap: wrap;
 }
 
 .inputs__element {
@@ -122,15 +131,6 @@ $percent:100/3;
     }
 }
 
-
-// .inputs__search-section{
-//     input{
-//         width:100%;
-//     }
-// }
-
-
-
 .inputs-left{
     @include input(50px, 0px, 0px, 50px);
     padding-left:1rem;
@@ -151,7 +151,7 @@ $percent:100/3;
 
     .inputs__element {
         font-size: 0.8rem;
-        height:20px;
+        height:30px;
     }
 
     .search-section{
@@ -159,6 +159,10 @@ $percent:100/3;
     }
     .inputs__section, .inputs__search-section{
         width: 100%;
+    }
+
+    .inputs__section{
+
     }
     
     .inputs__search-section{

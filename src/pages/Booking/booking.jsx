@@ -84,7 +84,7 @@ export default function Booking() {
                 setKeyWord(e.target.value)
                 }} />
             </div>
-            <div className='inputs__element inputs__section'>
+            <div className='inputs__section'>
               <input className="inputs__element inputs-center-left" onClick={() => {
                 display(displayChalendar, chalendar, "in", "chalendar", "block")     
                 // setMode('in')
@@ -114,7 +114,7 @@ export default function Booking() {
                 display(displayGuests, guests, null, "guests", "flex")
               }} placeholder='Guests' />  
               
-              <button className="search-button inputs-right" onClick={() => {
+              <button className="inputs__element search-button inputs-right" onClick={() => {
                 setSearch(1)
                 axios.post("https://mydestinationapp.onrender.com/get_posts", {
                   keyWord: keyWord.replace(" ", "+"),
@@ -133,10 +133,7 @@ export default function Booking() {
           
           <div className = "filter-section"><Sidebar/></div>
         </div>
-        {/* {
-          chalendar.display ?
-            <Chalendar mode={chalendar.mode} /> : null
-        } */}
+        
         <div id = "chalendar" className='chalendar-window' style = {{display:"none"}}>
           <img src={X} className="close-button" onClick={() => {
             document.getElementById("chalendar").style.display = "none"

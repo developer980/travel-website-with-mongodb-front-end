@@ -12,6 +12,11 @@
     width: 70%;
   }
 }
+@media (max-width: 630px) {
+  .layout-grid {
+    width: 100%;
+  }
+}
 .inputs {
   width: 100%;
   position: relative;
@@ -31,7 +36,10 @@
 
 .inputs__section, .inputs__search-section {
   width: 33.3333333333%;
-  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: none;
 }
 
 .inputs__element {
@@ -118,7 +126,7 @@
 @media (max-width: 1500px) {
   .inputs__element {
     font-size: 0.8rem;
-    height: 20px;
+    height: 30px;
   }
   .search-section {
     flex-direction: column;
