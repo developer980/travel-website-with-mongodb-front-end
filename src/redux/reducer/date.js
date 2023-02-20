@@ -11,6 +11,11 @@ export const dateSlice = createSlice(
             data: {
                 
             },
+            guests: {
+                adults: 2,
+                children: 1,
+                rooms:1
+            },
             email:""
         },
         reducers: {
@@ -25,12 +30,22 @@ export const dateSlice = createSlice(
                 state.checkOut = action.payload;
                 console.log(state.checkOut)
             },
+
             setToken: (state, action) => {
                 state.token = action.payload
             },
+
             getEmail: (state, action) => {
                 console.log(action.payload)
                 state.email = action.payload
+            },
+
+            setGuests(state, action) {
+                state.guests = {
+                    children:action.payload.children,
+                    adults:action.payload.adults,
+                    rooms:action.payload.rooms
+                }
             }
             // setFavourites: (state, action) => {
             //     state.favourites = action.payload
@@ -40,5 +55,5 @@ export const dateSlice = createSlice(
     }
 )
 
-export const { setCheckIn, setCheckOut, setToken, getEmail } = dateSlice.actions
+export const { setCheckIn, setCheckOut, setToken, getEmail, setGuests } = dateSlice.actions
 export default dateSlice.reducer

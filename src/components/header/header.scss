@@ -102,8 +102,7 @@ body{
 }
 
 @media (min-width:630px){
-
-
+    
     .logo-content-white{
         filter: invert(50%) sepia(100%) saturate(0%)
         hue-rotate(100deg) brightness(200%) 
@@ -116,6 +115,9 @@ body{
     //     transition: all 0.5s;
     //      height:30px;
     // }
+    .logo-insidenav{
+        top:-100%;
+    }
 
     .logo-outsidenav, .logo-insidenav{
         height:70px;

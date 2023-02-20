@@ -19,7 +19,6 @@
 }
 .inputs {
   width: 100%;
-  position: relative;
   margin: auto;
   grid-area: nav;
   display: flex;
@@ -47,6 +46,9 @@
   height: 50px;
 }
 
+.inputs__section {
+  position: relative;
+}
 .inputs__section input {
   width: 50%;
 }
@@ -95,7 +97,7 @@
   border-radius: 0px 0px 0px 0px;
   transition: all 0.25s;
   box-sizing: border-box;
-  padding-left: 20px;
+  padding: 0px 20px 0px 20px;
 }
 .inputs-center-left:hover, .inputs-center-middle:hover, .inputs-center-right:hover {
   background-color: rgb(230, 230, 230);

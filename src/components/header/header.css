@@ -79,6 +79,9 @@ body {
   }
 }
 @media (max-width: 630px) {
+  .logo-insidenav {
+    top: -100%;
+  }
   .logo-outsidenav, .logo-insidenav {
     height: 70px;
   }

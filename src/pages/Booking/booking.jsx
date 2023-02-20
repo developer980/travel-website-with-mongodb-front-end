@@ -31,22 +31,63 @@ export default function Booking() {
 
   const { checkIn } = useSelector(state => state.date)
   const { checkOut } = useSelector((state) => state.date)
-  const {email} = useSelector(state => state.date)
+  const { email } = useSelector(state => state.date)
+
+  
+  const{guests_number} = useSelector(state => state.date)
+
+  console.log(guests_number)
+  
+  let adults = 2;
+  let children = 1;
+  let rooms = 1;
+  let today = new Date();
+  
+  if (guests_number) {
+    if (guests_number.adults) adults = guests_number.adults
+    if (guests_number.children) children = guests_number.children
+    if (guests_number.rooms) rooms = guests_number.rooms
+  }
   console.log(email)
 
+  // const dateIn = {
+  //   day:String(today.getDate()).padStart(2, '0'),
+  //   month:String(today.getMonth() + 1).padStart(2, '0'),
+  //   year:today.getFullYear()
+  // }
+  
+	// let  dd 		= String(today.getDate()).padStart(2, '0');
+	// let  mm 		= String(today.getMonth() + 1).padStart(2, '0'); //janvier = 0
+	// let  yyyy 		= today.getFullYear();
+
+  // if (checkIn) {
+  //   dateIn.day = checkIn.split(".")[0]
+  //   dateIn.month = checkIn.split(".")[1]
+  //   dateIn.year = checkIn.split(".")[2]
+  // }
+
+  // const dateOut = {
+  //   day:String(today.getDate() + 1).padStart(2, '0'),
+  //   month:String(today.getMonth() + 1).padStart(2, '0'),
+  //   year:today.getFullYear()
+  // }
+
   const dateIn = {
-    day:checkIn.split(".")[0],
-    month:checkIn.split(".")[1],
-    year:checkIn.split(".")[2],
+    day: checkIn.split(".")[0],
+    month: checkIn.split(".")[1],
+    year: checkIn.split(".")[2],
   }
+
   const dateOut = {
-    day:checkOut.split(".")[0],
-    month:checkOut.split(".")[1],
-    year:checkOut.split(".")[2],
+    day: checkOut.split(".")[0],
+    month: checkOut.split(".")[1],
+    year: checkOut.split(".")[2],
   }
 
   console.log(dateIn)
   console.log(dateOut)
+
+  console.log(`${dateOut.day}.${dateOut.month}.${dateOut.year}`)
   
 
   const [list, setList] = useState([])
@@ -112,7 +153,9 @@ export default function Booking() {
             <div className='inputs__section'>
               <input className="inputs__element inputs-center-right" type="text" onClick={() => {
                 display(displayGuests, guests, null, "guests", "flex")
-              }} placeholder='Guests' />  
+              }} value={
+                `${rooms} rooms for ${adults} adults and ${children} children`
+              } />  
               
               <button className="inputs__element search-button inputs-right" onClick={() => {
                 setSearch(1)
