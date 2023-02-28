@@ -182,7 +182,7 @@ export default function Booking() {
             document.getElementById("chalendar").style.display = "none"
             displayChalendar(false)
           }} />
-          <Chalendar mode={chalendar.mode} />
+          <Chalendar mode={mode} />
         </div>
 
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl3w9CFhn2FiIpAkXI7RtJbvQVRTP26hc67IYVg3hu&s" alt="" /> */}
