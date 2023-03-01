@@ -1,20 +1,8 @@
 $color:rgb(77, 124, 115);
 $color1: rgb(230, 230, 230);
 $darkColor:rgb(98, 101, 104);
+$percent:100/3;
 
-.layout-grid{
-    width: 900px;
-    margin: auto;
-    margin-top: 170px;
-    //border:2px solid;
-    display: grid;
-    grid-template-areas: 
-    'nav nav nav nav'
-    'content content content content';
-    gap:30px;
-    // position: relative;
-    //padding:10px
-}
 
 @mixin display($direction, $align, $justify){
     display:flex;
@@ -30,13 +18,13 @@ $darkColor:rgb(98, 101, 104);
 
 @mixin input($top-left, $top-right, $bot-left, $bot-right){
     border:none;
-    border-right:1px solid rgb(219, 219, 219);
+    border:1px solid rgb(219, 219, 219);
     cursor: pointer;
     box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
-    font-size: 1.1rem;
-    height:50px;
+    // font-size: 1.1rem;
     border-radius: $top-left $top-right $bot-left $bot-right;
     transition: all 0.25s;
+    box-sizing: border-box;
     &:hover{
         background-color: rgb(230, 230, 230);
     }
@@ -47,19 +35,100 @@ $darkColor:rgb(98, 101, 104);
     }
 }
 
+.layout-grid{
+    width: 900px;
+    margin: auto;
+    margin-top: 170px;
+    //border:2px solid;
+    display: grid;
+    grid-template-areas: 
+    'nav nav nav nav'
+    'content content content content';
+    gap:30px;
+    // position: relative;
+    //padding:10px
+}
+
+@media (max-width:1500px){
+    .layout-grid{
+        width: 70%;
+    }
+}
+
+@media (max-width:630px){
+    .layout-grid{
+        width: 100%;
+    }
+}
+
+
 .inputs{
     // background-color: #2196F3;
     // text-align: center;
     width: 100%;
-    position:relative;
+    // position:relative;
     margin:auto;
     grid-area: nav;
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     z-index:1;
     //border:2px solid;
     // width: 100%;
-    input, button{
-        width: 17.925%;
+
+    // @media (max-width:1500px)
+    // {
+    //     input{
+    //         width: 40%;
+    //     }
+    // }
+}
+
+.search-section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.inputs__section, .inputs__search-section{
+    width: calc(100% / 3);
+    @include display(row, center, none);
+    // flex-wrap: wrap;
+}
+
+.inputs__element {
+    font-size: 1.1rem;
+    height:50px;
+}
+
+.inputs__section{
+    position:relative;
+    input{
+        width: 50%;
+    }
+
+    .search-button{
+        box-sizing: border-box;
+        width: 50%;
+        display: inline;
+    }
+}
+
+.inputs__search-section{
+    input{
+        width: 100%;
+    }
+}
+
+.filter-section{
+    width: 100%;
+    // border: 1px solid;
+}
+
+@media (max-width:1500px){
+    .filter-section{
+        width: 100%;
+        // border: 1px solid;
     }
 }
 
@@ -68,14 +137,54 @@ $darkColor:rgb(98, 101, 104);
     padding-left:1rem;
 }
 
-.inputs-center{
+.inputs-center-left, .inputs-center-middle, .inputs-center-right{
     @include input(0px, 0px, 0px, 0px);
-    padding-left:20px;
+    padding:0px 20px 0px 20px;
 }
 
 .inputs-right{
     @include input(0px, 50px, 50px, 0px);
     padding-left:20px;
+}
+
+@media (max-width:1500px)
+{
+
+    .inputs__element {
+        font-size: 0.8rem;
+        height:30px;
+    }
+
+    .search-section{
+        flex-direction: column
+    }
+    .inputs__section, .inputs__search-section{
+        width: 100%;
+    }
+
+    .inputs__section{
+
+    }
+    
+    .inputs__search-section{
+        input{
+            width:100%;
+        }
+    }
+// }
+
+// @media (max-width:1500px)
+// {   
+    .inputs-left{
+        @include input(20px, 20px, 0px, 0px);
+    }
+
+    .inputs-center-right{
+        @include input(0px, 0px, 0px, 20px);
+    } 
+    .inputs-right{
+        @include input(0px, 0px, 20px, 0px);
+    }
 }
 
 .posts{
@@ -112,178 +221,6 @@ $darkColor:rgb(98, 101, 104);
     background-color: rgba(179, 179, 179, 0.63);
     z-index: 2;
 }
-
-.hotel-post{
-    width:100%;
-    //max-width:960px;
-    height:200px;
-    margin-bottom:25px;
-    // margin: auto;
-    @include display(row, center, space-between);
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
-    color:$color;
-    overflow: hidden;
-    // img{
-    //     height:100%;
-    // }
-    div{
-        //background-color: red;
-        // padding: 5px;
-        // //padding-right: 20px;
-        // width: 25%;
-        //@include display(column, left, unset);
-
-        // div{
-        //     // height:35%;
-        //     // width:80%;
-        //     // margin:auto;
-        //     // padding: 10px;
-        //     border:1px solid;
-
-        // }
-
-        
-        .rating{
-            display: flex;
-            flex-direction: row;
-            justify-content: left;
-            img{
-                height: 50%;
-                width: auto;
-            }
-        }
-    }
-
-
-    .hotel-img{
-            // @include display(column, unset, unset);
-            //margin-top: 0px;
-            // margin:auto;
-            // padding:0;
-            // width:200px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            // border: 1px solid;
-            //width:50%;
-            width:200px;
-            // border-radius: 10px;
-                // border:1px solid;
-            overflow: hidden;
-            background-color: rgb(66, 66, 66);
-            position: relative;
-            // margin-left: 0px;
-            // position:relative;
-            // top:0px;
-    
-    }
-
-    .middle, .links{
-        @include display(column, left, space-between);
-        
-        // border-left: 1px solid $color1;
-        // border-right: 1px solid $color1;
-        width:36%;
-        // padding-left: 30px;
-        // padding-right: 30px;
-        height: 90%;
-        span{
-            height:20%;
-            // border-bottom:1px solid;
-        }
-
-        .description{
-            height:50%;
-            padding-bottom:20px;
-        }
-
-        .price{
-            @include span-display(bold, 40px)
-        }
-
-        .location{
-            width: 150px;
-            @include span-display(bold, 15px);
-            text-align: center;
-            display: flex;
-            align-items: center;
-            transition:all 0.25s;
-            cursor:pointer;
-            &:hover{
-                transform:scale(1.25)
-            }
-        }
-    }
-
-    .middle{
-        padding: 0px 10px 0 10px;
-        color:$darkColor;
-    }
-
-    .main-img{
-        // position: absolute;
-        // bottom:0    
-        //height:100%;
-        width: 120%;
-        //width: 200px;
-       // border:2px solid red;
-    }
-
-    .links{
-        // div{
-        //     height: 100%;
-        //     padding: 20px;
-        // }
-        display: flex;
-        gap:5px;
-        a{
-            width: 95%;
-            border-radius: 10px;
-            height: 50%;
-            position:relative;
-            border:1px solid $darkColor;
-                text-decoration: none;
-            div{
-                position: absolute;
-                // padding: none;
-                // padding:10px;
-                //height: 50px;
-                //text-align: center;
-                //background-color: $color;
-                //border:none;
-                
-                //border-radius: 50px;
-                font-weight:bold;
-                //] height:50%;
-                font-size:30px;
-                //border: 1px solid$color;
-            }
-
-            div, span{
-                color:$darkColor;
-            }
-
-            span{
-                //background-color: red;
-                position: absolute;
-                right:5px;
-                bottom:10px;
-            }
-            
-            cursor:pointer;
-            transition:all 0.25s;
-
-            &:hover{
-                background-color: rgb(229, 231, 230);
-                color:$color;
-            }
-        }
-    }
-}
-
 
 .hotel-mark{
     position: absolute;

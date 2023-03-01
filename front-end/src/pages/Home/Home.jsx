@@ -20,7 +20,7 @@ export default function Home() {
             Find new destinations or post your wonderfull place
           </div>
           <div className = "links-section">
-            <Link to = "/log_in">Sign in</Link>
+            {!ls.get('eml') ? <Link to = "/log_in">Sign in</Link> : null}
             <Link to = "/booking_page">Book a place</Link>
           </div>
         </section>

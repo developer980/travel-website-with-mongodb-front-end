@@ -23,31 +23,41 @@ main section .description {
   font-family: "Open Sans";
   font-weight: bold;
 }
+@media (max-width: 1500px) {
+  main section .description {
+    font-size: 30px;
+  }
+}
 main section .links-section {
   width: 60%;
   margin-top: 50px;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  align-items: left;
+  justify-content: none;
+  gap: 20px;
 }
 main section .links-section a {
   font-weight: bold;
   width: 40%;
-  text-align: center;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgb(77, 124, 115);
   border: 1px solid rgb(77, 124, 115);
-  border-radius: 50px;
+  border-radius: 5px;
   padding: 10px;
   text-decoration: none;
   color: white;
-  font-size: 17px;
+  font-size: 1.5rem;
   transition: all 0.25s;
   max-width: 200px;
 }
 main section .links-section a:hover {
   background-color: rgb(255, 255, 255);
   color: rgb(77, 124, 115);
+  border-radius: 50px;
 }
 
 .background-image {

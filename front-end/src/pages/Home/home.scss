@@ -22,6 +22,7 @@ main{
     @include display(flex, row, center, space-around);
     section{        
         // width: 70%;
+        // height: 10%;
         margin-left:100px; 
         @include display(flex, column, left, space-between);
         .description{
@@ -32,27 +33,41 @@ main{
             font-family: 'Open Sans';
             font-weight: bold;
         }
+
+        @media (max-width:1500px)
+        {
+            .description{
+                font-size: 30px;
+            }
+        }
+
+
         .links-section{
             //border: 2px solid black;
             width: 60%;
             margin-top: 50px;
-            @include display(flex, row, center, space-around);
+            @include display(flex, row, left, none);
+            gap:20px;
             a{
                 font-weight: bold;
                 width: 40%;
-                text-align: center;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 background-color: $color;
                 border: 1px solid $color;
-                border-radius: 50px;
+                border-radius: 5px;
                 padding: 10px;
                 text-decoration: none;
                 color:white;
-                font-size: 17px;
+                font-size: 1.5rem;
                 transition: all 0.25s;
                 max-width: 200px;
                 &:hover{
                     background-color: rgb(255, 255, 255);
-                    color:$color
+                    color:$color;
+                    border-radius: 50px;
                 }
             }
         }
@@ -60,6 +75,15 @@ main{
 
 
 }    
+
+// .description{
+//     width: 70%;
+//     max-width: 900px;
+//     font-size: 60px;
+//     color:rgb(110, 110, 110);
+//     font-family: 'Open Sans';
+//     font-weight: bold;
+// }
 
 .background-image{
     //border:1px solid;

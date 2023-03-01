@@ -5,6 +5,7 @@ import Filled_mark from '../../icons/mark_filled.svg'
 import { useState } from 'react';
 import ls from "localstorage-slim";
 import axios from "axios"
+import "./hotel_post.css"
 
 ls.config.encrypt = true;
 
@@ -82,48 +83,50 @@ export default function Hotel_post(props) {
                       {status.marked ? <img src={Filled_mark} alt="" /> : <img src={Mark} alt="" />}
               </div>
         {/* </div> */}
-        </div>
-        <div className="middle">
-        
-        <h3>{url_text}</h3>
-        
-        {/* <span>
-            {hotel.notes}
-        </span> */}
+              </div>
+        <div className = "hotel-post__content">
+            <div className="middle">
+            
+            <h3>{url_text}</h3>
+            
+            {/* <span>
+                {hotel.notes}
+            </span> */}
 
-        <span className='rating'>
-            {
-            rating_stars ? Array.from(Array(rating_stars)).map((item, index) =>
-                <img src = {Star}/>
-            ) :
-                <span>
-                    Rating stars not available
-                </span>
-            }
-        </span>
-                  <span className="location" onClick={() => {
-                      map ? showMap(0) :
-                          showMap(1)
-        }}>
-            Show on the map
-        </span>
-        {/* <span className = "price">
-            {hotel.price}
-        </span>  */}
+            <span className='rating'>
+                {
+                rating_stars ? Array.from(Array(rating_stars)).map((item, index) =>
+                    <img src = {Star}/>
+                ) :
+                    <span>
+                        Rating stars not available
+                    </span>
+                }
+            </span>
+            <span className="location" onClick={() => {
+                        map ? showMap(0) :
+                            showMap(1)
+            }}>
+                Show on the map
+            </span>
+            {/* <span className = "price">
+                {hotel.price}
+            </span>  */}
+            </div>
+            <div className = 'links'>
+                {price.map((price, index) => {
+                    console.log(price.value.replace("€", "").trim())
+                    if(price.value) return <a href={url_href[index]} target = "_blank" rel="noopener noreferrer">
+                        <div>
+                        {price.value} €
+                        </div>
+                    <span>{price.website}</span>
+                    </a>
+                })}
+        
+            </div>
         </div>
-        <div className = 'links'>
-            {price.map((price, index) => {
-                console.log(price.value.replace("€", "").trim())
-                if(price.value) return <a href={url_href[index]} target = "_blank" rel="noopener noreferrer">
-                    <div>
-                    {price.value} €
-                    </div>
-                <span>{price.website}</span>
-                </a>
-            })}
-      
-        </div>
-          </div>
+    </div>
           {
               map ? 
               

@@ -30,7 +30,9 @@ export default function Form1() {
    // const[username, setName] = useState('')
     const[email, setLocation] = useState('')
   const [password, setPrice] = useState('')
-  const[failed, isFailed] = useState(0)
+  // const [warning, setWarning] = useState(0)
+  const [failed, isFailed] = useState('')
+  console.log("failed = " + 0)
 
     //console.log("Name = " + username)
     console.log("Location = " + email)
@@ -49,53 +51,49 @@ export default function Form1() {
         <input onChange = {(e)=> setPrice(e.target.value)} type="password" placeholder='Insert password'/>
         <div className = "user-form__submit-section">
           <button onClick={(e) => {
-                  e.preventDefault()
-              generateToken()
-              console.log("token: " + token)
-                  Axios.post("https://mydestinationapp.onrender.com/search_user", {
-                      //username:username,
-                      email:email,
-                      password: password,
-                      token
-                  }).then((data) => {
-                    if (data.data) {
-                      console.log(data.data)
-                      ls.set('eml', data.data.email)
-                      ls.set('usr', data.data.username)
-                      window.open("https://travel-website-with-mongodb-front-end-bszn.vercel.app/", "_self")
-                    }
-                    else {
-                      isFailed(1)
-                    }
-                    // bcrypt.compare(password, data.data.password, (err, result) => {
-                      
-                    //   if (result) {
-                    //     //console.log(data.data.id)
-                    //     ls.set('eml', data.data.email)
-                    //     ls.set('usr', data.data.username)
-                    //     ls.set('i', data.data.id)
-                    //    
-                    //   }
-                    //   else {
-                    //     isFailed(1)
-                    //   }
-                    // })
-                  })
+    
+            e.preventDefault()
+            generateToken()
+            console.log("token: " + token)
+            
+            email && password ?
+              Axios.post("https://mydestinationapp.onrender.com/search_user", {
+                  //username:username,
+                  email:email,
+                  password: password,
+                  token
+              }).then((data) => {
+
+                console.log("data" + data.data)
+                if (data.data && data.data != 'error') {
+                  ls.set('eml', data.data.email)
+                  ls.set('usr', data.data.username)
+                  window.open("https://travel-website-with-mongodb-front-end-bszn.vercel.app/", "_self")
+                }
+
+                else if(data.data == 'error') {
+                  console.log("no data")
+                  isFailed('Wrong email or password :(')
+                }
+              }) : isFailed('Wrong email or password :(')
               token = ''
           }}>Log in</button>
           <span>Don't have an account?</span>
           <Link to="/form">Sign up</Link>
+
           {
             failed ?
-              <div className="negative-message">
-                <div>Unable to find your account :(</div>
+              <div className= "negative-message">
+                <div>{failed}</div>
               </div>
               :
               null
           }
+
           <Link to= "/password_recovery">
             Forgor your password?
           </Link>
+
         </div>  
       </form>
     </Layout>

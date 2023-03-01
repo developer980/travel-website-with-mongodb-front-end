@@ -1,0 +1,245 @@
+$color:rgb(77, 124, 115);
+$color1: rgb(230, 230, 230);
+$darkColor:rgb(98, 101, 104);
+$percent:100/3;
+
+@mixin display($direction, $align, $justify){
+    display:flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin span-display($weight, $size){
+    font-weight: $weight;
+    font-size: $size;
+}
+
+.hotel-post{
+    width:100%;
+    //max-width:960px;
+    height:200px;
+    margin-bottom:25px;
+    // margin: auto;
+    @include display(row, center, space-between);
+    gap:15px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px -2px rgb(170, 170, 170);
+    color:$color;
+    overflow: hidden;
+    // img{
+    //     height:100%;
+    // }
+    // div{
+    //     //background-color: red;
+    //     // padding: 5px;
+    //     // //padding-right: 20px;
+    //     // width: 25%;
+    //     //@include display(column, left, unset);
+
+    //     // div{
+    //     //     // height:35%;
+    //     //     // width:80%;
+    //     //     // margin:auto;
+    //     //     // padding: 10px;
+    //     //     border:1px solid;
+
+    //     // }
+
+        
+
+    // }
+
+
+    .hotel-img{
+            // @include display(column, unset, unset);
+            //margin-top: 0px;
+            // margin:auto;
+            // padding:0;
+            // width:200px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // border: 1px solid;
+            //width:50%;
+            width:30%;
+            max-width: 200px;
+            // min-width: 150px;
+            // border-radius: 10px;
+                // border:1px solid;
+            overflow: hidden;
+            background-color: rgb(66, 66, 66);
+            position: relative;
+            // margin-left: 0px;
+            // position:relative;
+            // top:0px;
+    
+    }
+
+    .hotel-post__content{
+        height:100%;
+        width:80%;
+        @include display(row, center, space-between);
+    }
+
+    @media (max-width:630px){
+        .hotel-post__content{
+            // height:100%;
+            // width:calc(100% - 215px);
+            @include display(column, unset, space-between);
+        }
+    }
+}
+
+.middle, .links{
+    @include display(column, left, space-between);
+    width:50%;
+    height: 90%;
+    span{
+        height:20%;
+        // border-bottom:1px solid;
+    }
+
+    .description{
+        height:50%;
+        padding-bottom:20px;
+    }
+
+    .price{
+        @include span-display(bold, 40px)
+    }
+
+    .location{
+        width: 80%;
+        @include span-display(bold, 15px);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        transition:all 0.25s;
+        cursor:pointer;
+        font-size: 15px;
+        &:hover{
+            transform:scale(1.25)
+        }
+    }
+}
+
+
+
+.middle{
+    padding: 0px 10px 0 10px;
+    color:$darkColor;
+}
+
+.main-img{
+    // position: absolute;
+    // bottom:0    
+    //height:100%;
+    width: 120%;
+    //width: 200px;
+   // border:2px solid red;
+}
+
+.hotel-post__name{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.rating{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    img{
+        height: 50%;
+        width: auto;
+    }
+}
+
+.links{
+    // div{
+    //     height: 100%;
+    //     padding: 20px;
+    // }
+    //display: flex;
+    flex-direction: column;
+    gap:5px;
+    a{
+        width: 95%;
+        border-radius: 10px;
+        height: 50%;
+        position:relative;
+        border:1px solid $darkColor;
+            text-decoration: none;
+        div{
+            position: absolute;
+            // padding: none;
+            // padding:10px;
+            //height: 50px;
+            //text-align: center;
+            //background-color: $color;
+            //border:none;
+            
+            //border-radius: 50px;
+            font-weight:bold;
+            //] height:50%;
+            font-size:30px;
+            //border: 1px solid$color;
+        }
+
+        div, span{
+            color:$darkColor;
+        }
+
+        span{
+            //background-color: red;
+            position: absolute;
+            right:5px;
+            bottom:10px;
+            font-size: 1rem;
+        }
+        
+        cursor:pointer;
+        transition:all 0.25s;
+
+        &:hover{
+            background-color: rgb(229, 231, 230);
+            color:$color;
+        }
+    }
+}
+
+@media (max-width:630px){
+    .middle, .links{
+        width:100%;
+        height: 50%;
+        @include display(column, normal, space-around);
+
+        .location{
+            font-size: 10px;
+        }
+    }
+
+    .links{
+        @include display(row, center, left);
+        gap: 10px;
+        a{
+            height: 55%;
+            width:40%;
+            div{
+                font-size:20px;
+            }
+
+            span{
+                font-size: 0.65rem;
+            }
+        }
+    }
+}
+
+// @media (max-width:630px){
+//     .hotel-post{
+//         @include display(column, center, space-between);
+//     }
+// }

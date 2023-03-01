@@ -34,10 +34,12 @@ export default function Password_recovery() {
           e.preventDefault()
           //dispatch(getEmail(email))
           ls.set("dest_eml", email)
+          // displayMessage(1)
           axios.post("https://mydestinationapp.onrender.com/reset_email", {
             email
           }).then(data => {
-            if (data.data == "Email sent") {
+            console.log("data" + data.data)
+            if (data.data) {
               displayMessage(1)
             }
           })
@@ -46,11 +48,16 @@ export default function Password_recovery() {
         </button>
         <div className = "message-section">
         {
-          message ? <div className="message">An email with a password recovery link has been sent to <b>{email}</b></div>
-            :
-            null
+          message ?
+            <div className="message">
+              <span>
+                An email with a password recovery link has been sent to <b>{email}</b>
+              </span>
+            </div>
+          :
+          null
         }
-        <div className="message">An email with a password recovery link has been sent to <b>{email}</b></div>
+        {/* <div className="message">An email with a password recovery link has been sent to <b>{email}</b></div> */}
         {/* <Link to="/resetPasswordfor:token">
           test
         </Link> */}

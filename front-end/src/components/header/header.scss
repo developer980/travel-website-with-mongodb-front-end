@@ -101,10 +101,27 @@ body{
     contrast(100%);
 }
 
-.logo-content-white{
-    filter: invert(50%) sepia(100%) saturate(0%)
-    hue-rotate(100deg) brightness(200%) 
-    contrast(100%);
+@media (min-width:630px){
+    
+    .logo-content-white{
+        filter: invert(50%) sepia(100%) saturate(0%)
+        hue-rotate(100deg) brightness(200%) 
+        contrast(100%);
+    }
+}
+
+@media (max-width:630px){
+    // #logo-content{
+    //     transition: all 0.5s;
+    //      height:30px;
+    // }
+    .logo-insidenav{
+        top:-100%;
+    }
+
+    .logo-outsidenav, .logo-insidenav{
+        height:70px;
+    }
 }
 
 
@@ -119,10 +136,9 @@ nav{
 
     section{
         transition: all 0.5s;
-        backdrop-filter: blur(5px);
         box-shadow: -5px 5px 5px -2px rgb(170, 170, 170);
         // width: 50%;
-        background: linear-gradient(90deg, $color, $color, $color, rgba(189, 228, 220, 0.459));
+        
         background-size:120%;
         // height:70%;
         // border-top-left-radius: 50px;
@@ -142,6 +158,15 @@ nav{
 
 #section{
     animation: flyIn 1s;
+    background: linear-gradient(90deg, $color, $color, $color, rgba(189, 228, 220, 0.459));
+}
+
+
+#section__small{
+    @include section(50px, 50px, 50px, 50px, 0px);
+    background-color: $color;
+    position:relative;
+    display: none
 }
 
 @keyframes flyIn{
@@ -150,7 +175,7 @@ nav{
         font-size: 0rem;
     }
     to{
-        width:40rem;
+        width:30%;
         font-size: 1.25rem;
     }
 }
@@ -173,11 +198,13 @@ nav{
 }
 
 .section-narrow{
-    @include section(40rem, 70%, 50px, 50px, 0px);
+    @include section(30%, 70%, 50px, 50px, 0px);
+    // max-width: 40rem;
     background-position: 100% 0%;  
     @include display(flex, center, end);
     padding-right: 30px;
     gap:10%;
+    overflow: hidden
     // a{
     //     width: 50%;
     // }
@@ -194,6 +221,75 @@ nav{
         //background-color: rgba(175, 219, 211, 0.808);
      //animation:bgcolor 3s
         //background-position: 0% 0%;  
+}
+
+.section__column{
+    position: absolute;
+    top:0;
+    right:0;
+    @include section(300px, 200px, 50px, 50px, 0px);
+    background-color:rgba(77, 124, 115, 0.89);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    // border:1px solid;
+    // display: none;
+    animation:menu 0.5s;
+    overflow: hidden;
+        // color:rgb(165, 37, 37);
+}
+
+.section__close-button{
+    width:25px;
+    // border:1px solid;
+    position: absolute;
+    right:10px;
+    top:10px;
+    cursor:pointer;
+    transition: all 0.25s;
+    &:hover{
+        transform: scale(1.25);
+    }
+}
+
+.button-img{
+    width: 100%;    
+    filter: invert(50%) sepia(100%) saturate(0%)
+    hue-rotate(100deg) brightness(200%);
+}
+
+@keyframes menu {
+    from{
+        height:50px;
+        width:50px;
+    }
+    to{
+        width:300px;
+        height:200px;
+    }
+}
+
+@media (max-width:1500px)
+{
+    .section-narrow{
+        @include section(50%, 70%, 50px, 50px, 0px);
+    }
+}
+
+@media (max-width:630px)
+{
+    #section{
+        display: none
+    }
+
+    #section__small{
+        display:block;
+    }
+    .section-narrow{
+        @include section(70px, 70px, 50px, 50px, 0px);
+        border:1px solid;
+    }
 }
 
 // @keyframes bgcolor{

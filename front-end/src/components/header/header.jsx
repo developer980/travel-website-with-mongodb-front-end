@@ -5,6 +5,8 @@ import ls from "localstorage-slim"
 import { useState } from 'react'
 import Icon from "../../icons/Mountain_Icon.svg"
 import Axios from "axios"
+import X from "../../icons/x.svg"
+import Burger from "../../icons/burger.svg"
 
 ls.config.encrypt = true
 
@@ -13,6 +15,10 @@ let offsetvalue = 0;
 export default function Header(props) {
   const { mode } = props
   const [display, displayOptions] = useState(0)
+  const [section, displaySection] = useState(0)
+
+  console.log(section)
+
   window.addEventListener('scroll', () => {
     const offset = window.scrollY
 
@@ -64,8 +70,8 @@ export default function Header(props) {
         {
           mode != "home" && <Link style = {{fontWeight:mode == "book" && "bold"}} to="/booking_page">Book a place</Link>
         }
-        {ls.get('eml') && <Link style = {{fontWeight:mode == "favourites" && "bold"}} to = "/favourites">Favourites</Link>}
-                 
+        {/* {ls.get('eml') && <Link style = {{fontWeight:mode == "favourites" && "bold"}} to = "/favourites">Favourites</Link>} */}
+        <Link style = {{fontWeight:mode == "favourites" && "bold"}} to = "/favourites">Favourites</Link>          
         {
           ls.get("eml") ?
           <div className="nav-user" onClick={() => { 
@@ -79,6 +85,39 @@ export default function Header(props) {
             </div> :
             <Link to = "/log_in">Log in</Link>     
         }
+      </section>
+
+      <section id="section__small" onClick={() => {
+        !section && displaySection(1)
+      }}>
+        <div className="section__close-button">
+          <img className='button-img' src={Burger} alt="" />
+        </div>
+        {section ? <div className="section__column">
+          <div className="section__close-button" onClick={() => {
+            console.log("pressed")
+            displaySection(0)
+          }}><img className='button-img' src={X} /></div>
+          {/* Home */}
+          {
+            mode != "home" && <Link style={{ fontWeight: mode == "book" && "bold" }} to="/booking_page">Book a place</Link>
+          }
+          {/* {ls.get('eml') && <Link style = {{fontWeight:mode == "favourites" && "bold"}} to = "/favourites">Favourites</Link>} */}
+          <Link style={{ fontWeight: mode == "favourites" && "bold" }} to="/favourites">Favourites</Link>
+          {
+            ls.get("eml") ?
+              <div className="nav-user" onClick={() => {
+                if (display) {
+                  displayOptions(0)
+                  return
+                }
+                displayOptions(1)
+              }}>
+                Hello <b>{ls.get("usr")}</b>
+              </div> :
+              <Link to="/log_in">Log in</Link>
+          }
+        </div>: null}
       </section>
       
       {
