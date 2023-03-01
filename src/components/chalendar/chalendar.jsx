@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 // import setCheckIn from '../../redux/action/date_in'
 // import setCheckOut from '../../redux/action/date_out'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCheckIn, setCheckOut } from '../../redux/reducer/date'
+import { setCheckIn, setCheckOut, setMode } from '../../redux/reducer/date'
 import Arrow from "../../icons/arrow.svg"
 
 
@@ -13,20 +13,27 @@ export default function Chalendar(props) {
 
   const dispatch = useDispatch();
 
-  const { mode } = props
-  console.log("mode " + mode)
-  const months = ["January","February","March","April","May","June","July",
-  "August", "September", "October", "November", "December"]
+  // const { mode } = props
+
+  
+
+  const { displayMode } = useSelector(state => state.date)
+   
+  const months = ["January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"]
   
   const [amount, setMonth] = useState(0)
   const [year_index, setYear] = useState(0)
 
-  const [checkIn, setDateIn] = useState(0)
-  const [checkOut, setDateOut] = useState(0)
+  const { checkIn } = useSelector(state => state.date)
+  const { checkOut } =  useSelector(state => state.date)
+
 
   //const [color, setColor] = useState("green")
   
-  console.log("Date in " + checkIn)
+  !checkIn && console.log("CHECK IN")
+
+console.log("Date in " + checkIn)
   
   console.log("Date out " + checkOut)
 
@@ -96,6 +103,8 @@ export default function Chalendar(props) {
               })
           }</div>
       <div className="chalendar-content">
+
+
         {
           Array.from(Array(first_month_day)).map((item, index) => {
             day_index -= 1
@@ -104,6 +113,8 @@ export default function Chalendar(props) {
               return <div className='chalendar-content__day chalendar-content__day--faded'>{last_month_days - day_index}</div> 
           })
         }
+
+
         {
           Array.from(Array(month_days)).map((item, index) => {
             //day++
@@ -112,36 +123,74 @@ export default function Chalendar(props) {
             const item_date = index + 1
             
             const month = month_index + amount + 1
+            
+            const checkIn_day = checkIn.split(".")[0]
+            const checkIn_Month = checkIn.split(".")[1]
+            const checkIn_year = checkIn.split(".")[2]
+
+            const checkOut_Day = checkOut.split(".")[0]
+            const checkOut_Month = checkOut.split(".")[1]
+            const checkOut_year = checkOut.split(".")[2]
 
             return <div id={index} onClick={() => {
+
+              console.log("mode " + displayMode.mode)
               if (!checkIn) {
-                setDateIn(current_year + "-" + month + "-" + item_date)
+                // setDateIn(current_year + "-" + month + "-" + item_date)
                 dispatch(setCheckIn(item_date + "." + month + "." + current_year))
+                // dispatch(setMode({
+                //   mode: "",
+                //   display: 0
+                // }))
+                // dispatch(setMode({
+                //   mode: "",
+                //   display: 0
+                // }))
+                console.log("yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
               }
-              
               else {
                 const selected_date = current_year + "-" + month + "-" + item_date
-                if (mode == "in") {
+                if (displayMode.mode == "in") {
                   console.log("mode is in")
-                  setDateIn(current_year + "-" + month + "-" + item_date)
+                  // setDateIn(current_year + "-" + month + "-" + item_date)
                   dispatch(setCheckIn(item_date + "." + month + "." + current_year))
+                  // dispatch(setMode({
+                  //   mode: "",
+                  //   display: 0
+                  // }))
+                  if (new Date(selected_date) >= new Date(checkOut_year + "-" + checkOut_Month + "-" + checkOut_Day)) {
+                    const new_date = item_date + 1;
+                    // setDateOut(current_year + "-" + month + "-" + new_date)
+                    // setDateIn(current_year + "-" + month + "-" + item_date)
+                    dispatch(setCheckOut(new_date + "." + month + "." + current_year))
+                    dispatch(setCheckIn(item_date + "." + month + "." + current_year))
+                    
+                  }
                 }
                   
-                else {
-                  console.log("mode is out")
-                  setDateOut(current_year + "-" + month + "-" + item_date)
+                if(displayMode.mode == "out") {
+                  // console.log(checkIn.replaceAll(".", "-").split("-"))
+                // [2].split('').reverse().join()
+                  // console.log(checkIn_day)
+                  // setDateOut(current_year + "-" + month + "-" + item_date)
                   dispatch(setCheckOut(item_date + "." + month + "." + current_year))
-                  if (new Date(selected_date) < new Date(checkIn)) {
+                  if (new Date(selected_date) <= new Date(checkIn_year + "-" + checkIn_Month + "-" + checkIn_day)) {
                     const new_date = item_date - 1;
-                    setDateOut(current_year + "-" + month + "-" + item_date)
-                    setDateIn(current_year + "-" + month + "-" + new_date)
+                    // setDateOut(current_year + "-" + month + "-" + item_date)
+                    // setDateIn(current_year + "-" + month + "-" + new_date)
                     dispatch(setCheckOut(item_date + "." + month + "." + current_year))
                     dispatch(setCheckIn(new_date + "." + month + "." + current_year))
                   }
                 }
+                
               }
               
-            }} className={`chalendar-content__day chalendar-content__day--clear ${new Date(current_year + "-" + month + "-" + item_date) >= new Date(checkIn) && new Date(current_year + "-" + month + "-" + item_date) <= new Date(checkOut) ?
+              dispatch(setMode({
+                mode: "",
+                display: 0
+              }))
+              document.getElementById("chalendar").style.display = "none"
+            }} className={`chalendar-content__day chalendar-content__day--clear ${new Date(current_year + "-" + month + "-" + item_date) >= new Date(checkIn_year + "-" + checkIn_Month + "-" + checkIn_day) && new Date(current_year + "-" + month + "-" + item_date) <= new Date(checkOut_year + "-" + checkOut_Month + "-" + checkOut_Day) ?
                 "chalendar-content__day--green"
                 :
                 "chalendar-content__day--none"}`}>{index + 1}</div> 
@@ -149,6 +198,8 @@ export default function Chalendar(props) {
 
             })
         }
+
+        
         {
           Array.from(Array(7 - last_month_day)).map((item, index) => {
             return <div className='chalendar-content__day chalendar-content__day--faded'>{index + 1}</div> 

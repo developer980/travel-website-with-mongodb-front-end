@@ -6,7 +6,8 @@ import Img from "../../icons/picture.svg"
 import Layout from '../../components/layout/layout'
 import Star from "../../icons/star.svg"
 import Chalendar from '../../components/chalendar/chalendar'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setMode } from '../../redux/reducer/date'
 import Guests from '../../components/guests/guests'
 import Sidebar from '../../components/sidebar/sidebar'
 import Hotel_post from '../hotel_post/hotel_post'
@@ -18,6 +19,8 @@ ls.config.encrypt = true
 
 export default function Booking() {
 
+  const dispatch = useDispatch()
+
   const [hotelArray, setHotels] = useState([]);
   const [keyWord, setKeyWord] = useState('');
   // const [chalendar, displayChalendar] = useState({
@@ -25,16 +28,24 @@ export default function Booking() {
   //   mode:''
   // })
   const [guests, displayGuests] = useState(false)
-  const [mode, setMode] = useState("")
+  // const [mode, setMode] = useState("")
   const [search, setSearch] = useState(0)
   const [chalendar, displayChalendar] = useState(false)
+
+  // const [view, getChalendar] = useState(0)
+  
+  // console.log("view " + view)
 
   const { checkIn } = useSelector(state => state.date)
   const { checkOut } = useSelector((state) => state.date)
   const { email } = useSelector(state => state.date)
 
+  console.log('view')
   
   const{guests_number} = useSelector(state => state.date)
+
+  const { displayMode } = useSelector(state => state.date)
+  
 
   console.log(guests_number)
   
@@ -71,7 +82,6 @@ export default function Booking() {
   //   month:String(today.getMonth() + 1).padStart(2, '0'),
   //   year:today.getFullYear()
   // }
-
   const dateIn = {
     day: checkIn.split(".")[0],
     month: checkIn.split(".")[1],
@@ -127,7 +137,12 @@ export default function Booking() {
             </div>
             <div className='inputs__section'>
               <input className="inputs__element inputs-center-left" onClick={() => {
-                display(displayChalendar, chalendar, "in", "chalendar", "block")     
+                dispatch(setMode({
+                  mode: "in",
+                  display: 1
+                }))
+                // displayMode.display ? getChalendar(0) : getChalendar(1)
+                // display(displayChalendar, chalendar, "in", "chalendar", "block")     
                 // setMode('in')
                 // chalendar.display ? displayChalendar({
                 //   display: 0,
@@ -139,8 +154,13 @@ export default function Booking() {
               }} type="text" placeholder='Date check-in' value={checkIn}/>
               
                 
-              <input className = "inputs__element inputs-center-middle" type="text" onClick = {() => {
-                display(displayChalendar, chalendar, "out", "chalendar", "block")     
+              <input className="inputs__element inputs-center-middle" type="text" onClick={() => {
+                dispatch(setMode({
+                  mode: "out",
+                  display: 1
+                }))
+                // view ? getChalendar(1) : getChalendar(0)
+                // display(displayChalendar, chalendar, "out", "chalendar", "block")     
                 // chalendar.display ? displayChalendar({
                 //   display: 0,
                 //   mode:"out"
@@ -177,13 +197,17 @@ export default function Booking() {
           <div className = "filter-section"><Sidebar/></div>
         </div>
         
-        <div id = "chalendar" className='chalendar-window' style = {{display:"none"}}>
-          <img src={X} className="close-button" onClick={() => {
-            document.getElementById("chalendar").style.display = "none"
-            displayChalendar(false)
-          }} />
-          <Chalendar mode={mode} />
-        </div>
+        {
+          //  style={{ display: "none" }}
+          displayMode.display ? <div id="chalendar" className='chalendar-window'>
+            <img src={X} className="close-button" onClick={() => {
+              document.getElementById("chalendar").style.display = "none"
+              displayChalendar(false)
+            }} />
+              <Chalendar />
+            </div> :
+          null
+        }
 
         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl3w9CFhn2FiIpAkXI7RtJbvQVRTP26hc67IYVg3hu&s" alt="" /> */}
         <div className="posts">
