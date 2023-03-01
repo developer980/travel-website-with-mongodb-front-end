@@ -153,26 +153,34 @@ app.post("/search_user", (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const result = []
-    const response = db.collection("users").find({email:email})
-    response.forEach(data => {
-        //if(response.email && response.password)
-        console.log(data)
+    try {
+        const response = db.collection("users").find({ email: email })
+        response.forEach(data => {
+            //if(response.email && response.password)
+            console.log(data)
             result.push({
                 email: data.email,
-                username:data.username,
+                username: data.username,
                 password: data.password,
-                id:data._id
+                id: data._id
             })
-    }, () => {
-        console.log(result[0])
-        bcrypt.compare(password, result[0].password, (err, succes) => {
-            console.log("password matches")
-            succes && res.send({
-                email: result[0].email,
-                username:result[0].username
+        }, () => {
+            console.log(result[0])
+            result[0] && password ? bcrypt.compare(password, result[0].password, (err, succes) => {
+                console.log("password matches")
+                succes ? res.send({
+                    email: result[0].email,
+                    username: result[0].username
+                }) : res.send("error")
+                err && res.send("error")
             })
+                :
+                res.send('error')
         })
-    })
+    } catch (e) {
+        // res.status(500).json({error:e.message})
+        res.send('error')
+    }
 })
 
 app.post("/delete_user", (req, res) => {
@@ -209,9 +217,10 @@ app.post("/reset_email", (req, res) => {
             <a href = "https://travel-website-with-mongodb-front-end-bszn.vercel.app/resetPasswordfor_${token}">Link</a>
         </div>`
     }
-    transport.sendMail(mailOptions, (err, res) => {
-        err ? console.log(err) : res.send("Email sent")
+    transport.sendMail(mailOptions, err => {
+        err ? console.log(err) : console.log("Email sent")
     })  
+    res.send("Email sent")
 })
 
 app.post("/verify_user", (req, res) => {
