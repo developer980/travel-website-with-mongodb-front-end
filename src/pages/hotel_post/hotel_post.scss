@@ -114,7 +114,7 @@ $percent:100/3;
     .location{
         width: 80%;
         @include span-display(bold, 15px);
-        // text-align: center;
+        text-align: center;
         display: flex;
         align-items: center;
         transition:all 0.25s;
