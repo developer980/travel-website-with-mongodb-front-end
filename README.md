@@ -18,6 +18,8 @@
 
 ## Note! The private destinations (rented appartements) might not appear on the map as the google maps API doesn't have enough data about them. I'm stiil figuring a way to fix this.
 
+## The "Guests" field and the filter section are not functional yet.
+
 
 # Links:
  - [Front-end repo](https://github.com/developer980/travel-website-with-mongodb-front-end)
