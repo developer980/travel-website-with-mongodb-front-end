@@ -17,7 +17,7 @@ export default function Home() {
       <main>
         <section>
           <div className = "description">
-            Find new destinations or post your wonderfull place
+            Go and travel anywere!
           </div>
           <div className = "links-section">
             {!ls.get('eml') ? <Link to = "/log_in">Sign in</Link> : null}
