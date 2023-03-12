@@ -158,6 +158,7 @@ nav{
 
 #section{
     animation: flyIn 1s;
+    backdrop-filter: blur(2px);
     background: linear-gradient(90deg, $color, $color, $color, rgba(189, 228, 220, 0.459));
 }
 

@@ -4,7 +4,6 @@ import Layout from '../../components/layout/layout'
 import "./form.css";
 import Axios from "axios";
 import bcrypt, { hash } from "bcryptjs"
-import setToken from '../../redux/action/token';
 import { Link } from 'react-router-dom';
 import { getEmail } from '../../redux/reducer/date';
 import { useDispatch } from 'react-redux';
