@@ -136,48 +136,25 @@ console.log("Date in " + checkIn)
 
               console.log("mode " + displayMode.mode)
               if (!checkIn) {
-                // setDateIn(current_year + "-" + month + "-" + item_date)
                 dispatch(setCheckIn(item_date + "." + month + "." + current_year))
-                // dispatch(setMode({
-                //   mode: "",
-                //   display: 0
-                // }))
-                // dispatch(setMode({
-                //   mode: "",
-                //   display: 0
-                // }))
-                console.log("yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
               }
               else {
                 const selected_date = current_year + "-" + month + "-" + item_date
                 if (displayMode.mode == "in") {
                   console.log("mode is in")
-                  // setDateIn(current_year + "-" + month + "-" + item_date)
                   dispatch(setCheckIn(item_date + "." + month + "." + current_year))
-                  // dispatch(setMode({
-                  //   mode: "",
-                  //   display: 0
-                  // }))
                   if (new Date(selected_date) >= new Date(checkOut_year + "-" + checkOut_Month + "-" + checkOut_Day)) {
                     const new_date = item_date + 1;
-                    // setDateOut(current_year + "-" + month + "-" + new_date)
-                    // setDateIn(current_year + "-" + month + "-" + item_date)
                     dispatch(setCheckOut(new_date + "." + month + "." + current_year))
                     dispatch(setCheckIn(item_date + "." + month + "." + current_year))
                     
                   }
                 }
-                  
+
                 if(displayMode.mode == "out") {
-                  // console.log(checkIn.replaceAll(".", "-").split("-"))
-                // [2].split('').reverse().join()
-                  // console.log(checkIn_day)
-                  // setDateOut(current_year + "-" + month + "-" + item_date)
                   dispatch(setCheckOut(item_date + "." + month + "." + current_year))
                   if (new Date(selected_date) <= new Date(checkIn_year + "-" + checkIn_Month + "-" + checkIn_day)) {
                     const new_date = item_date - 1;
-                    // setDateOut(current_year + "-" + month + "-" + item_date)
-                    // setDateIn(current_year + "-" + month + "-" + new_date)
                     dispatch(setCheckOut(item_date + "." + month + "." + current_year))
                     dispatch(setCheckIn(new_date + "." + month + "." + current_year))
                   }

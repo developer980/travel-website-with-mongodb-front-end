@@ -112,7 +112,9 @@ nav section a:hover {
 
 #section {
   animation: flyIn 1s;
-  background: linear-gradient(90deg, rgba(77, 124, 115, 0.89), rgba(77, 124, 115, 0.89), rgba(77, 124, 115, 0.89), rgba(189, 228, 220, 0.459));
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  background: linear-gradient(90deg, rgba(77, 124, 115, 0.89), rgba(77, 124, 115, 0.89), rgba(77, 124, 115, 0.89), rgba(138, 196, 185, 0.459));
 }
 
 #section__small {

@@ -4,7 +4,6 @@ import Layout from '../../components/layout/layout'
 import "./form.css";
 import Axios from "axios";
 import bcrypt from "bcryptjs"
-import setToken from '../../redux/action/token';
 import { Link } from 'react-router-dom';
 import ls from "localstorage-slim";
 
@@ -91,7 +90,7 @@ export default function Form1() {
           }
 
           <Link to= "/password_recovery">
-            Forgor your password?
+            Forgot your password?
           </Link>
 
         </div>  

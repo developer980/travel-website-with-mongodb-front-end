@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const date = new Date()
 
-const day = new Date(date.getFullYear(), date.getMonth(), 1).getDate()
+const day = new Date().getDate()
 const month = new Date(date.getFullYear(), date.getMonth()+1).getMonth()
 const year = new Date().getFullYear()
 

@@ -20,6 +20,7 @@
 
 ## The "Guests" field and the filter section are not functional yet.
 
+![image](https://user-images.githubusercontent.com/91996303/222156757-b73c1bee-6e9a-4e45-ad9f-8be771ae75ad.png)
 
 # Links:
  - [Front-end repo](https://github.com/developer980/travel-website-with-mongodb-front-end)

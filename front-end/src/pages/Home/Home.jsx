@@ -6,7 +6,6 @@ import ls from "localstorage-slim"
 import axios from "axios"
 import { useState } from 'react'
 import Mount_img from "../../images/Mountain_icon.png"
-
 ls.config.encrypt = true
 
 export default function Home() {
@@ -17,11 +16,11 @@ export default function Home() {
       <main>
         <section>
           <div className = "description">
-            Find new destinations or post your wonderfull place
+            Go and travel anywere!
           </div>
           <div className = "links-section">
             {!ls.get('eml') ? <Link to = "/log_in">Sign in</Link> : null}
-            <Link to = "/booking_page">Book a place</Link>
+            <Link to="/booking_page">Book a place</Link>
           </div>
         </section>
         <div className='background-image'>
