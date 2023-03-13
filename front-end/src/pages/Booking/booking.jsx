@@ -125,13 +125,29 @@ export default function Booking() {
       value ? action(false) : action(true)
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      setSearch(1)
+                axios.post("https://mydestinationapp.onrender.com/get_posts", {
+                  keyWord: keyWord.replace(" ", "+"),
+                  parameters: {
+                    checkIn:dateIn,
+                    checkOut:dateOut
+                  }
+                }).then(data => {
+                  console.log(data.data)
+                  setHotels(data.data)
+                })
+    }
+  }
+
   return (
     <Layout mode = "book">
       <div className = "layout-grid">
         <div className="inputs"> 
           <div className = "search-section">
             <div className='inputs__search-section'>
-              <input className = "inputs__element inputs-left" type="text" placeholder='Destination' onChange={(e) => {
+              <input className = "inputs__element inputs-left" type="text" placeholder='Destination' onKeyDown = {handleKeyDown} onChange={(e) => {
                 setKeyWord(e.target.value)
                 }} />
             </div>
@@ -151,10 +167,10 @@ export default function Booking() {
                 //   display: 1,
                 //   mode:"in"
                 // })
-              }} type="text" placeholder='Date check-in' value={checkIn}/>
+              }} onKeyDown = {handleKeyDown} type="text" placeholder='Date check-in' value={checkIn}/>
               
                 
-              <input className="inputs__element inputs-center-middle" type="text" onClick={() => {
+              <input className="inputs__element inputs-center-middle" type="text" onKeyDown = {handleKeyDown} onClick={() => {
                 dispatch(setMode({
                   mode: "out",
                   display: 1
@@ -171,7 +187,7 @@ export default function Booking() {
               }} placeholder='Date check-out' value={checkOut} />
             </div>
             <div className='inputs__section'>
-              <input className="inputs__element inputs-center-right" type="text" onClick={() => {
+              <input className="inputs__element inputs-center-right" onKeyDown = {handleKeyDown} type="text" onClick={() => {
                 display(displayGuests, guests, null, "guests", "flex")
               }} value={
                 `${rooms} rooms for ${adults} adults and ${children} children`
@@ -200,10 +216,10 @@ export default function Booking() {
         {
           //  style={{ display: "none" }}
           displayMode.display ? <div id="chalendar" className='chalendar-window'>
-            <img src={X} className="close-button" onClick={() => {
+            {/* <img src={X} className="close-button" onClick={() => {
               document.getElementById("chalendar").style.display = "none"
               displayChalendar(false)
-            }} />
+            }} /> */}
               <Chalendar />
             </div> :
           null
