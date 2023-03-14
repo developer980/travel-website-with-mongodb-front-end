@@ -9,13 +9,17 @@ import Mount_img from "../../images/Mountain_icon.png"
 ls.config.encrypt = true
 
 
-axios.post("https://mydestinationapp.onrender.com/wake_up", {
-  message:"Wake up!"
-})
-
 export default function Home() {
   console.log(ls.get("i"))
+
   
+  const message = "Wake up!";
+  axios.post("http://localhost:3001/wake_up", {
+    message:message
+  }).then(data => {
+    data && console.log(data)
+  })
+
   return (
     <Layout mode = "home">
       <main>
