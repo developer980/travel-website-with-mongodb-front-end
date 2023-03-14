@@ -8,6 +8,11 @@ import { useState } from 'react'
 import Mount_img from "../../images/Mountain_icon.png"
 ls.config.encrypt = true
 
+
+axios.post("https://mydestinationapp.onrender.com/wake_up", {
+  message:"Wake up!"
+})
+
 export default function Home() {
   console.log(ls.get("i"))
   
