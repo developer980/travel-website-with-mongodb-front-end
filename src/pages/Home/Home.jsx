@@ -14,7 +14,7 @@ export default function Home() {
 
   
   const message = "Wake up!";
-  axios.post("http://localhost:3001/wake_up", {
+  axios.post("https://mydestinationapp.onrender.com/wake_up", {
     message:message
   }).then(data => {
     data && console.log(data)
