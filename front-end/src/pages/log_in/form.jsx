@@ -38,6 +38,12 @@ export default function Form() {
 
   const [warning, showWarning] = useState(0);
 
+  Axios.post("https://mydestinationapp.onrender.com/wake_up", {
+    message:"Wake up!"
+  }).then(data => {
+    data && console.log(data)
+  })
+
     console.log("Name = " + username)
     console.log("Location = " + email)
     console.log("Price = " + password)
@@ -63,10 +69,7 @@ export default function Form() {
             e.preventDefault()
             generateToken()
             console.log("token: " + token)
-            const hashedpassword = bcrypt.hashSync(password, salt, (err, hash) => {
-              err && console.log(err)
-              return hash
-            })
+            const hashedpassword = bcrypt.hashSync(password)
             dispatch(getEmail(email))
             console.log("hashed password: " + hashedpassword)
             username && email && password ?

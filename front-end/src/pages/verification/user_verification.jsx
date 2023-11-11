@@ -9,7 +9,7 @@ import ls from "localstorage-slim"
 
 ls.config.encrypt = true
 
-export default function Verification() {
+export default function User_verification() {
   const token = useParams().token
   
   // const {email} = useSelector(state => state.date)
@@ -18,24 +18,29 @@ export default function Verification() {
 
   const email = ls.get('check_eml')
 
+  
+console.log(email)
+
   const[message, setMessage] = useState(0)
   console.log(token)
-  Axios.post("https://mydestinationapp.onrender.com/verify_token", {
+  Axios.post("https://mydestinationapp.onrender.com/confirm_user", {
     email: email,
-    token:token,
+    token: token,
   }).then(data => {
-    console.log()
     console.log(data.data)
-    data.data && setMessage(1)
+    const response = data.data
+    console.log("response: " + response)
+    if (response.email) {
+      ls.set('eml', response.email)
+      ls.set('usr', response.username)
+      window.open("https://travel-website-with-mongodb-front-end-bszn.vercel.app/", "_self")
+    }
+    else {
+      console.log("Token is invalid :(")
+    }
   })
-  return message ?
-        <div className='message-container'>
-      <div>Your email has been confirmed, you can now return to the
-        <Link to = "/log_in">login page</Link></div> 
-        </div>
-        :
-        <div>
-          User confirmation failed :(
-        </div>
+  return <div>
+    User confirmation failed
+  </div>
   
 }

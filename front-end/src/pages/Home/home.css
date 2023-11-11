@@ -23,9 +23,11 @@ main section .description {
   font-family: "Open Sans";
   font-weight: bold;
 }
-@media (max-width: 1500px) {
+@media (max-width: 630px) {
   main section .description {
-    font-size: 30px;
+    width: 100%;
+    font-size: 70px;
+    text-align: center;
   }
 }
 main section .links-section {
@@ -39,7 +41,8 @@ main section .links-section {
 }
 main section .links-section a {
   font-weight: bold;
-  width: 40%;
+  width: 50%;
+  min-width: 150px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -59,6 +62,21 @@ main section .links-section a:hover {
   color: rgb(77, 124, 115);
   border-radius: 50px;
 }
+@media (max-width: 630px) {
+  main section .links-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 630px) {
+  main section {
+    margin: auto;
+    width: 70%;
+  }
+}
 
 .background-image {
   height: 100%;
@@ -66,4 +84,10 @@ main section .links-section a:hover {
 }
 .background-image img {
   height: 120%;
+}
+
+@media (max-width: 630px) {
+  .background-image {
+    display: none;
+  }
 }/*# sourceMappingURL=home.css.map */

@@ -13,6 +13,7 @@ import Form1 from './pages/log_in/form1';
 import Favourites from './pages/favourites/favourites';
 import Password_recovery from './pages/log_in/password_recovery';
 import New_password_form from './pages/log_in/new_password_form';
+import User_verification from './pages/verification/user_verification';
 
 
 
@@ -25,11 +26,13 @@ function App() {
       <Route path = "/shop" element = {<Shop/>}/>
       <Route path = "/form" element = {<Form/>}/>
       <Route path="/booking_page" element={<Booking />} />
+      {/* <Route path="/booking_page?destination=:destination:&checkIn=:checkIn&checkOut=:checkOut&guests=:guests" element={<Booking />} /> */}
       <Route path="/confirm_:token" element={<Verification />} />
+      <Route path="/verify_:token" element={<User_verification />} />
       <Route path="/favourites" element={<Favourites />} />
       <Route path="/log_in" element={<Form1/>} />
       <Route path="/password_recovery" element={<Password_recovery/>} />
-      <Route path="/resetPasswordfor_:token" element={<New_password_form/>} />
+      <Route path="/resetPasswordfor_:token" element={<New_password_form />} />
     </Routes>
   );
 }

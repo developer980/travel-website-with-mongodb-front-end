@@ -11,9 +11,9 @@ const salt = bcrypt.genSaltSync(10, (err, salt) => {
   console.log("salt = " + salt)
 })
 
-//ls.config.encrypt = true;
+ls.config.encrypt = true;
 
-console.log("Email: " + ls.get("eml"))
+console.log("Email: " + ls.get("check_eml"))
 
 const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -29,8 +29,21 @@ export default function Form1() {
    // const[username, setName] = useState('')
     const[email, setLocation] = useState('')
   const [password, setPrice] = useState('')
+  
   // const [warning, setWarning] = useState(0)
-  const [failed, isFailed] = useState('')
+
+  const message = "Wake up!";
+  Axios.post("https://mydestinationapp.onrender.com/wake_up", {
+    message:message
+  }).then(data => {
+    data && console.log(data)
+  })
+
+  const [status, setStatus] = useState({
+    showMessage:0,
+    failed: 0,
+    message: ''
+  })
   console.log("failed = " + 0)
 
     //console.log("Name = " + username)
@@ -54,6 +67,8 @@ export default function Form1() {
             e.preventDefault()
             generateToken()
             console.log("token: " + token)
+
+            const hashedpassword = bcrypt.hashSync(password)
             
             email && password ?
               Axios.post("https://mydestinationapp.onrender.com/search_user", {
@@ -64,34 +79,45 @@ export default function Form1() {
               }).then((data) => {
 
                 console.log("data" + data.data)
-                if (data.data && data.data != 'error') {
-                  ls.set('eml', data.data.email)
-                  ls.set('usr', data.data.username)
-                  window.open("https://travel-website-with-mongodb-front-end-bszn.vercel.app/", "_self")
-                }
 
-                else if(data.data == 'error') {
-                  console.log("no data")
-                  isFailed('Wrong email or password :(')
+                if (data.data == "Email sent") {
+                  ls.set('check_eml', email)
+                  setStatus({
+                    showMessage:1,
+                    failed: 0,
+                    message: `A confirmation email has been sent to ${email}`
+                  })
                 }
-              }) : isFailed('Wrong email or password :(')
+                else if (data.data == "error"){
+                  setStatus({
+                    showMessage:1,
+                    failed: 1,
+                    message: "Wrong email or password:("
+                  })
+                }
+              }) :
+              setStatus({
+                showMessage:1,
+                failed: 1,
+                message: "Wrong email or password:("
+              })
               token = ''
           }}>Log in</button>
           <span>Don't have an account?</span>
           <Link to="/form">Sign up</Link>
 
+          <Link to= "/password_recovery">
+            Forgot your password?
+          </Link>
+
           {
-            failed ?
-              <div className= "negative-message">
-                <div>{failed}</div>
+            status.showMessage ?
+              <div className={`${status.failed ? "negative-message" : "message"}`}>
+                <div>{status.message}</div>
               </div>
               :
               null
           }
-
-          <Link to= "/password_recovery">
-            Forgot your password?
-          </Link>
 
         </div>  
       </form>
