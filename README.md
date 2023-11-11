@@ -18,11 +18,11 @@
 
 ## Note! 
 
-# - The private destinations (rented appartements) might not appear on the map as the google maps API doesn't have enough data about them. I'm stiil figuring a way to fix this.
+### - The private destinations (rented appartements) might not appear on the map as the google maps API doesn't have enough data about them. I'm stiil figuring a way to fix this.
 
-# - The "Guests" field and the filter section are not functional yet.
+### - The "Guests" field and the filter section are not functional yet.
 
-# - Right now the app only scrapes data from only one website. I am currently making some minor adjustments for the second website scraping.
+### - Right now the app only scrapes data from only one website. I am currently making some minor adjustments for the second website scraping.
 
 ![image](https://user-images.githubusercontent.com/91996303/222156757-b73c1bee-6e9a-4e45-ad9f-8be771ae75ad.png)
 
