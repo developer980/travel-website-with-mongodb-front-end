@@ -19,24 +19,25 @@ module.exports = function booking(keyWord, checkIn, checkOut) {
                 
                 const url_text = $(this).find("h3").find(".f6431b446c").text();
                 const url_href = $(this).find("h3").find("a").attr("href")
-                console.log(pretty(url_text))
+                // console.log(pretty(url_text))
                 const description = $(this).find(".ef8295f3e6").children(".d8eab2cf7f").text()
-                const location = $(this).find(".ef8295f3e6").children("div").children(".a1fbd102d9").children("a").children("span").children(".f4bd0794db").text();
+                const location = $(this).find(".b0db0e8ada").find(".aee5343fdb ").text();
+                console.log(location)
                 const price_text = $(this).find('.c5ca594cb1').find('span').text()
                 const img = $(this).find("img").attr("src")
                 //console.log(pretty(img.attr("src")))
                 const price = price_text.split("lei")[0].split(".").join('')
-                console.log("price " + price_text.split("lei")[0].split(".").join('') + " " + price_text.split("lei")[0].split(".").join('') / 4.90)
+                // console.log("price " + price_text.split("lei")[0].split(".").join('') + " " + price_text.split("lei")[0].split(".").join('') / 4.90)
                 let notes = ""
 
-                console.log("url_href:")
-                console.log(url_href)
+                // console.log("url_href:")
+                // console.log(url_href)
                 
                 if (description.includes("Proprietate Călătorii durabile")) {
                     notes = "Travel sustenabillity property"
                 }
         
-                $(this).find(".b978843432").find(".fbb11b26f5").children("span").each(function (item) {
+                $(this).find(".d6767e681c").find(".a455730030").children("span").each(function (item) {
                     rating_stars++
                 })
                 console.log("rating_stars: " + rating_stars)
@@ -54,7 +55,7 @@ module.exports = function booking(keyWord, checkIn, checkOut) {
                     location: location.replace("Arată pe hartă", " ")
                 }
 
-                console.log(new_element)
+                // console.log(new_element)
 
                 if (url_text && price){
                     //description.length ?

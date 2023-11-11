@@ -1,7 +1,6 @@
 .hotel-post {
   width: 100%;
   height: 200px;
-  margin-bottom: 25px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -32,12 +31,22 @@
   align-items: center;
   justify-content: space-between;
 }
+.hotel-post .hotel-post__title {
+  overflow: hidden;
+  max-height: 50px;
+  font-size: 20px;
+  margin: 0;
+}
 @media (max-width: 630px) {
   .hotel-post .hotel-post__content {
     display: flex;
     flex-direction: column;
     align-items: unset;
     justify-content: space-between;
+  }
+  .hotel-post .hotel-post__title {
+    overflow: hidden;
+    font-size: 20px;
   }
 }
 
@@ -95,6 +104,8 @@
   display: flex;
   flex-direction: row;
   justify-content: left;
+  align-items: center;
+  font-size: 15px;
 }
 .rating img {
   height: 50%;

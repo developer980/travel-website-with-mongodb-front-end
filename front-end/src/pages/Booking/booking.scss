@@ -192,7 +192,8 @@ $percent:100/3;
     @include display(column, center, none);
     grid-area: content;
     width: 100%;
-    margin: auto;
+    // margin: auto;
+    gap:25px;
 }
 
 .side-section{

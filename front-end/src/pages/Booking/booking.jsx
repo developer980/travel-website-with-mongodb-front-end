@@ -120,16 +120,17 @@ export default function Booking() {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       setSearch(1)
-      axios.post("https://mydestinationapp.onrender.com/get_posts", {
-        keyWord: keyWord.replace(" ", "+"),
-        parameters: {
-          checkIn:dateIn,
-          checkOut:dateOut
-        }
-      }).then(data => {
-        console.log(data.data)
-        setHotels(data.data)
-      })
+      //https://mydestinationapp.onrender.com/get_posts
+                axios.post("https://mydestinationapp.onrender.com/get_posts", {
+                  keyWord: keyWord.replace(" ", "+"),
+                  parameters: {
+                    checkIn:dateIn,
+                    checkOut:dateOut
+                  }
+                }).then(data => {
+                  console.log(data.data)
+                  setHotels(data.data)
+                })
     }
   }
 
@@ -170,7 +171,7 @@ export default function Booking() {
               
               <button className="inputs__element search-button inputs-right" onClick={() => {
                 setSearch(1)
-                axios.post("https://mydestinationapp.onrender.com/get_postss", {
+                axios.post("https://mydestinationapp.onrender.com/get_posts", {
                   keyWord: keyWord.replace(" ", "+"),
                   parameters: {
                     checkIn:dateIn,

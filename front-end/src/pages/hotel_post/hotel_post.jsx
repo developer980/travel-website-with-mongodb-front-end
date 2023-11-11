@@ -42,91 +42,84 @@ export default function Hotel_post(props) {
   return (
       <>
           {/* <img src={Filled_mark} alt="" /> */}
-      <div className="hotel-post">
-        <div className="hotel-img">
-        {/* <div className = "hotel-img"> */}
-              <img className="main-img" name = "image" src={img} alt="" />
-                  <div className='hotel-mark' onClick={() => {
-                      if (!status.marked) {
-                          axios.post("https://mydestinationapp.onrender.com/add_tofav", {
-                              name: url_text,
-                              link: url_href,
-                              price: price,
-                              img: img,
-                              id: ls.get("i"),
-                              email: ls.get("eml")
-                          })
-                          //setMark(1)
-                          setStatus(prevStatus => {
-                              return {
-                                  marked: 1,
-                                  inList:prevStatus.inList
-                              }
-                          })
-                      }
-                      else {
-                          axios.post("https://mydestinationapp.onrender.com/remove_fromFav", {
-                              email: ls.get("eml"),
-                              name: url_text
-                          })
+        <div className="hotel-post">
+            <div className="hotel-img">
+            {/* <div className = "hotel-img"> */}
+                <img className="main-img" name = "image" src={img} alt="" />
+                    <div className='hotel-mark' onClick={() => {
+                        if (!status.marked) {
+                            axios.post("https://mydestinationapp.onrender.com/add_tofav", {
+                                name: url_text,
+                                link: url_href,
+                                price: price,
+                                img: img,
+                                id: ls.get("i"),
+                                email: ls.get("eml")
+                            })
+                            //setMark(1)
+                            setStatus(prevStatus => {
+                                return {
+                                    marked: 1,
+                                    inList:prevStatus.inList
+                                }
+                            })
+                        }
+                        else {
+                            axios.post("https://mydestinationapp.onrender.com/remove_fromFav", {
+                                email: ls.get("eml"),
+                                name: url_text
+                            })
 
-                          setStatus(prevStatus => {
-                            return {
-                                marked: 0,
-                                inList:prevStatus.inList
-                            }
-                        })
-                          //setMark(0)
-                        //   setArray(list.splice(list.indexOf(url_text), 1))
-                      }
-              }}>
-                      {status.marked ? <img src={Filled_mark} alt="" /> : <img src={Mark} alt="" />}
-              </div>
-        {/* </div> */}
-              </div>
-        <div className = "hotel-post__content">
-            <div className="middle">
+                            setStatus(prevStatus => {
+                                return {
+                                    marked: 0,
+                                    inList:prevStatus.inList
+                                }
+                            })
+                            //setMark(0)
+                            //   setArray(list.splice(list.indexOf(url_text), 1))
+                        }
+                }}>
+                        {status.marked ? <img src={Filled_mark} alt="" /> : <img src={Mark} alt="" />}
+                </div>
+            {/* </div> */}
+                </div>
+            <div className = "hotel-post__content">
+                <div className="middle">
             
-            <h3>{url_text}</h3>
-            
-            {/* <span>
-                {hotel.notes}
-            </span> */}
-
-            <span className='rating'>
-                {
-                rating_stars ? Array.from(Array(rating_stars)).map((item, index) =>
-                    <img src = {Star}/>
-                ) :
-                    <span>
-                        Rating stars not available
+                    <h3 className='hotel-post__title'>{url_text}</h3>
+                        
+                    <span className='rating'>
+                        {
+                        rating_stars ? Array.from(Array(rating_stars)).map((item, index) =>
+                            <img src = {Star}/>
+                        ) :
+                            <span>
+                                Reviews not available
+                            </span>
+                        }
                     </span>
-                }
-            </span>
-            <span className="location" onClick={() => {
-                        map ? showMap(0) :
-                            showMap(1)
-            }}>
-                Show on the map
-            </span>
-            {/* <span className = "price">
-                {hotel.price}
-            </span>  */}
-            </div>
-            <div className = 'links'>
-                {price.map((price, index) => {
-                    console.log(price.value.replace("€", "").trim())
-                    if(price.value) return <a href={url_href[index]} target = "_blank" rel="noopener noreferrer">
-                        <div>
-                        {price.value} €
-                        </div>
-                    <span>{price.website}</span>
-                    </a>
-                })}
-        
+                    <span className="location" onClick={() => {
+                                map ? showMap(0) :
+                                    showMap(1)
+                    }}>
+                        Show on the map
+                    </span>
+                </div>
+                <div className = 'links'>
+                    {price.map((price, index) => {
+                        console.log(price.value.replace("€", "").trim())
+                        if(price.value) return <a href={url_href[index]} target = "_blank" rel="noopener noreferrer">
+                            <div>
+                            {price.value} €
+                            </div>
+                        <span>{price.website}</span>
+                        </a>
+                    })}
+            
+                </div>
             </div>
         </div>
-    </div>
           {
               map ? 
               

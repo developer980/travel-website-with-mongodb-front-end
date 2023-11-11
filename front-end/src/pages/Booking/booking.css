@@ -195,7 +195,7 @@
   justify-content: none;
   grid-area: content;
   width: 100%;
-  margin: auto;
+  gap: 25px;
 }
 
 .close-button {

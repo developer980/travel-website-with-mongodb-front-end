@@ -7,7 +7,7 @@ module.exports = function expedia(keyWord, checkIn, checkOut) {
     let elements2 = []
 
     return new Promise((resolve) => {
-        axios.get(`https://www.expedia.com/Hotel-Search?destination=${keyWord}&startDate=${checkIn.year + "-" + checkIn.month + "-" + checkIn.day}${"&endDate=" + checkOut.year + "-" + checkOut.month + "-" + checkOut.day}`).then((data) => {
+        // axios.get(`https://www.expedia.com/Hotel-Search?destination=${keyWord}&startDate=${checkIn.year + "-" + checkIn.month + "-" + checkIn.day}${"&endDate=" + checkOut.year + "-" + checkOut.month + "-" + checkOut.day}`).then((data) => {
             // if(data.data){
             // const $ = cheerio.load(data.data)
             // $('.uitk-card').each(function () {
@@ -44,7 +44,8 @@ module.exports = function expedia(keyWord, checkIn, checkOut) {
             // })
             //console.log("l2 " + elements1.length)
                 // console.log(elements1)
-            resolve(elements1)
-        })
+            // resolve(elements1)
+        // })
+        resolve(elements1)
     })
 }

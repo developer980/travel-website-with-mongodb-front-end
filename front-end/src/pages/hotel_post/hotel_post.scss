@@ -19,7 +19,7 @@ $percent:100/3;
     width:100%;
     //max-width:960px;
     height:200px;
-    margin-bottom:25px;
+    // margin-bottom:25px;
     // margin: auto;
     @include display(row, center, space-between);
     gap:15px;
@@ -61,11 +61,26 @@ $percent:100/3;
         @include display(row, center, space-between);
     }
 
+    .hotel-post__title{
+        // text-wrap:nowrap;
+        overflow: hidden;
+        max-height: 50px;
+        font-size: 20px;
+        margin:0;
+        // width:50%;
+    }
+
     @media (max-width:630px){
         .hotel-post__content{
             // height:100%;
             // width:calc(100% - 215px);
             @include display(column, unset, space-between);
+        }
+        .hotel-post__title{
+            // text-wrap:nowrap;
+            overflow: hidden;
+            font-size: 20px;
+            // width:50%;
         }
     }
 }
@@ -130,6 +145,8 @@ $percent:100/3;
     display: flex;
     flex-direction: row;
     justify-content: left;
+    align-items: center;
+    font-size: 15px;
     img{
         height: 50%;
         width: auto;
@@ -153,18 +170,8 @@ $percent:100/3;
             text-decoration: none;
         div{
             position: absolute;
-            // padding: none;
-            // padding:10px;
-            //height: 50px;
-            //text-align: center;
-            //background-color: $color;
-            //border:none;
-            
-            //border-radius: 50px;
             font-weight:bold;
-            //] height:50%;
             font-size:30px;
-            //border: 1px solid$color;
         }
 
         div, span{
