@@ -10,7 +10,7 @@ module.exports = function booking(keyWord, checkIn, checkOut) {
         axios.get(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}${"&checkin=" + checkIn.year + "-" + checkIn.month + "-" + checkIn.day}${"&checkout=" + checkOut.year + "-" + checkOut.month + "-" + checkOut.day}`)
             .then((data) => {
             
-                ß
+                
                 console.log("collecting data")
                 console.log(data)
                 const $ = cheerio.load(data.data)
