@@ -12,9 +12,11 @@ module.exports = function booking(keyWord, checkIn, checkOut) {
             
             
 
-                console.log("collecting data")
-                console.log(data)
+                // console.log("collecting data")
+                // console.log(data)
                 const $ = cheerio.load(data.data)
+
+                console.log($.html())
                 !elements.length && $('.c82435a4b8').each(function (i, elem) {
                     let rating_stars = 0
                     //console.log("text " + $(this).text())
