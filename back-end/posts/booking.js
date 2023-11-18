@@ -9,7 +9,7 @@ module.exports = function booking(keyWord, checkIn, checkOut) {
     return new Promise((resolve) => {
         axios.get(`https://www.booking.com/searchresults.ro.html?ss=${keyWord}${"&checkin=" + checkIn.year + "-" + checkIn.month + "-" + checkIn.day}${"&checkout=" + checkOut.year + "-" + checkOut.month + "-" + checkOut.day}`)
             .then((data) => {
-            
+        
             
 
                 // console.log("collecting data")
