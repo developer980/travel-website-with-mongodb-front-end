@@ -47,7 +47,6 @@ export default function Booking() {
   console.log('view')
   
   const{guests_number} = useSelector(state => state.date)
-
   const { displayMode } = useSelector(state => state.date)
   
   const message = "Wake up!";
@@ -121,7 +120,7 @@ export default function Booking() {
     if (e.key === "Enter") {
       setSearch(1)
       //https://mydestinationapp.onrender.com/get_posts
-                axios.post("https://mydestinationapp.onrender.com/get_posts", {
+                axios.post("https://hotel-search-engine.onrender.com/get_posts", {
                   keyWord: keyWord.replace(" ", "+"),
                   parameters: {
                     checkIn:dateIn,
@@ -171,7 +170,7 @@ export default function Booking() {
               
               <button className="inputs__element search-button inputs-right" onClick={() => {
                 setSearch(1)
-                axios.post("https://mydestinationapp.onrender.com/get_posts", {
+                axios.post("https://hotel-search-engine.onrender.com//get_posts", {
                   keyWord: keyWord.replace(" ", "+"),
                   parameters: {
                     checkIn:dateIn,
