@@ -170,7 +170,7 @@ export default function Booking() {
               
               <button className="inputs__element search-button inputs-right" onClick={() => {
                 setSearch(1)
-                axios.post("https://hotel-search-engine.onrender.com//get_posts", {
+                axios.post("https://hotel-search-engine.onrender.com/get_posts", {
                   keyWord: keyWord.replace(" ", "+"),
                   parameters: {
                     checkIn:dateIn,
