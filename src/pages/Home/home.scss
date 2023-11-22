@@ -1,0 +1,120 @@
+$color:rgb(77, 124, 115);
+$color1:rgb(106, 232, 211);
+
+@mixin display($displayMode, $direction, $align, $justify){
+    display:$displayMode;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+main{ 
+    //border:1px solid;
+    // height:80%;
+    position: absolute;
+    width: 100%;
+    bottom:0;
+    // left: 100px;
+    // right: 100px;
+    top:200px;
+    // margin: 0px 0px 0px 100px;
+
+    @include display(flex, row, center, space-around);
+    section{        
+        // width: 70%;
+        // height: 10%;
+        margin-left:100px; 
+        @include display(flex, column, left, space-between);
+        .description{
+            width: 70%;
+            max-width: 900px;
+            font-size: 60px;
+            color:rgb(110, 110, 110);
+            font-family: 'Open Sans';
+            font-weight: bold;
+        }
+        
+        @media (max-width:630px)
+        {
+            .description{
+                width: 100%;
+                font-size: 70px;
+                text-align: center;
+            }
+        }
+
+
+        .links-section{
+            //border: 2px solid black;
+            width: 60%;
+            margin-top: 50px;
+            @include display(flex, row, left, none);
+            gap:20px;
+            a{
+                font-weight: bold;
+                width: 50%;
+                min-width: 150px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $color;
+                border: 1px solid $color;
+                border-radius: 5px;
+                padding: 10px;
+                text-decoration: none;
+                color:white;
+                font-size: 1.5rem;
+                transition: all 0.25s;
+                max-width: 200px;
+                &:hover{
+                    background-color: rgb(255, 255, 255);
+                    color:$color;
+                    border-radius: 50px;
+                }
+            }
+        }
+
+        @media (max-width:630px)
+        {
+            .links-section{
+                width: 100%;
+                @include display(flex, column, center, center);
+            }
+        }
+        
+    }
+
+    @media (max-width:630px)
+    {
+        section{
+            margin: auto;
+            width: 70%;
+        }
+    }
+}    
+
+// .description{
+//     width: 70%;
+//     max-width: 900px;
+//     font-size: 60px;
+//     color:rgb(110, 110, 110);
+//     font-family: 'Open Sans';
+//     font-weight: bold;
+// }
+
+.background-image{
+    //border:1px solid;
+    height: 100%;
+    overflow: hidden;
+    img{
+        height:120%;
+    }
+}
+
+@media (max-width:630px)
+{
+    .background-image{
+        display: none;
+    }
+}

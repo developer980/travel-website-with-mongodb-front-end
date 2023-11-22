@@ -1,0 +1,116 @@
+.chalendar{
+    background-color: white;
+    /* width:50%; */
+    position: absolute;
+    z-index:1;    
+    top: 50%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    margin:auto;
+    width:100%;
+    max-width:700px;
+    height:50%;
+    max-height:500px;
+    border-radius: 20px;
+    border:1px solid rgb(219, 219, 219);
+    box-shadow: 3px 3px 10px -1px rgb(153, 153, 153);
+    overflow: hidden;
+}
+
+/* 
+.close-button{
+    position: absolute;
+    top:0;
+    right: 0;
+} */
+
+.chalendar-header, .chalendar-bar{
+    /* background-color: rgb(206, 206, 206); */
+    border-bottom:1px solid rgb(184, 184, 184);    
+    /* height:15%; */
+}
+
+.chalendar-header{
+    height:15%;
+    background-color: rgb(77, 124, 115);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 25px;
+    font-weight: bold;
+    color:white;
+}
+
+.chalendar-bar{
+    height:10%;
+    align-items: center;
+}
+
+.chalendar-bar, .chalendar-content {   
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.chalendar-content{
+    height:70%;
+    width:100%;
+}
+
+.chalendar-bar > div, .chalendar-content__day{
+    width:14.285%;
+    height:16%;
+    color:rgb(129, 129, 129);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+.chalendar-content__day {
+    transition: all 0.25s;
+    /* border:1px solid */
+}
+
+.chalendar-content__day--faded{
+    color:rgb(201, 201, 201)
+}
+
+.chalendar-content__day--green{
+    background-color: rgb(230, 230, 230);
+}
+
+.chalendar-content__day--none{
+    background: none;
+}
+
+.chalendar-content__day--clear{
+    cursor: pointer;
+}
+
+.chalendar-content__day--clear:hover{
+    background-color: rgb(212, 212, 212);
+    border-radius: 10px;
+}
+
+.arrow{
+    display: flex;
+    align-items: center;
+}
+
+.arrow > img {
+    width: 20px;    
+    filter: invert(50%) sepia(100%) saturate(0%)
+    hue-rotate(100deg) brightness(200%) 
+    contrast(100%);
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.arrow > img:hover{
+    transform: scale(1.2);
+}
+
+.arrow-inverted{
+    transform: rotate(180deg);
+}

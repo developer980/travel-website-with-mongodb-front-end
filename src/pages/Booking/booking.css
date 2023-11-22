@@ -1,0 +1,300 @@
+.layout-grid {
+  width: 900px;
+  margin: auto;
+  margin-top: 170px;
+  display: grid;
+  grid-template-areas: "nav nav nav nav" "content content content content";
+  gap: 30px;
+}
+
+@media (max-width: 1500px) {
+  .layout-grid {
+    width: 70%;
+  }
+}
+@media (max-width: 630px) {
+  .layout-grid {
+    width: 100%;
+  }
+}
+.inputs {
+  width: 100%;
+  margin: auto;
+  grid-area: nav;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  z-index: 1;
+}
+
+.search-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.inputs__section, .inputs__search-section {
+  width: 33.3333333333%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: none;
+}
+
+.inputs__element {
+  font-size: 1.1rem;
+  height: 50px;
+}
+
+.inputs__section {
+  position: relative;
+}
+.inputs__section input {
+  width: 50%;
+}
+.inputs__section .search-button {
+  box-sizing: border-box;
+  width: 50%;
+  display: inline;
+}
+
+.inputs__search-section input {
+  width: 100%;
+}
+
+.filter-section {
+  width: 100%;
+}
+
+@media (max-width: 1500px) {
+  .filter-section {
+    width: 100%;
+  }
+}
+.inputs-left {
+  border: none;
+  border: 1px solid rgb(219, 219, 219);
+  cursor: pointer;
+  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+  border-radius: 50px 0px 0px 50px;
+  transition: all 0.25s;
+  box-sizing: border-box;
+  padding-left: 1rem;
+}
+.inputs-left:hover {
+  background-color: rgb(230, 230, 230);
+}
+.inputs-left:focus {
+  outline-width: 0px;
+  background-color: rgb(221, 221, 221);
+}
+
+.inputs-center-left, .inputs-center-middle, .inputs-center-right {
+  border: none;
+  border: 1px solid rgb(219, 219, 219);
+  cursor: pointer;
+  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+  border-radius: 0px 0px 0px 0px;
+  transition: all 0.25s;
+  box-sizing: border-box;
+  padding: 0px 20px 0px 20px;
+}
+.inputs-center-left:hover, .inputs-center-middle:hover, .inputs-center-right:hover {
+  background-color: rgb(230, 230, 230);
+}
+.inputs-center-left:focus, .inputs-center-middle:focus, .inputs-center-right:focus {
+  outline-width: 0px;
+  background-color: rgb(221, 221, 221);
+}
+
+.inputs-right {
+  border: none;
+  border: 1px solid rgb(219, 219, 219);
+  cursor: pointer;
+  box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+  border-radius: 0px 50px 50px 0px;
+  transition: all 0.25s;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+.inputs-right:hover {
+  background-color: rgb(230, 230, 230);
+}
+.inputs-right:focus {
+  outline-width: 0px;
+  background-color: rgb(221, 221, 221);
+}
+
+@media (max-width: 1500px) {
+  .inputs__element {
+    font-size: 0.8rem;
+    height: 30px;
+  }
+  .search-section {
+    flex-direction: column;
+  }
+  .inputs__section, .inputs__search-section {
+    width: 100%;
+  }
+  .inputs__search-section input {
+    width: 100%;
+  }
+  .inputs-left {
+    border: none;
+    border: 1px solid rgb(219, 219, 219);
+    cursor: pointer;
+    box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+    border-radius: 20px 20px 0px 0px;
+    transition: all 0.25s;
+    box-sizing: border-box;
+  }
+  .inputs-left:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  .inputs-left:focus {
+    outline-width: 0px;
+    background-color: rgb(221, 221, 221);
+  }
+  .inputs-center-right {
+    border: none;
+    border: 1px solid rgb(219, 219, 219);
+    cursor: pointer;
+    box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+    border-radius: 0px 0px 0px 20px;
+    transition: all 0.25s;
+    box-sizing: border-box;
+  }
+  .inputs-center-right:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  .inputs-center-right:focus {
+    outline-width: 0px;
+    background-color: rgb(221, 221, 221);
+  }
+  .inputs-right {
+    border: none;
+    border: 1px solid rgb(219, 219, 219);
+    cursor: pointer;
+    box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+    border-radius: 0px 0px 20px 0px;
+    transition: all 0.25s;
+    box-sizing: border-box;
+  }
+  .inputs-right:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  .inputs-right:focus {
+    outline-width: 0px;
+    background-color: rgb(221, 221, 221);
+  }
+}
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: none;
+  grid-area: content;
+  width: 100%;
+  gap: 25px;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.close-button:hover {
+  transform: scale(1.5);
+}
+
+.chalendar-window {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(179, 179, 179, 0.63);
+  z-index: 2;
+}
+
+.hotel-mark {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 30px;
+  height: 30px;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background-color: rgba(177, 177, 177, 0.596);
+  border-radius: 50px;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.hotel-mark img {
+  width: 70%;
+}
+.hotel-mark:hover {
+  background-color: rgba(255, 255, 255, 0.829);
+}
+
+@keyframes show {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 500px;
+  }
+}
+.posts-placeholder {
+  position: absolute;
+  top: 25rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(146, 146, 146);
+}
+
+.waiting {
+  position: relative;
+  top: 10rem;
+  left: auto;
+  right: auto;
+  height: 150px;
+  width: 110px;
+}
+
+.waiting-message {
+  position: absolute;
+  bottom: 0;
+  width: 110px;
+  text-align: center;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 5px solid rgb(99, 99, 99);
+  border-top: 5px solid rgba(209, 209, 209, 0);
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: auto;
+  animation: spin 1s linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=booking.css.map */

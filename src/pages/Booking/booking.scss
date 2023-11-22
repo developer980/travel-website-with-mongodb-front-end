@@ -1,0 +1,305 @@
+$color:rgb(77, 124, 115);
+$color1: rgb(230, 230, 230);
+$darkColor:rgb(98, 101, 104);
+$percent:100/3;
+
+
+@mixin display($direction, $align, $justify){
+    display:flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin span-display($weight, $size){
+    font-weight: $weight;
+    font-size: $size;
+}
+
+@mixin input($top-left, $top-right, $bot-left, $bot-right){
+    border:none;
+    border:1px solid rgb(219, 219, 219);
+    cursor: pointer;
+    box-shadow: 3px 3px 5px -3px rgb(153, 153, 153);
+    // font-size: 1.1rem;
+    border-radius: $top-left $top-right $bot-left $bot-right;
+    transition: all 0.25s;
+    box-sizing: border-box;
+    &:hover{
+        background-color: rgb(230, 230, 230);
+    }
+
+    &:focus{
+        outline-width: 0px;
+        background-color: rgb(221, 221, 221);
+    }
+}
+
+.layout-grid{
+    width: 900px;
+    margin: auto;
+    margin-top: 170px;
+    //border:2px solid;
+    display: grid;
+    grid-template-areas: 
+    'nav nav nav nav'
+    'content content content content';
+    gap:30px;
+    // position: relative;
+    //padding:10px
+}
+
+@media (max-width:1500px){
+    .layout-grid{
+        width: 70%;
+    }
+}
+
+@media (max-width:630px){
+    .layout-grid{
+        width: 100%;
+    }
+}
+
+
+.inputs{
+    // background-color: #2196F3;
+    // text-align: center;
+    width: 100%;
+    // position:relative;
+    margin:auto;
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    z-index:1;
+    //border:2px solid;
+    // width: 100%;
+
+    // @media (max-width:1500px)
+    // {
+    //     input{
+    //         width: 40%;
+    //     }
+    // }
+}
+
+.search-section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.inputs__section, .inputs__search-section{
+    width: calc(100% / 3);
+    @include display(row, center, none);
+    // flex-wrap: wrap;
+}
+
+.inputs__element {
+    font-size: 1.1rem;
+    height:50px;
+}
+
+.inputs__section{
+    position:relative;
+    input{
+        width: 50%;
+    }
+
+    .search-button{
+        box-sizing: border-box;
+        width: 50%;
+        display: inline;
+    }
+}
+
+.inputs__search-section{
+    input{
+        width: 100%;
+    }
+}
+
+.filter-section{
+    width: 100%;
+    // border: 1px solid;
+}
+
+@media (max-width:1500px){
+    .filter-section{
+        width: 100%;
+        // border: 1px solid;
+    }
+}
+
+.inputs-left{
+    @include input(50px, 0px, 0px, 50px);
+    padding-left:1rem;
+}
+
+.inputs-center-left, .inputs-center-middle, .inputs-center-right{
+    @include input(0px, 0px, 0px, 0px);
+    padding:0px 20px 0px 20px;
+}
+
+.inputs-right{
+    @include input(0px, 50px, 50px, 0px);
+    padding-left:20px;
+}
+
+@media (max-width:1500px)
+{
+
+    .inputs__element {
+        font-size: 0.8rem;
+        height:30px;
+    }
+
+    .search-section{
+        flex-direction: column
+    }
+    .inputs__section, .inputs__search-section{
+        width: 100%;
+    }
+
+    .inputs__section{
+
+    }
+    
+    .inputs__search-section{
+        input{
+            width:100%;
+        }
+    }
+// }
+
+// @media (max-width:1500px)
+// {   
+    .inputs-left{
+        @include input(20px, 20px, 0px, 0px);
+    }
+
+    .inputs-center-right{
+        @include input(0px, 0px, 0px, 20px);
+    } 
+    .inputs-right{
+        @include input(0px, 0px, 20px, 0px);
+    }
+}
+
+.posts{
+    //background-color: #2196F3;
+    @include display(column, center, none);
+    grid-area: content;
+    width: 100%;
+    // margin: auto;
+    gap:25px;
+}
+
+.side-section{
+    //grid-area: side;
+}
+
+.close-button{
+    position: absolute;
+    top:1rem;
+    right: 1rem;
+    width:30px;
+    cursor:pointer;
+    transition: all 0.25s;
+}
+
+.close-button:hover{
+    transform: scale(1.5);
+}
+
+.chalendar-window{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: rgba(179, 179, 179, 0.63);
+    z-index: 2;
+}
+
+.hotel-mark{
+    position: absolute;
+    right:5px;
+    bottom:5px;
+    width: 30px;
+    height: 30px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(177, 177, 177, 0.596);
+    border-radius: 50px;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+        width:70%;
+        //border: 1px solid black
+    }
+    cursor: pointer;
+    &:hover{    
+        background-color: rgba(255, 255, 255, 0.829);
+    }
+}
+
+@keyframes show{
+    from{
+        height: 0px;
+    }
+    
+    to{
+        height: 500px;
+    }
+}
+
+.posts-placeholder{
+    position: absolute;
+    top:25rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color:rgb(146, 146, 146)
+}
+
+.waiting{
+    position: relative;
+    top:10rem;
+    left:auto;
+    right:auto;
+    //border:1px solid;
+    height: 150px;
+    width: 110px;
+}
+
+.waiting-message{
+    position: absolute;
+    bottom:0;
+    width: 110px;
+    text-align: center;
+}
+
+.spinner{
+    width:100px;
+    height:100px;
+    border-radius:100%;
+    border:5px solid rgb(99, 99, 99);
+    border-top:5px solid rgba(209, 209, 209, 0);
+    position:absolute;
+    top:0;
+    left:auto;
+    right:auto;
+    animation: spin 1s linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spin{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}

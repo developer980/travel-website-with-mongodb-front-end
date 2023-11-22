@@ -1,0 +1,303 @@
+$color:rgba(77, 124, 115, 0.89);
+$color1:rgb(106, 232, 211);
+
+@mixin display($displayMode, $align, $justify){
+    display:$displayMode;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+
+@mixin section($width, $height, $top_left, $bottom_left, $bottom_right){
+    width: $width;
+    height:$height;
+    border-top-left-radius: $top_left;
+    border-bottom-left-radius: $bottom_left;
+    border-bottom-right-radius: $bottom_right;
+}
+
+html, body{
+    margin:0px;
+    height:100%;
+}
+
+body{
+    background-color: rgb(231, 231, 231);
+}
+
+.nav-user{
+    color:white;
+    color: white;
+    // font-size: 1.25rem;
+    cursor: pointer;
+} 
+
+.nav-user-settings{
+    background-color: white;
+    border:1px solid rgb(177, 177, 177);
+    color:rgb(109, 109, 109);
+    position: absolute;
+    top:150px;
+    right: 20px;
+    // left: auto;
+    width: 200px;
+    height: 100px;
+    border-radius:20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    a{
+        color:rgb(88, 88, 88);
+        text-decoration: none;
+        transition: all 0.25s;
+        &:hover{
+            transform:scale(1.3,1.3);
+            font-weight: bold;
+        }
+    }
+
+}
+
+#logo{
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    //border:1px solid;
+}
+
+.logo-outsidenav{
+    height:150px;
+    position: fixed;
+    left: 0;
+    top:10px;
+    z-index: 2;
+}
+
+.logo-insidenav{
+    height:70px;
+    position: fixed;
+    left: 20px;
+    top:0;
+    z-index: 2;
+}
+
+#logo-content{
+    transition: all 0.5s;
+     height:100%;
+    //     filter: invert(50%) sepia(100%) saturate(150%)
+    //     hue-rotate(100deg) brightness(70%) 
+    //     contrast(100%);
+}
+
+.logo-content-small{
+    height: 30px;
+}
+
+.logo-content-green{
+    
+    filter: invert(50%) sepia(100%) saturate(150%)
+    hue-rotate(100deg) brightness(70%) 
+    contrast(100%);
+}
+
+@media (min-width:630px){
+    
+    .logo-content-white{
+        filter: invert(50%) sepia(100%) saturate(0%)
+        hue-rotate(100deg) brightness(200%) 
+        contrast(100%);
+    }
+}
+
+@media (max-width:630px){
+    // #logo-content{
+    //     transition: all 0.5s;
+    //      height:30px;
+    // }
+    .logo-insidenav{
+        top:-100%;
+    }
+
+    .logo-outsidenav, .logo-insidenav{
+        height:70px;
+    }
+}
+
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width:100%;
+    position: absolute;
+    z-index:2;
+    transition: all 0.25s;
+
+    section{
+        transition: all 0.5s;
+        box-shadow: -5px 5px 5px -2px rgb(170, 170, 170);
+        // width: 50%;
+        
+        background-size:120%;
+        // height:70%;
+        // border-top-left-radius: 50px;
+        // border-bottom-left-radius: 50px;
+            font-size: 1.25rem;
+        a{
+            text-decoration: none;
+            color: white;
+            transition: transform 0.25s;
+            &:hover{
+                transform:scale(1.3, 1.3);
+                // font-weight: bold;
+            }
+        }
+    }
+}
+
+#section{
+    animation: flyIn 1s;
+    backdrop-filter: blur(2px);
+    background: linear-gradient(90deg, $color, $color, $color, rgba(138, 196, 185, 0.459));
+}
+
+
+#section__small{
+    @include section(50px, 50px, 50px, 50px, 0px);
+    background-color: $color;
+    position:relative;
+    display: none
+}
+
+@keyframes flyIn{
+    from{
+        width:0%;
+        font-size: 0rem;
+    }
+    to{
+        width:30%;
+        font-size: 1.25rem;
+    }
+}
+
+.nav-big{
+    padding-top: 30px;
+    height:9.3rem;
+}
+
+.nav-fixed{
+    position: fixed;
+    height:7rem;
+    top:0;
+}
+
+.nav-fixed-hidden{
+    position: fixed;
+    height:7rem;
+    top:-10%;
+}
+
+.section-narrow{
+    @include section(30%, 70%, 50px, 50px, 0px);
+    // max-width: 40rem;
+    background-position: 100% 0%;  
+    @include display(flex, center, end);
+    padding-right: 30px;
+    gap:10%;
+    overflow: hidden
+    // a{
+    //     width: 50%;
+    // }
+}
+
+.section-wide{
+    @include section(100%, 70%, 0px, 50px, 50px);
+    // padding-left: 50%;
+    padding-right: 50px;
+    background-position: 10% 0%;  
+    @include display(flex, center, end);
+    gap:7%;
+    //background-image: linear-gradient(90deg, $color,rgba(77, 124, 115, 0.168));
+        //background-color: rgba(175, 219, 211, 0.808);
+     //animation:bgcolor 3s
+        //background-position: 0% 0%;  
+}
+
+.section__column{
+    position: absolute;
+    top:0;
+    right:0;
+    @include section(300px, 200px, 50px, 50px, 0px);
+    background-color:rgba(77, 124, 115, 0.89);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    // border:1px solid;
+    // display: none;
+    animation:menu 0.5s;
+    overflow: hidden;
+        // color:rgb(165, 37, 37);
+}
+
+.section__close-button{
+    width:25px;
+    // border:1px solid;
+    position: absolute;
+    right:10px;
+    top:10px;
+    cursor:pointer;
+    transition: all 0.25s;
+    &:hover{
+        transform: scale(1.25);
+    }
+}
+
+.button-img{
+    width: 100%;    
+    filter: invert(50%) sepia(100%) saturate(0%)
+    hue-rotate(100deg) brightness(200%);
+}
+
+@keyframes menu {
+    from{
+        height:50px;
+        width:50px;
+    }
+    to{
+        width:300px;
+        height:200px;
+    }
+}
+
+@media (max-width:1500px)
+{
+    .section-narrow{
+        @include section(50%, 70%, 50px, 50px, 0px);
+    }
+}
+
+@media (max-width:630px)
+{
+    #section{
+        display: none
+    }
+
+    #section__small{
+        display:block;
+    }
+    .section-narrow{
+        @include section(70px, 70px, 50px, 50px, 0px);
+        border:1px solid;
+    }
+}
+
+// @keyframes bgcolor{
+//     from{
+//         background-image: linear-gradient(90deg, $color, $color, $color,rgba(0, 0, 0, 0.459))
+//     }
+//     to{
+//         background-image: linear-gradient(90deg, $color, $color, $color,rgba(189, 228, 220, 0.459))
+//     }
+// }
