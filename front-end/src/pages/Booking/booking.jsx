@@ -47,7 +47,6 @@ export default function Booking() {
   console.log('view')
   
   const{guests_number} = useSelector(state => state.date)
-
   const { displayMode } = useSelector(state => state.date)
   
   const message = "Wake up!";
